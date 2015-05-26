@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	
+	background: url("/resources/images/background3.jpg");
+}
+
+#panelEsq{
+	font-family:cursive;
+	text-align: center;
+}
+#panelDir{
+	text-align: center;
+}
+.ui-grid .ui-grid-responsive{
+	display: flex;
+}
