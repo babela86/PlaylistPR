@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 @Entity
 @NamedQuery(name = "Musica.findAll", query = "SELECT m FROM Musica m")
@@ -21,6 +24,14 @@ public class Musica implements Serializable {
 	private String album;
 	private String year;
 	private String path;
+
+	// um utilizador pode adicionar varias musicas
+	@ManyToOne
+	@JoinColumn(name = "id_util")
+	private Utilizador utilizador;
+
+	@OneToOne(mappedBy = "musica")
+	private PlaylistLnk playlistLnk;
 
 	public Musica() {
 	}

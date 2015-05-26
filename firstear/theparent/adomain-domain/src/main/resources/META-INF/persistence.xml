@@ -6,6 +6,7 @@
 		<jta-data-source>java:jboss/datasources/PR/</jta-data-source>
 	<class>dei.uc.pt.ar.Utilizador</class>
 	<class>dei.uc.pt.ar.Musica</class>
+		<class>dei.uc.pt.ar.Playlist</class>
 
 		<properties>
 			<!-- <property name="javax.persistence.schema-generation.database.action" 

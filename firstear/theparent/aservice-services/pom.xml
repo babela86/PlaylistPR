@@ -27,5 +27,10 @@
 			<artifactId>adomain-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<scope>provided</scope>
+			</dependency>
 	</dependencies>
 </project>
