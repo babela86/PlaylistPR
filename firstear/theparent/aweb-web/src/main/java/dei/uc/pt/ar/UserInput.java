@@ -23,7 +23,6 @@ public class UserInput {
 	private String year;
 	private String month;
 	private String day;
-
 	private Date birthdate;
 
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
@@ -32,14 +31,33 @@ public class UserInput {
 	}
 
 	public String newUser() throws ParseException {
-	this.birthdate = ft.parse(this.year + "-" + this.month + "-" + this.day);
-		
-		FacesMessage msg = new FacesMessage(
-				ur.newUser(this.email, this.name, this.pass, this.birthdate), "ERROR MSG");
+		this.birthdate = ft
+				.parse(this.year + "-" + this.month + "-" + this.day);
+
+		FacesMessage msg = new FacesMessage(ur.newUser(this.email, this.name,
+				this.pass, this.birthdate), "ERROR MSG");
 		msg.setSeverity(FacesMessage.SEVERITY_INFO);
-		if(FacesContext.getCurrentInstance()!=null)
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		if (FacesContext.getCurrentInstance() != null)
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		this.day = "";
+		this.year = "";
+		this.month = "";
+		this.name = "";
+		this.pass = "";
+		this.email = "";
 		return "login";
+	}
+
+	public String loginUser() throws ParseException {
+		if (!ur.loginUser(email, pass)){
+			FacesMessage msg = new FacesMessage("Login incorrecto!", "ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "login";
+		} else {
+		return "myPlaylist?faces-redirect=true";
+		}
 	}
 
 	public String getEmail() {
