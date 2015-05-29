@@ -24,19 +24,16 @@
 				<div class="col-sm-4">
 					<p id="sign">Sign up</p>
 					<h:panelGrid class="panelGrid2" columns="2" layout="grid">
-
 						<h:outputText value="e-mail" />
 						<h:inputText value="#{userInput.email}" required="true"
 							requiredMessage="insira um username" />
 						<h:outputText value="password" />
 						<h:inputSecret value="#{userInput.pass}" required="true"
 							requiredMessage="insira uma password" />
-
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid1">
-						<h:commandButton value="sign up" />
+						<h:commandButton value="sign up" action="#{userInput.loginUser()}"/>
 					</h:panelGrid>
-
 				</div>
 				</h:form>
 				<div class="col-sm-2" />
@@ -48,8 +45,6 @@
 						<h:inputText value="#{userInput.email}" required="true" />
 						<h:outputText value="password" />
 						<h:inputSecret value="#{userInput.pass}" required="true" />
-						<h:outputText value="repita a password" />
-						<h:inputSecret value="#{userInput.pass}" required="false" />
 						<h:outputText value="Nome" />
 						<h:inputText value="#{userInput.name}" required="true" />
 					</h:panelGrid>
@@ -57,13 +52,10 @@
 						<h:outputText value="Data de nascimento" />
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid2" columns="3" layout="grid">
-
 						<h:inputText label="Dia" value="#{userInput.day}" required="false"
 							maxlength="2" size="1" />
-
 						<h:inputText value="#{userInput.month}" required="false"
 							maxlength="2" size="1" />
-
 						<h:inputText name="Ano" value="#{userInput.year}" required="false"
 							maxlength="4" size="2" />
 					</h:panelGrid>
@@ -80,6 +72,5 @@
 			</h:form>
 		</div>
 	</div>
-
 </h:body>
 </html>
