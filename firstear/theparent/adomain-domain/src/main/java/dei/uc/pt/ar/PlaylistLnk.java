@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "playlist_lnk")
+@Table(name = "playlistlnk")
 @NamedQuery(name = "PlaylistLnk.findAll", query = "SELECT p FROM PlaylistLnk p")
 public class PlaylistLnk implements Serializable {
 
