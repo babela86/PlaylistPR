@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300'
+		rel='stylesheet' type='text/css' />
+	<h:outputStylesheet library="css" name="common-style.css" />
+
+	<title>Login Page</title>
+</h:head>
+<h:body>
+	<div id="welcome">Bem vindo</div>
+
+	<div id="loginPage">
+		<div class="row">
+			<h:form prependId="false">
+				<div class="col-sm-1" />
+				<div class="col-sm-4">
+					<p id="sign">Sign up</p>
+					<h:panelGrid class="panelGrid2" columns="2" layout="grid">
+
+						<h:outputText value="e-mail" />
+						<h:inputText value="#{userInput.email}" required="true"
+							requiredMessage="insira um username" />
+						<h:outputText value="password" />
+						<h:inputSecret value="#{userInput.pass}" required="true"
+							requiredMessage="insira uma password" />
+
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid1">
+						<h:commandButton value="sign up" />
+					</h:panelGrid>
+
+				</div>
+				</h:form>
+				<div class="col-sm-2" />
+				<h:form>
+				<div class="col-sm-4">	
+					<p id="sign">Sign in</p>
+					<h:panelGrid class="panelGrid2" columns="2" layout="grid">
+						<h:outputText value="email" />
+						<h:inputText value="#{userInput.email}" required="true" />
+						<h:outputText value="password" />
+						<h:inputSecret value="#{userInput.pass}" required="true" />
+						<h:outputText value="repita a password" />
+						<h:inputSecret value="#{userInput.pass}" required="false" />
+						<h:outputText value="Nome" />
+						<h:inputText value="#{userInput.name}" required="true" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid1">
+						<h:outputText value="Data de nascimento" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid2" columns="3" layout="grid">
+
+						<h:inputText label="Dia" value="#{userInput.day}" required="false"
+							maxlength="2" size="1" />
+
+						<h:inputText value="#{userInput.month}" required="false"
+							maxlength="2" size="1" />
+
+						<h:inputText name="Ano" value="#{userInput.year}" required="false"
+							maxlength="4" size="2" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid1">
+						<h:commandButton value="sign in" action="#{userInput.newUser()}" />
+						<div class="messageColor">
+							<br/>
+							<h:messages showSummary="true" showDetail="false"
+								errorStyle="color:red" infoStyle="color:blue" />
+						</div>
+					</h:panelGrid>
+				</div>
+				<div class="col-sm-1" />
+			</h:form>
+		</div>
+	</div>
+
+</h:body>
+</html>

@@ -3,59 +3,19 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-		
-		<h:outputStylesheet library="css" name="style.css" />
-	<title>Login Page</title>
-</h:head>
+
 <h:body>
-	<p id="welcome">Bem vindo</p>
-
-	
-	<h:form>
-
-		<div class="ui-grid ui-grid-responsive">
-			<div class="ui-grid-col-6">
-				<h:panelGrid id="panelEsq" columns="2">
-					
-						<h:outputText value="e-mail" />
-						<h:inputText />
-						<h:outputText value="password" />
-						<h:inputSecret />
-
-						<h:commandButton value="sign in" action="begin.xhtml"></h:commandButton>
-					
-				</h:panelGrid>
-			</div>
-			<div class="ui-grid-col-6">
-				<h:panelGrid id="panelDir" columns="2">
-					
-						<h:outputText value="e-mail" />
-						<h:inputText />
-						<h:outputText value="password" />
-						<h:inputSecret />
-						<h:outputText value="Repita a password" />
-						<h:inputSecret />
-						<h:outputText value="Nome" />
-						<h:inputText />
-						
-						<h:outputText value="Data de nascimento (aaaa-MM-dd)" />
-						<h:inputText />
-
-
-						<h:commandButton value="sign in" onclick="begin.xhtml"></h:commandButton>
-					
-				</h:panelGrid>
-			</div>
-		</div>
-
-
-
-	</h:form>
-
+	<ui:composition
+		template="/resources/template/common/commonLayout.xhtml">
+		<ui:define name="content">
+		<h:form>
+		
+		<h:commandButton value="begin" action="begin.xhtml" />
+		</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
