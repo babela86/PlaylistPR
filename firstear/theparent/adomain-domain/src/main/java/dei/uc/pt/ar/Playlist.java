@@ -1,15 +1,19 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "playlist")
@@ -18,32 +22,50 @@ public class Playlist implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int idPlaylist;
+	@NotNull
 	private String name;
 
 	// uma playlist so pode pertencer a um utilizador
-	@ManyToOne
+
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
 
-	@OneToOne(mappedBy = "playlist")
-	private PlaylistLnk playlistLnk;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Musica> musicas;
 
 	public Playlist() {
 	}
 
-	public Playlist(int id, String name) {
+	public Playlist(int idPlaylist, String name) {
 		super();
-		this.id = id;
+		this.idPlaylist = idPlaylist;
 		this.name = name;
 	}
 
+	public Utilizador getUtilizador() {
+		return utilizador;
+	}
+
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
+	}
+
+	public List<Musica> getMusicas() {
+		return musicas;
+	}
+
+	public void setMusicas(List<Musica> musicas) {
+		this.musicas = musicas;
+	}
+
 	public int getId() {
-		return id;
+		return idPlaylist;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idPlaylist = id;
 	}
 
 	public String getName() {

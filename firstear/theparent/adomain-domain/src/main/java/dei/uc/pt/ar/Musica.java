@@ -1,16 +1,20 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "musica")
@@ -20,20 +24,26 @@ public class Musica implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int idMusic;
+	@NotNull
 	private String title;
+	@NotNull
 	private String artist;
+	@NotNull
 	private String album;
+	@NotNull
 	private String year;
+	@NotNull
 	private String path;
 
 	// um utilizador pode adicionar varias musicas
-	@ManyToOne
+	@NotNull
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
 
-	@OneToOne(mappedBy = "musica")
-	private PlaylistLnk playlistLnk;
+	@ManyToMany(mappedBy = "musicas")
+	private List<Playlist> playlist;
 
 	public Musica() {
 	}
@@ -46,6 +56,22 @@ public class Musica implements Serializable {
 		this.album = album;
 		this.year = year;
 		this.path = path;
+	}
+
+	public List<Playlist> getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(List<Playlist> playlist) {
+		this.playlist = playlist;
+	}
+
+	public Utilizador getUtilizador() {
+		return utilizador;
+	}
+
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
 	}
 
 	public String getTitle() {

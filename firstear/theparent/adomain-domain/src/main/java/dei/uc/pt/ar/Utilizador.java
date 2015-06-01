@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "utilizador")
@@ -23,19 +24,25 @@ public class Utilizador implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int idUtilizador;
+	@NotNull
 	private String email;
+	@NotNull
 	private String name;
+	@NotNull
 	private String password;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nasc")
 	private Date birthdate;
 
 	// um utilizador pode inserir varias musicas
+	@NotNull
 	@OneToMany(mappedBy = "utilizador")
 	private List<Musica> musicas;
 
 	// um utilizador pode ter varias playlists
+	@NotNull
 	@OneToMany(mappedBy = "utilizador")
 	private List<Playlist> playlists;
 
@@ -48,6 +55,22 @@ public class Utilizador implements Serializable {
 		this.name = name;
 		this.password = password;
 		this.birthdate = birthdate;
+	}
+
+	public List<Musica> getMusicas() {
+		return musicas;
+	}
+
+	public void setMusicas(List<Musica> musicas) {
+		this.musicas = musicas;
+	}
+
+	public List<Playlist> getPlaylists() {
+		return playlists;
+	}
+
+	public void setPlaylists(List<Playlist> playlists) {
+		this.playlists = playlists;
 	}
 
 	public String getEmail() {
