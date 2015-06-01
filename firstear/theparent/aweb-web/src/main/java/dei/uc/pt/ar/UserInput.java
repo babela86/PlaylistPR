@@ -1,18 +1,22 @@
 package dei.uc.pt.ar;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@RequestScoped
+@SessionScoped
 @Named
-public class UserInput {
+public class UserInput implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private UserRegister ur;
@@ -24,6 +28,9 @@ public class UserInput {
 	private String month;
 	private String day;
 	private Date birthdate;
+	
+	private Utilizador activeUser;
+	private boolean userLoged=false;
 
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -33,31 +40,52 @@ public class UserInput {
 	public String newUser() throws ParseException {
 		this.birthdate = ft
 				.parse(this.year + "-" + this.month + "-" + this.day);
+		
+		Utilizador u = new Utilizador(this.email, this.name, this.pass, this.birthdate);
 
-		FacesMessage msg = new FacesMessage(ur.newUser(this.email, this.name,
-				this.pass, this.birthdate), "ERROR MSG");
+
+		FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
 		msg.setSeverity(FacesMessage.SEVERITY_INFO);
 		if (FacesContext.getCurrentInstance() != null)
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		this.day = "";
 		this.year = "";
 		this.month = "";
-		this.name = "";
 		this.pass = "";
 		this.email = "";
+		this.name ="";
 		return "login";
 	}
 
 	public String loginUser() throws ParseException {
-		if (!ur.loginUser(email, pass)){
+		if (ur.loginUser(email, pass)==null){
 			FacesMessage msg = new FacesMessage("Login incorrecto!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			return "login";
 		} else {
-		return "myPlaylist?faces-redirect=true";
+			this.activeUser=ur.loginUser(email, pass);
+			this.userLoged=true;
+			this.name=activeUser.getName();
+			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
+	}
+	
+	public Utilizador getActiveUser() {
+		return activeUser;
+	}
+
+	public void setActiveUser(Utilizador activeUser) {
+		this.activeUser = activeUser;
+	}
+
+	public boolean isUserLoged() {
+		return userLoged;
+	}
+
+	public void setUserLoged(boolean userLoged) {
+		this.userLoged = userLoged;
 	}
 
 	public String getEmail() {
