@@ -7,9 +7,9 @@
 <h:head>
 	<link rel="stylesheet"
 		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300'
 		rel='stylesheet' type='text/css' />
+		
 	<h:outputStylesheet library="css" name="common-style.css" />
 
 	<title>Login Page</title>
@@ -19,39 +19,46 @@
 
 	<div id="loginPage">
 		<div class="row">
+
 			<h:form prependId="false">
 				<div class="col-sm-1" />
 				<div class="col-sm-4">
 					<p id="sign">Sign up</p>
-					<h:panelGrid class="panelGrid2" columns="2" layout="grid">
-						<h:outputText value="e-mail" />
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						<h:outputText value="E-mail" />
 						<h:inputText value="#{userInput.email}" required="true"
-							requiredMessage="insira um username" />
-						<h:outputText value="password" />
+							requiredMessage="Insira um username" />
+						<h:outputText value="Password" />
 						<h:inputSecret value="#{userInput.pass}" required="true"
-							requiredMessage="insira uma password" />
+							requiredMessage="Insira uma password" />
 					</h:panelGrid>
-					<h:panelGrid class="panelGrid1">
-						<h:commandButton value="sign up" action="#{userInput.loginUser()}"/>
+					<h:panelGrid class="panelGrid">
+						<h:commandButton class="btnSign" value="Sign up"
+							action="#{userInput.loginUser()}" />
 					</h:panelGrid>
 				</div>
-				</h:form>
-				<div class="col-sm-2" />
-				<h:form>
-				<div class="col-sm-4">	
+			</h:form>
+			<div class="col-sm-2" />
+
+			<h:form>
+				<div class="col-sm-4">
 					<p id="sign">Sign in</p>
-					<h:panelGrid class="panelGrid2" columns="2" layout="grid">
-						<h:outputText value="email" />
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						<h:outputText value="E-mail" />
 						<h:inputText value="#{userInput.email}" required="true" />
-						<h:outputText value="password" />
+						<h:outputText value="Password" />
 						<h:inputSecret value="#{userInput.pass}" required="true" />
 						<h:outputText value="Nome" />
 						<h:inputText value="#{userInput.name}" required="true" />
 					</h:panelGrid>
-					<h:panelGrid class="panelGrid1">
+					<h:panelGrid class="panelGrid">
 						<h:outputText value="Data de nascimento" />
 					</h:panelGrid>
-					<h:panelGrid class="panelGrid2" columns="3" layout="grid">
+
+					<h:panelGrid class="panelGrid" columns="3" layout="grid">
+						<h:outputText value="Dia" />
+						<h:outputText value="Mês" />
+						<h:outputText value="Ano" />
 						<h:inputText label="Dia" value="#{userInput.day}" required="false"
 							maxlength="2" size="1" />
 						<h:inputText value="#{userInput.month}" required="false"
@@ -59,10 +66,11 @@
 						<h:inputText name="Ano" value="#{userInput.year}" required="false"
 							maxlength="4" size="2" />
 					</h:panelGrid>
-					<h:panelGrid class="panelGrid1">
-						<h:commandButton value="sign in" action="#{userInput.newUser()}" />
+					<h:panelGrid class="panelGrid">
+						<h:commandButton class="btnSign" value="Sign in"
+							action="#{userInput.newUser()}" />
 						<div class="messageColor">
-							<br/>
+							<br />
 							<h:messages showSummary="true" showDetail="false"
 								errorStyle="color:red" infoStyle="color:blue" />
 						</div>
@@ -71,6 +79,15 @@
 				<div class="col-sm-1" />
 			</h:form>
 		</div>
+		<h:form>
+			<h:panelGrid class="panelGrid" columns="2" layout="grid">
+
+				<h:commandButton class="btnSign" value="populate!!"
+					action="#{pop.popul()}" />
+
+
+			</h:panelGrid>
+		</h:form>
 	</div>
 </h:body>
 </html>

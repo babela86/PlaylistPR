@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+	<ui:composition
+		template="/resources/template/common/commonLayout.xhtml">
+
+		<ui:define name="header">Add Musics</ui:define>
+		<ui:define name="content">
+			<div id="content">
+				<h2>Fill the next fields with the information of the new music</h2>
+
+				<div class="row" style="width:30%;">
+					<h:form>
+						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+							<h:outputText value="Title" />
+							<h:inputText  />
+							<h:outputText value="Artist" />
+							<h:inputText />
+							<h:outputText value="Album" />
+							<h:inputText  />
+							<h:outputText value="Year" />
+							<h:inputText  maxlength="4" />
+							<h:outputText value="Path" />
+							<h:inputText  />
+							
+							<h:commandButton class="btnSign" value="Clear"  />
+							<h:commandButton class="btnSign" value="Add"  />
+						</h:panelGrid>
+						
+					</h:form>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:body>
+	<ui:composition
+		template="/resources/template/common/commonLayout.xhtml">
+
+
+		<ui:define name="header">Search Music</ui:define>
+		<ui:define name="content">
+			<div id="content">
+				<h2>Here you can search musics</h2>
+
+				<div class="row" style="width: 30%;">
+					<h:form>
+						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+							<h:outputText value="Title" />
+							<h:inputText />
+							<h:outputText value="Artist" />
+							<h:inputText />
+							<h:commandButton class="btnSign" value="Clear" />
+							<h:commandButton class="btnSign" value="Search" />
+						</h:panelGrid>
+
+					</h:form>
+				</div>
+				<h3>You can search musics by the title of the musics and/or by
+					the name of the artist.</h3>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

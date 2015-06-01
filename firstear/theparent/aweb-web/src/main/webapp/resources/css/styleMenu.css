@@ -1,7 +1,9 @@
 /*Menu CSS*/
-@import url(http://fonts.googleapis.com/css?family=Roboto:700);
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:700);*/
 
 #cssmenu, #cssmenu ul, #cssmenu ul li, #cssmenu ul li a {
+	font: 85% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS",
+		sans-serif;
 	margin-left: 10px;
 	padding: 0;
 	border: 0;
@@ -15,18 +17,19 @@
 }
 
 #cssmenu {
-	font-family: Roboto, sans-serif;
+	/*font-family: Roboto, sans-serif;*/
 }
 
 #cssmenu>ul {
 	width: 180px;
-	background: #ffffff;
+	border: solid 1px #3A4856;
+	
 }
 
 #cssmenu>ul>li>a {
 	padding: 12px 15px;
 	font-size: 14px;
-	color: #666666;
+	color: #3A4856;
 	font-weight: 700;
 	text-decoration: none;
 	-webkit-transition: color .2s ease;

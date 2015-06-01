@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+	<ui:composition
+		template="/resources/template/common/commonLayout.xhtml">
+
+		<ui:define name="header">My Account</ui:define>
+		<ui:define name="content">
+
+
+			<div id="content">
+				<h2>Change personnal account</h2>
+				<div class="row" style="width: 30%;">
+					<h:form>
+						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+							<h:outputText value="E-mail" />
+							<h:inputText />
+							<h:outputText value="Name" />
+							<h:inputText />
+							<h:outputText value="Password" />
+							<h:inputText />
+						</h:panelGrid>
+						<h:panelGrid class="panelGrid" columns="1" layout="grid">
+							<h:outputText value="Data de nascimento" />
+						</h:panelGrid>
+						<h:panelGrid class="panelGrid" columns="3" layout="grid">
+
+							<h:outputText value="Dia" />
+							<h:outputText value="Mês" />
+							<h:outputText value="Ano" />
+							<h:inputText required="false" maxlength="2" size="1" />
+							<h:inputText required="false" maxlength="2" size="1" />
+							<h:inputText required="false" maxlength="4" size="2" />
+						</h:panelGrid>
+
+						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+							<h:commandButton class="btnSign" value="Clear" />
+							<h:commandButton class="btnSign" value="Submit Changes" />
+						</h:panelGrid>
+
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
