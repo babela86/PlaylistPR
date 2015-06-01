@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @SessionScoped
 @Named
@@ -20,6 +21,7 @@ public class UserInput implements Serializable{
 
 	@Inject
 	private UserRegister ur;
+	private HttpSession session;
 
 	private String email;
 	private String pass;
@@ -30,7 +32,7 @@ public class UserInput implements Serializable{
 	private Date birthdate;
 	
 	private Utilizador activeUser;
-	private boolean userLoged=false;
+	private boolean userLoged=true;
 
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -66,10 +68,26 @@ public class UserInput implements Serializable{
 			return "login";
 		} else {
 			this.activeUser=ur.loginUser(email, pass);
-			this.userLoged=true;
 			this.name=activeUser.getName();
+			ur.populate();
+			startSession();
 			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
+	}
+	
+	public String logoutUser() {
+		
+		this.activeUser=null;
+		this.day = "";
+		this.year = "";
+		this.month = "";
+		this.pass = "";
+		this.email = "";
+		this.name ="";
+		if(FacesContext.getCurrentInstance()!=null)
+			FacesContext.getCurrentInstance().getExternalContext()
+					.invalidateSession();
+		return "login";
 	}
 	
 	public Utilizador getActiveUser() {
@@ -142,6 +160,19 @@ public class UserInput implements Serializable{
 
 	public String getDay() {
 		return day;
+	}
+	
+	public void startSession() {
+		this.session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		this.session.setAttribute("userLoged", true);
+	}
+
+	public void endSession() {
+		if (this.session != null)
+			this.session.invalidate();
+		startSession();
+		this.userLoged = false;
 	}
 
 }

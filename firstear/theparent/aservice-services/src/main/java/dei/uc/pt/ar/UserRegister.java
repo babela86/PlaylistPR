@@ -3,7 +3,10 @@ package dei.uc.pt.ar;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -17,8 +20,9 @@ public class UserRegister {
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
 	private Query q;
+	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
-
+	@SuppressWarnings("unchecked")
 	public String newUser(Utilizador u) {
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> results = q.getResultList();
@@ -47,6 +51,7 @@ public class UserRegister {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Utilizador loginUser(String email, String pass) {
 		//Se conseguir encontrar o user devolve true, caso contrário false
 		q = em.createQuery("SELECT u FROM Utilizador u");
@@ -64,6 +69,11 @@ public class UserRegister {
 			}
 		}
 		return null;
+	}
+	
+	public void populate() throws ParseException{
+		Utilizador u = new Utilizador("pedro@gmail", "pedro", "pedro123", ft.parse("2000-01-01"));	
+		em.persist(u);
 	}
 	
 	public String encriptaPass(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException{
