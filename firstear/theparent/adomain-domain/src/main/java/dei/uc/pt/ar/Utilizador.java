@@ -1,6 +1,7 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -106,10 +107,14 @@ public class Utilizador implements Serializable {
 	}
 
 	public void addMusica(Musica e) {
+		if(this.musicas == null)
+			this.musicas = new ArrayList<>();
 		musicas.add(e);
 	}
 
 	public void addPlaylist(Playlist p) {
+		if(this.playlists == null)
+			this.playlists = new ArrayList<>();
 		playlists.add(p);
 	}
 

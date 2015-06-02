@@ -71,7 +71,7 @@ public class UserRegister {
 		return null;
 	}
 	
-	public String encriptaPass(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+	public static String encriptaPass(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		MessageDigest algorithm = MessageDigest.getInstance("MD5");
 		byte messageDigest[] = algorithm.digest("senha".getBytes("UTF-8"));
 		

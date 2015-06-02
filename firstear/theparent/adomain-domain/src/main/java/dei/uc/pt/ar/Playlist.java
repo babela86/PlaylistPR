@@ -1,6 +1,7 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,15 +33,15 @@ public class Playlist implements Serializable {
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Musica> musicas;
 
 	public Playlist() {
 	}
 
-	public Playlist(String name) {
+	public Playlist(String name, Utilizador utilizador) {
 		super();
-
+		this.utilizador = utilizador;
 		this.name = name;
 	}
 
@@ -77,6 +78,8 @@ public class Playlist implements Serializable {
 	}
 
 	public void addMusica(Musica m) {
+		if(this.musicas == null)
+			this.musicas = new ArrayList<>();
 		musicas.add(m);
 	}
 

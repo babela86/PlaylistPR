@@ -49,13 +49,14 @@ public class Musica implements Serializable {
 	}
 
 	public Musica(String title, String artist, String album, String year,
-			String path) {
+			String path, Utilizador utilizador) {
 		super();
 		this.title = title;
 		this.artist = artist;
 		this.album = album;
 		this.year = year;
 		this.path = path;
+		this.utilizador=utilizador;
 	}
 
 	public List<Playlist> getPlaylist() {
