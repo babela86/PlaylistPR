@@ -53,7 +53,7 @@ public class UserRegister {
 	
 	@SuppressWarnings("unchecked")
 	public Utilizador loginUser(String email, String pass) {
-		//Se conseguir encontrar o user devolve true, caso contrário false
+		//Se conseguir encontrar o user devolve-o, caso contrário devolve null
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> results = q.getResultList();
 		try {
@@ -69,11 +69,6 @@ public class UserRegister {
 			}
 		}
 		return null;
-	}
-	
-	public void populate() throws ParseException{
-		Utilizador u = new Utilizador("pedro@gmail", "pedro", "pedro123", ft.parse("2000-01-01"));	
-		em.persist(u);
 	}
 	
 	public String encriptaPass(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException{

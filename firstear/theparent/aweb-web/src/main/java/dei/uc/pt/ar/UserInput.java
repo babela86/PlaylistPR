@@ -21,7 +21,7 @@ public class UserInput implements Serializable{
 
 	@Inject
 	private UserRegister ur;
-	private HttpSession session;
+	
 
 	private String email;
 	private String pass;
@@ -30,6 +30,7 @@ public class UserInput implements Serializable{
 	private String month;
 	private String day;
 	private Date birthdate;
+	HttpSession session;
 	
 	private Utilizador activeUser;
 	private boolean userLoged=true;
@@ -42,10 +43,7 @@ public class UserInput implements Serializable{
 	public String newUser() throws ParseException {
 		this.birthdate = ft
 				.parse(this.year + "-" + this.month + "-" + this.day);
-		
-		Utilizador u = new Utilizador(this.email, this.name, this.pass, this.birthdate);
-
-
+		Utilizador u = new Utilizador(this.email, this.name, this.pass, this.birthdate);		
 		FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
 		msg.setSeverity(FacesMessage.SEVERITY_INFO);
 		if (FacesContext.getCurrentInstance() != null)
@@ -55,7 +53,7 @@ public class UserInput implements Serializable{
 		this.month = "";
 		this.pass = "";
 		this.email = "";
-		this.name ="";
+		this.name = "";
 		return "login";
 	}
 
@@ -69,7 +67,6 @@ public class UserInput implements Serializable{
 		} else {
 			this.activeUser=ur.loginUser(email, pass);
 			this.name=activeUser.getName();
-			ur.populate();
 			startSession();
 			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
@@ -84,10 +81,11 @@ public class UserInput implements Serializable{
 		this.pass = "";
 		this.email = "";
 		this.name ="";
+		//endSession();
 		if(FacesContext.getCurrentInstance()!=null)
 			FacesContext.getCurrentInstance().getExternalContext()
-					.invalidateSession();
-		return "login";
+				.invalidateSession();
+		return "/login.xhtml?faces-redirect=true";
 	}
 	
 	public Utilizador getActiveUser() {
@@ -163,16 +161,15 @@ public class UserInput implements Serializable{
 	}
 	
 	public void startSession() {
-		this.session = (HttpSession) FacesContext.getCurrentInstance()
+		session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
-		this.session.setAttribute("userLoged", true);
+		session.setAttribute("userLoged", true);
 	}
 
 	public void endSession() {
-		if (this.session != null)
-			this.session.invalidate();
-		startSession();
-		this.userLoged = false;
+		if (session != null)
+			session.invalidate();
+		userLoged = false;
 	}
 
 }
