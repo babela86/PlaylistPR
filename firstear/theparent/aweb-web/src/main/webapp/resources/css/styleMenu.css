@@ -159,3 +159,15 @@
 #cssmenu ul ul li:hover>a, #cssmenu ul ul li a:hover {
 	color: #dddddd;
 }
+
+.btnLogout {
+	font-size: 12px;
+	text-align:left;
+	background-color: #3A4856;
+	color: #ffffff;
+	padding: 7px;
+	padding-left:35px;
+	border-radius: 6px;
+	width: 180px;
+	margin:-11px;
+}

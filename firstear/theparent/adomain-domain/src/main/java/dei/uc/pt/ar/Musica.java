@@ -37,7 +37,7 @@ public class Musica implements Serializable {
 	private String path;
 
 	// um utilizador pode adicionar varias musicas
-	@NotNull
+
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;

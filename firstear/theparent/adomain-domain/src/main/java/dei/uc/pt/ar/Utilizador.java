@@ -37,12 +37,12 @@ public class Utilizador implements Serializable {
 	private Date birthdate;
 
 	// um utilizador pode inserir varias musicas
-	@NotNull
+
 	@OneToMany(mappedBy = "utilizador")
 	private List<Musica> musicas;
 
 	// um utilizador pode ter varias playlists
-	@NotNull
+
 	@OneToMany(mappedBy = "utilizador")
 	private List<Playlist> playlists;
 
@@ -103,6 +103,14 @@ public class Utilizador implements Serializable {
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public void addMusica(Musica e) {
+		musicas.add(e);
+	}
+
+	public void addPlaylist(Playlist p) {
+		playlists.add(p);
 	}
 
 	@Override

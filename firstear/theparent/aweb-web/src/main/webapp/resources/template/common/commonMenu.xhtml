@@ -30,7 +30,10 @@
 			<li><a href="../Authorized/searchMusic.xhtml">Search Musics</a></li>
 			<li><a href="../Authorized/changeAccount.xhtml">My Account</a></li>
 			<li><a></a></li>
-			<li><a href="../../login.xhtml" onclick="#{userInput.logoutUser()}">Logout</a></li>
+			<h:form>
+			<li><h:commandButton class="btnLogout" value="Logout"
+							action="#{userInput.loginUser()}" /></li>
+			</h:form>			
 		</ul>
 	</div>
 </h:body>

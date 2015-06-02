@@ -38,9 +38,9 @@ public class Playlist implements Serializable {
 	public Playlist() {
 	}
 
-	public Playlist(int idPlaylist, String name) {
+	public Playlist(String name) {
 		super();
-		this.idPlaylist = idPlaylist;
+
 		this.name = name;
 	}
 
@@ -74,6 +74,10 @@ public class Playlist implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void addMusica(Musica m) {
+		musicas.add(m);
 	}
 
 }
