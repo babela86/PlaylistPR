@@ -75,8 +75,7 @@ public class UserInput implements Serializable{
 		}
 	}
 	
-	public String logoutUser() {
-		
+	public String logoutUser() {		
 		this.activeUser=null;
 		this.day = "";
 		this.year = "";

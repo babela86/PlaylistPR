@@ -7,46 +7,20 @@
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
-
-
-
 		<ui:define name="header">My Musics</ui:define>
 		<ui:define name="content">
 			<div id="content">
-
 				<p>por as musicas adicionadas pelo utilizador ou msg que nao ha
 					musicas adicionadas por ele</p>
-
-				<div id="boundary">
-					<div id="itsthetable">
-						<table summary="Submitted table designs">
-							<thead>
-								<tr>
-									<th scope="col">Artist</th>
-									<th scope="col">Album</th>
-									<th scope="col">Year</th>
-									<th scope="col">Path</th>
-									<th scope="col">Add to playlist</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr>
-									<th scope="row"><a href=""></a></th>
-									<td><a href=""> </a></td>
-									<td></td>
-									<td></td>
-									<td><a href=""><h:form>
-												<h:commandButton value="OK" />
-											</h:form> </a></td>
-								</tr>
-							</tbody>
-
-
-						</table>
-					</div>
+				<div class="tablebox">
+					<h:dataTable id="listamensagens" value="#{userInuput.listamusicas()}"
+						styleclass="chatTable"
+						rowClasses="chatTableOddRow,chatTableEvenRow" var="m">
+						<h:column>
+							<h:outputText value="#{m}" />
+						</h:column>
+					</h:dataTable>
 				</div>
-
 			</div>
 		</ui:define>
 	</ui:composition>

@@ -12,57 +12,38 @@
 		<ui:define name="content">
 			<div id="content">
 				<h2>Nome da Playlist ou o quer que seja o titulo</h2>
-				
-				
-				<div id="boundary">
-					<div id="itsthetable">
-							<table summary="Submitted table designs">
-								
-								<thead>
-									<tr>
-										<th scope="col">Design Name</th>
-										<th scope="col">Author</th>
-										<th scope="col">Country</th>
-										<th scope="col">Comment</th>
-										<th scope="col">Download</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<tr>
-										<td><ui:repeat var="" value="">artist</ui:repeat></td>
-										<td><a href="http://www.adobati.it">Omar '0m4r'
-												Adobati</a></td>
-										<td>Italy</td>
-										<td>Simple, clean and a quite classic table template :)</td>
-										<td><a href="" title="">Download</a></td>
-									</tr>
-
-									<tr class="odd">
-										<th scope="row" id="r1"><a href="1.php">Minimalist</a></th>
-										<td><a href="">Chris Heilmann</a></td>
-										<td>UK</td>
-										<td>As minimal as you can get, only lines around the body
-											cells</td>
-										<td><a href="" title="Download the Minimalist CSS file">Download</a></td>
-									</tr>
-									<tr>
-										<th scope="row" id="r0"><a href="0.php">Plain old
-												table</a></th>
-										<td><a href="">Chris Heilmann</a></td>
-										<td>UK</td>
-										<td>Tried and true, boring grey table with a one pixel
-											line</td>
-										<td><a href=""
-											title="Download the Plain old table CSS file">Download</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+				<div class="tablebox">
+					<h:dataTable id="listamensagens"
+						value="#{userInput.listallmusics()}" var="list">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{list.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artist" />
+							</f:facet>
+							<h:outputText value="#{list.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{list.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{list.year}" />
+						</h:column>
+					</h:dataTable>
+				</div>
 
 
-					</div>
-				
+
 			</div>
 		</ui:define>
 	</ui:composition>
