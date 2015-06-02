@@ -1,6 +1,8 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,7 +42,7 @@ public class UserInput implements Serializable{
 	public UserInput() {
 	}
 
-	public String newUser() throws ParseException {
+	public String newUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
 		this.birthdate = ft
 				.parse(this.year + "-" + this.month + "-" + this.day);
 		Utilizador u = new Utilizador(this.email, this.name, this.pass, this.birthdate);		
@@ -57,15 +59,16 @@ public class UserInput implements Serializable{
 		return "login";
 	}
 
-	public String loginUser() throws ParseException {
-		if (ur.loginUser(email, pass)==null){
+	public String loginUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
+		Utilizador util = ur.loginUser(email, pass);
+		if (util==null){
 			FacesMessage msg = new FacesMessage("Login incorrecto!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			return "login";
 		} else {
-			this.activeUser=ur.loginUser(email, pass);
+			this.activeUser=util;
 			this.name=activeUser.getName();
 			startSession();
 			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";

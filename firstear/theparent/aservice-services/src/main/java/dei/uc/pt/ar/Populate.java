@@ -29,8 +29,9 @@ public class Populate implements Serializable {
 
 	}
 
-	public String populando() throws ParseException, NoSuchAlgorithmException,
+	public void populando() throws ParseException, NoSuchAlgorithmException,
 			UnsupportedEncodingException {
+	
 		Utilizador[] users = {
 				new Utilizador("pedro@gmail.com", "pedro",
 						UserRegister.encriptaPass("123"),
@@ -58,31 +59,19 @@ public class Populate implements Serializable {
 				new Musica("I wanna Dance with Somebody (Who Loves Me)",
 						"Whitney Houston", "Whitney", "1987",
 						"https://www.youtube.com/watch?v=eH3giaIzONA", users[1]),
-
 				new Musica("Show das Poderosas", "Anitta", "Nao sei", "2013",
 						"https://www.youtube.com/watch?v=FGViL3CYRwg", users[1]),
-
 				new Musica("No woman no cry", "Bob Marley", "Natty Dread",
 						"1974", "https://www.youtube.com/watch?v=jGqrvn3q1oo", users[0]) };
 
-
-	//	users[0].addMusica(musics[0]);
-		//users[0].addPlaylist(plays[0]);
-		//plays[0].addMusica(musics[0]);
-		// users[1].addPlaylist(plays[0]);
-		//
-		plays[0].addMusica(musics[1]); plays[0].addMusica(musics[0]);
+		plays[0].addMusica(musics[1]); 
+		plays[0].addMusica(musics[0]);
 		plays[1].addMusica(musics[2]);
-		plays[1].addMusica(musics[0]); plays[0].addMusica(musics[4]);
-		plays[0].addMusica(musics[5]); plays[1].addMusica(musics[6]);
+		plays[1].addMusica(musics[0]); 
+		plays[0].addMusica(musics[4]);
+		plays[0].addMusica(musics[5]); 
+		plays[1].addMusica(musics[6]);
 		plays[0].addMusica(musics[7]);
-		//
-		// users[1].addMusica(musics[1]); users[0].addMusica(musics[0]);
-		// users[1].addMusica(musics[3]); users[1].addMusica(musics[2]);
-		// users[0].addMusica(musics[0]); users[1].addMusica(musics[4]);
-		// users[0].addMusica(musics[5]); users[1].addMusica(musics[6]);
-		// users[0].addMusica(musics[7]);
-		//
 
 		for (Utilizador u : users)
 			em.persist(u);
@@ -92,8 +81,6 @@ public class Populate implements Serializable {
 
 		for (Musica m : musics)
 			em.persist(m);
-
-		return "login";
 	}
 
 }
