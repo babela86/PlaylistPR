@@ -13,11 +13,31 @@
 				<p>por as musicas adicionadas pelo utilizador ou msg que nao ha
 					musicas adicionadas por ele</p>
 				<div class="tablebox">
-					<h:dataTable id="listamensagens" value="#{userInuput.listamusicas()}"
-						styleclass="chatTable"
-						rowClasses="chatTableOddRow,chatTableEvenRow" var="m">
+					<h:dataTable id="listamensagens"
+						 var="list"><!-- value="#{userInput.listmmusics()}" -->
 						<h:column>
-							<h:outputText value="#{m}" />
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{list.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artist" />
+							</f:facet>
+							<h:outputText value="#{list.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{list.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{list.year}" />
 						</h:column>
 					</h:dataTable>
 				</div>

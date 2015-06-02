@@ -12,6 +12,38 @@
 		<div id="content">
 		
 		mostra a playlist selecionada..
+		por nome da playlist
+		<div class="tablebox">
+					<h:dataTable id="listamensagens"
+						var="list" ><!-- value="#{userInput.musicsofplaylist()}"  -->
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							
+							<h:outputText value="#{list.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artist" />
+							</f:facet>
+							<h:outputText value="#{list.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{list.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{list.year}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+		
 		</div>
 				</ui:define>
 		

@@ -58,6 +58,14 @@ public class Utilizador implements Serializable {
 		this.birthdate = birthdate;
 	}
 
+	public int getIdUtilizador() {
+		return idUtilizador;
+	}
+
+	public void setIdUtilizador(int idUtilizador) {
+		this.idUtilizador = idUtilizador;
+	}
+
 	public List<Musica> getMusicas() {
 		return musicas;
 	}
@@ -107,13 +115,13 @@ public class Utilizador implements Serializable {
 	}
 
 	public void addMusica(Musica e) {
-		if(this.musicas == null)
+		if (this.musicas == null)
 			this.musicas = new ArrayList<>();
 		musicas.add(e);
 	}
 
 	public void addPlaylist(Playlist p) {
-		if(this.playlists == null)
+		if (this.playlists == null)
 			this.playlists = new ArrayList<>();
 		playlists.add(p);
 	}

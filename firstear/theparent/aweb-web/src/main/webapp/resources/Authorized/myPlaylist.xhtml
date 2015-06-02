@@ -14,57 +14,29 @@
 			<div id="content">
 				<h:form>
 
-					<h:dataTable class="table">
-						<f:facet name="header">
+					<div class="tablebox">
+						<h:dataTable id="listamensagens"
+							var="list"><!-- value="#{userInput.listmyplaylists()}"  -->
 							
-							Statistics</f:facet>
-						<h:column class="left-col" headerText="Operation">
-							<h:outputText value="#{func.name}" />
-						</h:column>
+							<h:column>
+								<f:facet name="header" >
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{list.name}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Consultar" />
+								</f:facet>
+								<h:form>
+									<h:commandButton label="OK" />
+									<!-- por a ir para a playlist-->
 
-						<h:column headerText="Count">
-							<h:outputText value="#{func.count}" />
-						</h:column>
-					</h:dataTable>
-					<h:dataTable class="table">
-						<f:facet name="header">
-							<h:column>
-								<h:outputText>ref o nome da playlist</h:outputText>
+								</h:form>
 							</h:column>
-							<h:column>
-								<h:outputText value="Número" />
-							</h:column>
-							<h:column>
-								<h:outputText value="Título" />
-							</h:column>
-							<h:column>
-								<h:outputText value="Artista" />
-							</h:column>
-							<h:column>
-								<h:outputText value="Ano de Lançamento" />
-							</h:column>
-							<h:column>
-								<h:outputText value="Remover" />
-							</h:column>
-						</f:facet>
-						<h:column>
-							<h:outputText value="Ola" />
-						</h:column>
-						<h:column>
-							<h:outputText value="Ola" />
-						</h:column>
-						<h:column>
-							<h:outputText value="Ola" />
-						</h:column>
-						<h:column>
-							<h:outputText value="Ola" />
-						</h:column>
-						<h:form>
-							<h:column>
-								<h:commandButton value="OK" />
-							</h:column>
-						</h:form>
-					</h:dataTable>
+						</h:dataTable>
+					</div>
+
 				</h:form>
 			</div>
 		</ui:define>

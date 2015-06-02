@@ -33,6 +33,13 @@ table caption {
 		sans-serif;
 }
 
+header {
+	background: #3A4856;
+	padding: 15px 10px;
+	color: #fff;
+	text-align: left;
+	font-weight: normal;
+}
 table thead th {
 	background: #3A4856;
 	padding: 15px 10px;
