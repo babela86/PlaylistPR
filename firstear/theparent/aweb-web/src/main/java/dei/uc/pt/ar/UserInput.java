@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.enterprise.context.SessionScoped;
@@ -23,6 +24,8 @@ public class UserInput implements Serializable{
 
 	@Inject
 	private UserRegister ur;
+	@Inject
+	private MusicDAO md;
 	
 
 	private String email;
@@ -88,6 +91,14 @@ public class UserInput implements Serializable{
 			FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
 		return "/login.xhtml?faces-redirect=true";
+	}
+	
+	public ArrayList<Musica> listallmusics(){
+		return md.findAllMusic();
+	}
+	
+	public ArrayList<Musica> listmymusics(){
+		return md.findMyMusic(activeUser.getIdUtilizador());
 	}
 	
 	public Utilizador getActiveUser() {

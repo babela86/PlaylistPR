@@ -10,11 +10,10 @@
 		<ui:define name="header">My Musics</ui:define>
 		<ui:define name="content">
 			<div id="content">
-				<p>por as musicas adicionadas pelo utilizador ou msg que nao ha
-					musicas adicionadas por ele</p>
+				<p>Musics by user #{userInput.getName()}:</p>
 				<div class="tablebox">
 					<h:dataTable id="listamensagens"
-						 var="list"><!-- value="#{userInput.listmmusics()}" -->
+						 var="list" value="#{userInput.listmymusics()}">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Name" />
