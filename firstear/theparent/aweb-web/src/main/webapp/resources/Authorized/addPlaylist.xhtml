@@ -20,7 +20,7 @@
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Name of the New Playlist" />
 							<h:inputText value="#{newPlaylistInput.name}" />
-							<h:commandButton class="btnContent" value="Clear" />
+							<h:commandButton class="btnContent" value="Clear" type="reset"/>
 							<h:commandButton class="btnContent" value="Create"
 								action="#{newPlaylistInput.newPlaylist()}" />
 						</h:panelGrid>

@@ -18,35 +18,31 @@
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="E-mail" />
-							<h:inputText value="#{userInput.email}" />
+							<h:inputText value="#{changeAccountInput.email}" />
 							<h:outputText value="Name" />
-							<h:inputText value="#{userInput.name}" />
+							<h:inputText value="#{changeAccountInput.name}" />
 							<h:outputText value="Password" />
-							<h:inputText value="#{userInput.pass}" />
+							<h:inputText value="#{changeAccountInput.pass}" />
 						</h:panelGrid>
 						<h:panelGrid class="panelGrid" columns="3" layout="grid">
 							<h:outputText value="Dia" />
 							<h:outputText value="Mês" />
 							<h:outputText value="Ano" />
-							<h:inputText label="Dia" value="#{userInput.day}"
+							<h:inputText label="Dia" value="#{changeAccountInput.day}"
 								required="false" maxlength="2" size="1" />
-							<h:inputText value="#{userInput.month}" required="false"
+							<h:inputText value="#{changeAccountInput.month}" required="false"
 								maxlength="2" size="1" />
-							<h:inputText name="Ano" value="#{userInput.year}"
+							<h:inputText name="Ano" value="#{changeAccountInput.year}"
 								required="false" maxlength="4" size="2" />
 						</h:panelGrid>
-
-
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-							<h:commandButton class="btnContent" value="Clear" />
+							<h:commandButton class="btnContent" value="Clear" type="reset"/>
 							<h:commandButton class="btnContent" value="Submit Changes"
-								action="#{userInput.subChange()}" />
+								action="#{changeAccountInput.changeAccount()}" />
 						</h:panelGrid>
-<h:panelGrid class="panelGrid" columns="1" layout="grid">
-							
+						<h:panelGrid class="panelGrid" columns="1" layout="grid">
 							<h:commandButton class="btnContent" value="Delete Account"
-								style="text-align:center;"/>
-<!-- 								action="#{userInput.deletAccount()}"   -->
+								action="#{changeAccountInput.deleteAccount()}" style="text-align:center;" />
 						</h:panelGrid>
 					</h:form>
 				</div>
