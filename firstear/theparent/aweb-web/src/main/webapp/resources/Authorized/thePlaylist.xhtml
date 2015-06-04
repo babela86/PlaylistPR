@@ -3,24 +3,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-	
+
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
 		<ui:define name="header">My Playlist</ui:define>
 		<ui:define name="content">
-		<div id="content">
-		
-		mostra a playlist selecionada..
-		por nome da playlist
-		<div class="tablebox">
-					<h:dataTable id="listamensagens"
-						var="list" ><!-- value="#{userInput.musicsofplaylist()}"  -->
+			<div id="content">
+
+				mostra a playlist selecionada.. por nome da playlist
+				<div class="tablebox">
+					<h:dataTable id="listamensagens" var="list">
+						<!-- value="#{userInput.musicsofplaylist()}"  -->
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="title" />
+								<h:outputText value="Title" />
 							</f:facet>
-							
+
 							<h:outputText value="#{list.title}" />
 						</h:column>
 						<h:column>
@@ -43,11 +42,54 @@
 						</h:column>
 					</h:dataTable>
 				</div>
-		
-		</div>
-				</ui:define>
-		
-	
+
+			</div>
+			<div id="content">
+				<h2>List of all musics!</h2>
+				<div class="tablebox">
+					<h:form>
+						<h:dataTable id="listamensagens" var="list"
+							value="#{userInput.listallmusics()}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{list.title}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artist" />
+								</f:facet>
+								<h:outputText value="#{list.artist}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:outputText value="#{list.album}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Year" />
+								</f:facet>
+								<h:outputText value="#{list.year}" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Edit" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Delete" />
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</div>
+
+
+
+			</div>
+		</ui:define>
+
+
 	</ui:composition>
 </h:body>
 </html>

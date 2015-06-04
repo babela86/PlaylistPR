@@ -13,7 +13,7 @@
 
 
 			<div id="content">
-				<h2>Change personnal account</h2>
+				<h2>Change personal account</h2>
 				<div class="row" style="width: 30%;">
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
@@ -41,9 +41,13 @@
 							<h:commandButton class="btnContent" value="Clear" />
 							<h:commandButton class="btnContent" value="Submit Changes"
 								action="#{userInput.subChange()}" />
-
 						</h:panelGrid>
-
+<h:panelGrid class="panelGrid" columns="1" layout="grid">
+							
+							<h:commandButton class="btnContent" value="Delete Account"
+								style="text-align:center;"/>
+<!-- 								action="#{userInput.deletAccount()}"   -->
+						</h:panelGrid>
 					</h:form>
 				</div>
 			</div>

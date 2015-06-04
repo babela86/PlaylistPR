@@ -15,7 +15,7 @@
 	<title>Login Page</title>
 </h:head>
 <h:body>
-	<div id="welcome">Bem vindo</div>
+	<div id="welcome">Welcome</div>
 
 	<div id="loginPage">
 		<div class="row">
@@ -27,10 +27,10 @@
 					<h:panelGrid class="panelGrid" columns="2" layout="grid">
 						<h:outputText value="E-mail" />
 						<h:inputText value="#{userInput.email}" required="true"
-							requiredMessage="Insira um username" />
+							requiredMessage="Insert an username" />
 						<h:outputText value="Password" />
 						<h:inputSecret value="#{userInput.pass}" required="true"
-							requiredMessage="Insira uma password" />
+							requiredMessage="Insert a password" />
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid">
 						<h:commandButton class="btnSign" value="Sign up"
@@ -52,13 +52,13 @@
 						<h:inputText value="#{userInput.name}" required="true" />
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid">
-						<h:outputText value="Data de nascimento" />
+						<h:outputText value="Birthdate" />
 					</h:panelGrid>
 
 					<h:panelGrid class="panelGrid" columns="3" layout="grid">
-						<h:outputText value="Dia" />
-						<h:outputText value="Mês" />
-						<h:outputText value="Ano" />
+						<h:outputText value="Day" />
+						<h:outputText value="Month" />
+						<h:outputText value="Year" />
 						<h:inputText label="Dia" value="#{userInput.day}" required="false"
 							maxlength="2" size="1" />
 						<h:inputText value="#{userInput.month}" required="false"

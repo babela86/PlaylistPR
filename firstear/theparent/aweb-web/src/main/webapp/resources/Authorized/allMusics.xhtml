@@ -13,9 +13,8 @@
 			<div id="content">
 				<h2>List of all musics!</h2>
 				<div class="tablebox">
-					<h:dataTable id="listamensagens"
-						
-						 var="list" value="#{userInput.listallmusics()}">
+					<h:dataTable id="listamensagens" var="list"
+						value="#{userInput.listallmusics()}">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Name" />
@@ -42,9 +41,6 @@
 						</h:column>
 					</h:dataTable>
 				</div>
-
-
-
 			</div>
 		</ui:define>
 	</ui:composition>
