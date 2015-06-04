@@ -52,6 +52,22 @@ public class MusicDAO {
 				.setParameter("art", "%"+artist+"%")
 				.getResultList();
 	}
+
+	public boolean newMusic(Musica m) {
+		//se conseguir guardar a musica manda true, senao manda false
+		boolean existe=false;
+		ArrayList<Musica> lista = findAllMusic();
+		for (Musica mus:lista ){
+			if (mus.getTitle().equals(m.getTitle())||(mus.getPath().equals(m.getPath()))){
+				existe=false;
+			}else{
+				existe = true;
+			}
+		}
+		if (existe)
+			em.merge(m);
+		return existe;
+	}
 	
 	
 

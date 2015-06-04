@@ -16,19 +16,25 @@
 				<div class="row" style="width:30%;">
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						
 							<h:outputText value="Title" />
-							<h:inputText  />
+							<h:inputText  value="#{newMusicInput.title}" required="true"
+							requiredMessage="Insira um título"/>
 							<h:outputText value="Artist" />
-							<h:inputText />
+							<h:inputText value="#{newMusicInput.artist}" required="true"
+							requiredMessage="Insira um artista"/>
 							<h:outputText value="Album" />
-							<h:inputText  />
+							<h:inputText  value="#{newMusicInput.album}" required="true"
+							requiredMessage="Insira um album"/>
 							<h:outputText value="Year" />
-							<h:inputText  maxlength="4" />
+							<h:inputText  value="#{newMusicInput.year}" required="true"
+							requiredMessage="Insira um email" maxlength="4" />
 							<h:outputText value="Path" />
-							<h:inputText  />
+							<h:inputText  value="#{newMusicInput.path}" required="true"
+							requiredMessage="Insira um path"/>
 							
 							<h:commandButton class="btnContent" value="Clear"  />
-							<h:commandButton class="btnContent" value="Add"  />
+							<h:commandButton class="btnContent" value="Add" action="#{newMusicInput.newMusic()}"  />
 						</h:panelGrid>
 						
 					</h:form>

@@ -46,7 +46,7 @@ public class UserRegister {
 		}
 		if (found) {
 			// enviar msg de erro
-			result = "E-mail de utilizador já existente!";
+			result = "User e-mail already exists!";
 		} else {
 			try {
 				u.setPassword(encriptaPass(u.getPassword()));
@@ -56,7 +56,7 @@ public class UserRegister {
 				e.printStackTrace();
 			}
 			em.persist(u);
-			result = "Utilizador adicionado à base de dados";
+			result = "User added to DB";
 		}
 		return result;
 	}
@@ -74,7 +74,6 @@ public class UserRegister {
 		}
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> results = q.getResultList();
-		System.out.println(pass);
 		try {
 			senha = encriptaPass(pass);
 		} catch (NoSuchAlgorithmException e) {
@@ -83,10 +82,6 @@ public class UserRegister {
 			e.printStackTrace();
 		}
 		for (Utilizador util : results) {
-			System.out.println(util.getPassword());
-			System.out.println(senha);
-			System.out.println(util.getPassword().equals(senha));
-			
 			if (util.getEmail().equals(email)
 					&& util.getPassword().equals(senha)) {
 				return util;

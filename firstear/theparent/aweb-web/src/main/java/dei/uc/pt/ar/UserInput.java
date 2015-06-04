@@ -72,7 +72,7 @@ public class UserInput implements Serializable{
 	public String loginUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
 		Utilizador util = ur.loginUser(this.email, this.pass);
 		if (util==null){
-			FacesMessage msg = new FacesMessage("Login incorrecto!", "ERROR MSG");
+			FacesMessage msg = new FacesMessage("Login error!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -100,6 +100,7 @@ public class UserInput implements Serializable{
 		return "/login.xhtml?faces-redirect=true";
 	}
 	
+	
 	public ArrayList<Musica> listallmusics(){
 		return md.findAllMusic();
 	}
@@ -107,7 +108,6 @@ public class UserInput implements Serializable{
 	public ArrayList<Musica> listmymusics(){
 		return md.findMyMusic(activeUser.getIdUtilizador());
 	}
-
 	
 	public ArrayList<Playlist> listmyplaylists(){
 		return pd.findMyPlaylists(activeUser.getIdUtilizador());
