@@ -52,7 +52,11 @@ public class ChangeAccountInput implements Serializable{
 			msg.setSeverity(FacesMessage.SEVERITY_INFO);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-			return "login";
+			ui.setActiveUser(null);
+			ui.setUserLoged(false);
+			FacesContext.getCurrentInstance().getExternalContext()
+			.invalidateSession();
+			return "/login.xhtml?faces-redirect=true";
 		} else {
 			FacesMessage msg = new FacesMessage("Problem updating account!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
