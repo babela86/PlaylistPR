@@ -13,32 +13,39 @@
 			<div id="content">
 				<h2>Fill the next fields with the information of the new music</h2>
 
-				<div class="row" style="width:30%;">
+				<div class="row" style="width: 30%; display: inline;">
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-						
+
 							<h:outputText value="Title" />
-							<h:inputText  value="#{newMusicInput.title}" required="true"
-							requiredMessage="Insira um título"/>
+							<h:inputText value="#{newMusicInput.title}" required="true"
+								requiredMessage="Insira um título" />
 							<h:outputText value="Artist" />
 							<h:inputText value="#{newMusicInput.artist}" required="true"
-							requiredMessage="Insira um artista"/>
+								requiredMessage="Insira um artista" />
 							<h:outputText value="Album" />
-							<h:inputText  value="#{newMusicInput.album}" required="true"
-							requiredMessage="Insira um album"/>
+							<h:inputText value="#{newMusicInput.album}" required="true"
+								requiredMessage="Insira um album" />
 							<h:outputText value="Year" />
-							<h:inputText  value="#{newMusicInput.year}" required="true"
-							requiredMessage="Insira um email" maxlength="4" />
+							<h:inputText value="#{newMusicInput.year}" required="true"
+								requiredMessage="Insira um email" maxlength="4" />
 							<h:outputText value="Path" />
-							<h:inputText  value="#{newMusicInput.path}" required="true"
-							requiredMessage="Insira um path"/>
-							
-							<h:commandButton class="btnContent" value="Clear"  />
-							<h:commandButton class="btnContent" value="Add" action="#{newMusicInput.newMusic()}"  />
+							<h:inputText value="#{newMusicInput.path}" required="true"
+								requiredMessage="Insira um path" />
+
+							<h:commandButton class="btnContent" value="Clear" />
+							<h:commandButton class="btnContent" value="Add"
+								action="#{newMusicInput.newMusic()}" />
 						</h:panelGrid>
-						
+
 					</h:form>
+					<div class="messageColor">
+					<br />
+					<h:messages showSummary="true" showDetail="false"
+						errorStyle="color:red" infoStyle="color:blue" />
 				</div>
+				</div>
+				
 			</div>
 
 		</ui:define>

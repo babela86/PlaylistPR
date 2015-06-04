@@ -17,18 +17,24 @@
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Title" />
-							<h:inputText value="#{userInput.title}"/>
+							<h:inputText value="#{userInput.title}" />
 							<h:outputText value="Artist" />
-							<h:inputText value="#{userInput.artist}"/>
+							<h:inputText value="#{userInput.artist}" />
 							<h:commandButton class="btnContent" value="Clear" type="reset" />
-							<h:commandButton class="btnContent" value="Search" action="#{userInput.searchMusics()}" />
+							<h:commandButton class="btnContent" value="Search"
+								action="#{userInput.searchMusics()}" />
 						</h:panelGrid>
 
 					</h:form>
 				</div>
+				<div class="messageColor">
+					<br />
+					<h:messages showSummary="true" showDetail="false"
+						errorStyle="color:red" infoStyle="color:blue" />
+				</div>
 				<div class="tablebox" style="margin-top: 20px;">
-					<h:dataTable id="listamensagens"		
-						 var="list" value="#{userInput.search}">
+					<h:dataTable id="listamensagens" var="list"
+						value="#{userInput.search}">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Name" />
@@ -55,7 +61,7 @@
 						</h:column>
 					</h:dataTable>
 				</div>
-				
+
 			</div>
 		</ui:define>
 	</ui:composition>

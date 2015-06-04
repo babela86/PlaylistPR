@@ -8,65 +8,71 @@
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
 		<ui:define name="header">My Musics</ui:define>
-		<ui:define name="content" >
+		<ui:define name="content">
 			<div id="content">
 				<p>Musics by user #{userInput.getName()}:</p>
 				<div class="tablebox">
-				<h:form>
-					<h:dataTable id="listamensagens"
-						 var="list" value="#{userInput.listmymusics()}">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Name" />
-							</f:facet>
-							<h:outputText value="#{list.title}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Artist" />
-							</f:facet>
-							<h:outputText value="#{list.artist}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Album" />
-							</f:facet>
-							<h:outputText value="#{list.album}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Year" />
-							</f:facet>
-							<h:outputText value="#{list.year}" />
-						</h:column>
-						<h:column>	
-							<h:commandButton class="btnTabs" value="Edit" />
-						</h:column>
-						<h:column>						
-							<h:commandButton class="btnTabs" value="Delete" />
-						</h:column>
-					</h:dataTable>
+					<h:form>
+						<h:dataTable id="listamensagens" var="list"
+							value="#{userInput.listmymusics()}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{list.title}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artist" />
+								</f:facet>
+								<h:outputText value="#{list.artist}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:outputText value="#{list.album}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Year" />
+								</f:facet>
+								<h:outputText value="#{list.year}" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Edit" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Delete" />
+							</h:column>
+						</h:dataTable>
 					</h:form>
 				</div>
-				<div class="row" style="width:30%; margin-top:20px; text-align: center; ">
+				<div class="row"
+					style="width: 30%; margin-top: 20px; text-align: center; display: inline;">
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Title" />
-							<h:inputText  />
+							<h:inputText />
 							<h:outputText value="Artist" />
 							<h:inputText />
 							<h:outputText value="Album" />
-							<h:inputText  />
+							<h:inputText />
 							<h:outputText value="Year" />
-							<h:inputText  maxlength="4" />
+							<h:inputText maxlength="4" />
 							<h:outputText value="Path" />
-							<h:inputText  />
-							
-							<h:commandButton class="btnContent" value="Clear"  />
-							<h:commandButton class="btnContent" value="Add"  />
+							<h:inputText />
+
+							<h:commandButton class="btnContent" value="Clear" />
+							<h:commandButton class="btnContent" value="Add" />
 						</h:panelGrid>
-						
+
 					</h:form>
+					<div class="messageColor">
+						<br />
+						<h:messages showSummary="true" showDetail="false"
+							errorStyle="color:red" infoStyle="color:blue" />
+					</div>
 				</div>
 			</div>
 		</ui:define>

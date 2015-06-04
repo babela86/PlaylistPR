@@ -13,20 +13,24 @@
 		<ui:define name="content">
 			<div id="content">
 				<h2>Give a name for your new playlist</h2>
-			
-			
+
+
 				<div class="row" style="width: 50%">
 					<h:form>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid" >
+						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Name of the New Playlist" />
-							<h:inputText />
+							<h:inputText value="#{newPlaylistInput.name}" />
 							<h:commandButton class="btnContent" value="Clear" />
-							<h:commandButton class="btnContent" value="Create" />
+							<h:commandButton class="btnContent" value="Create"
+								action="#{newPlaylistInput.newPlaylist()}" />
 						</h:panelGrid>
-
 					</h:form>
 				</div>
-
+				<div class="messageColor">
+					<br />
+					<h:messages showSummary="true" showDetail="false"
+						errorStyle="color:red" infoStyle="color:blue" />
+				</div>
 			</div>
 		</ui:define>
 	</ui:composition>
