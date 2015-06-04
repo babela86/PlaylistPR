@@ -20,7 +20,7 @@
 							<h:inputText value="#{userInput.title}"/>
 							<h:outputText value="Artist" />
 							<h:inputText value="#{userInput.artist}"/>
-							<h:commandButton class="btnContent" value="Clear" />
+							<h:commandButton class="btnContent" value="Clear" type="reset" />
 							<h:commandButton class="btnContent" value="Search" action="#{userInput.searchMusics()}" />
 						</h:panelGrid>
 
@@ -28,7 +28,7 @@
 				</div>
 				<div class="tablebox">
 					<h:dataTable id="listamensagens"		
-						 var="list" value="#{userInput.searchMusics()}">
+						 var="list" value="#{userInput.search}">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Name" />

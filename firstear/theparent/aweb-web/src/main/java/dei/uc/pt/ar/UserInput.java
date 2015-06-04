@@ -26,11 +26,15 @@ public class UserInput implements Serializable{
 	private UserRegister ur;
 	@Inject
 	private MusicDAO md;
+	@Inject
+	private PlaylistDAO pd;
 	
 
 	private String email;
 	private String pass;
 	private String name;
+	ArrayList<Musica> search = new ArrayList<Musica>();
+
 	private String year;
 	private String month;
 	private String day;
@@ -45,6 +49,7 @@ public class UserInput implements Serializable{
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
 	public UserInput() {
+		
 	}
 
 	public String newUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -102,17 +107,31 @@ public class UserInput implements Serializable{
 	public ArrayList<Musica> listmymusics(){
 		return md.findMyMusic(activeUser.getIdUtilizador());
 	}
+
 	
-	public ArrayList<Musica> searchMusics(){
-		if (this.title==""){
-			return md.findArtistMusic(this.artist);
-		}else if (this.artist==""){
-			return md.findTitleMusic(this.title);
-		}else{
-			return md.findArtistTitleMusic(this.artist, this.title);
-		}
+	public ArrayList<Playlist> listmyplaylists(){
+		return pd.findMyPlaylists(activeUser.getIdUtilizador());
 	}
 	
+	public String searchMusics(){
+		if (this.title.equals("")){
+			search = md.findArtistMusic(this.artist);
+		}else if (this.artist.equals("")){
+			search = md.findTitleMusic(this.title);
+		}else{
+			search = md.findArtistTitleMusic(this.title, this.artist);
+		}
+		return "searchMusic";
+	}
+	
+	public ArrayList<Musica> getSearch() {
+		return search;
+	}
+
+	public void setSearch(ArrayList<Musica> search) {
+		this.search = search;
+	}
+
 	public Utilizador getActiveUser() {
 		return activeUser;
 	}
@@ -184,6 +203,23 @@ public class UserInput implements Serializable{
 	public String getDay() {
 		return day;
 	}
+	
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	
 	public void startSession() {
 		session = (HttpSession) FacesContext.getCurrentInstance()

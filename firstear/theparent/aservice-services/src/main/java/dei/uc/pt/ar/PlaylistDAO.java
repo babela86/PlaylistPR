@@ -26,7 +26,7 @@ public class PlaylistDAO {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Playlist> findMyPlaylists(int id){
-		return (ArrayList<Playlist>) em.createQuery("SELECT p FROM Playlist p WHERE p.Utilizador.idUtilizador LIKE = :id")
+		return (ArrayList<Playlist>) em.createQuery("SELECT p FROM Playlist p WHERE p.utilizador.idUtilizador = :id")
 				.setParameter("id", id)
 				.getResultList();
 	}

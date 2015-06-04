@@ -33,21 +33,21 @@ public class MusicDAO {
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> findArtistMusic(String artist){
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.artist = :art")
+		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.artist LIKE :art")
 				.setParameter("art", "%"+artist+"%")
 				.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> findTitleMusic(String title){
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.title = :tit")
+		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.title LIKE :tit")
 				.setParameter("tit", "%"+title+"%")
 				.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> findArtistTitleMusic(String title, String artist){
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.title = :tit AND m.artist = :art")
+		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m WHERE m.title LIKE :tit AND m.artist LIKE :art")
 				.setParameter("tit", "%"+title+"%")
 				.setParameter("art", "%"+artist+"%")
 				.getResultList();
