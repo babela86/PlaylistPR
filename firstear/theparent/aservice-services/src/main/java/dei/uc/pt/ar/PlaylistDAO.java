@@ -30,6 +30,22 @@ public class PlaylistDAO {
 				.setParameter("id", id)
 				.getResultList();
 	}
+	
+	public boolean newPlaylist(Playlist p) {
+		//se conseguir guardar a musica manda true, senao manda false
+		boolean existe=false;
+		ArrayList<Playlist> lista = findAllPlaylists();
+		for (Playlist pla:lista ){
+			if (pla.getName().equals(p.getName())){
+				existe=false;
+			}else{
+				existe = true;
+			}
+		}
+		if (existe)
+			em.merge(p);
+		return existe;
+	}
 
 }
 
