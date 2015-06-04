@@ -10,8 +10,7 @@
 		<ui:define name="header">My Playlist</ui:define>
 		<ui:define name="content">
 			<div id="content">
-
-				mostra a playlist selecionada.. por nome da playlist
+				<h2></h2>
 				<div class="tablebox">
 					<h:dataTable id="listamensagens" var="list">
 						<!-- value="#{userInput.musicsofplaylist()}"  -->
@@ -39,6 +38,9 @@
 								<h:outputText value="Year" />
 							</f:facet>
 							<h:outputText value="#{list.year}" />
+						</h:column>
+						<h:column>
+							<h:commandButton class="btnTabs" value="Delete" />
 						</h:column>
 					</h:dataTable>
 				</div>
@@ -75,11 +77,9 @@
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Edit" />
+								<h:commandButton class="btnTabs" value="Add" />
 							</h:column>
-							<h:column>
-								<h:commandButton class="btnTabs" value="Delete" />
-							</h:column>
+
 						</h:dataTable>
 					</h:form>
 				</div>
