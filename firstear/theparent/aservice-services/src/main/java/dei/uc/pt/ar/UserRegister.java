@@ -1,6 +1,7 @@
 package dei.uc.pt.ar;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -65,38 +66,50 @@ public class UserRegister {
 			throws NoSuchAlgorithmException, UnsupportedEncodingException,
 			ParseException {
 		// Se conseguir encontrar o user devolve-o, caso contrário devolve null
+		String senha="";
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> verifica = q.getResultList();
-		if (verifica.size() < 2)
+		if (verifica.size() < 2){
 			pp.populando();
+		}
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> results = q.getResultList();
+		System.out.println(pass);
 		try {
-			pass = encriptaPass(pass);
+			senha = encriptaPass(pass);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		for (Utilizador util : results) {
+			System.out.println(util.getPassword());
+			System.out.println(senha);
+			System.out.println(util.getPassword().equals(senha));
+			
 			if (util.getEmail().equals(email)
-					&& util.getPassword().equals(pass)) {
+					&& util.getPassword().equals(senha)) {
 				return util;
 			}
 		}
 		return null;
 	}
 
-	public static String encriptaPass(String senha)
+	public static String encriptaPass(String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		MessageDigest algorithm = MessageDigest.getInstance("MD5");
-		byte messageDigest[] = algorithm.digest("senha".getBytes("UTF-8"));
-
-		StringBuilder hexString = new StringBuilder();
-		for (byte b : messageDigest) {
-			hexString.append(String.format("%02X", 0xFF & b));
-		}
-		return hexString.toString();
+		String sha1;
+        if (null == password) {
+            return null;
+        }
+        MessageDigest digest;
+        try {
+            digest = MessageDigest.getInstance("SHA-1");
+            digest.update(password.getBytes(), 0, password.length());
+            sha1 = new BigInteger(1, digest.digest()).toString(16);
+            return sha1;
+        } catch (NoSuchAlgorithmException ex) {
+            return null;
+        }        
 	}
 
 }

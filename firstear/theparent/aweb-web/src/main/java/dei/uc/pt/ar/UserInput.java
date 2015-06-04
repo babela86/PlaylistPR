@@ -35,6 +35,8 @@ public class UserInput implements Serializable{
 	private String month;
 	private String day;
 	private Date birthdate;
+	private String artist;
+	private String title;
 	HttpSession session;
 	
 	private Utilizador activeUser;
@@ -63,7 +65,7 @@ public class UserInput implements Serializable{
 	}
 
 	public String loginUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
-		Utilizador util = ur.loginUser(email, pass);
+		Utilizador util = ur.loginUser(this.email, this.pass);
 		if (util==null){
 			FacesMessage msg = new FacesMessage("Login incorrecto!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -99,6 +101,16 @@ public class UserInput implements Serializable{
 	
 	public ArrayList<Musica> listmymusics(){
 		return md.findMyMusic(activeUser.getIdUtilizador());
+	}
+	
+	public ArrayList<Musica> searchMusics(){
+		if (this.title==""){
+			return md.findArtistMusic(this.artist);
+		}else if (this.artist==""){
+			return md.findTitleMusic(this.title);
+		}else{
+			return md.findArtistTitleMusic(this.artist, this.title);
+		}
 	}
 	
 	public Utilizador getActiveUser() {
