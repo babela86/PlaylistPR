@@ -17,17 +17,45 @@
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Title" />
-							<h:inputText />
+							<h:inputText value="#{userInput.title}"/>
 							<h:outputText value="Artist" />
-							<h:inputText />
+							<h:inputText value="#{userInput.artist}"/>
 							<h:commandButton class="btnContent" value="Clear" />
-							<h:commandButton class="btnContent" value="Search" />
+							<h:commandButton class="btnContent" value="Search" action="#{userInput.searchMusics()}" />
 						</h:panelGrid>
 
 					</h:form>
 				</div>
-				<h3>You can search musics by the title of the musics and/or by
-					the name of the artist.</h3>
+				<div class="tablebox">
+					<h:dataTable id="listamensagens"		
+						 var="list" value="#{userInput.searchMusics()}">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{list.title}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artist" />
+							</f:facet>
+							<h:outputText value="#{list.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{list.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{list.year}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+				
 			</div>
 		</ui:define>
 	</ui:composition>
