@@ -19,9 +19,9 @@ public class MusicDAO {
 	private static final Logger log = LoggerFactory.getLogger(MusicDAO.class);
 
 	@PersistenceContext(name = "Playlist")
-	EntityManager em;
+	private EntityManager em;
 
-	Query query;
+	private Query query;
 
 	public MusicDAO() {
 		super();
@@ -137,8 +137,18 @@ public class MusicDAO {
 			log.info("Música retirada da Playlist");
 			return true;
 		} catch (Exception e) {
-			log.error("Música não removida da Playlist");
 			return true;
+		}
+	}
+	
+	public boolean deleteMusicFromDb(int idMusic){
+		try{
+			query = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.idMusic =:idMusic");
+			query.setParameter("idMusic", idMusic);
+			query.executeUpdate();
+			return true;
+		}catch (Exception e){
+			return false;
 		}
 	}
 

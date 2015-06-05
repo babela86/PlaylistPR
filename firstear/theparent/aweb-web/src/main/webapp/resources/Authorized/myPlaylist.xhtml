@@ -11,32 +11,33 @@
 		template="/resources/template/common/commonLayout.xhtml">
 		<ui:define name="header">My Playlists</ui:define>
 		<ui:define name="content">
-				<h:form>
-					<div class="tablebox">
-						<h:form>
-							<h:dataTable id="listamensagens"
-								value="#{userInput.listmyplaylists()}" var="list">
+			<h:form>
+				<div class="tablebox">
+					<h:form>
+						<h:dataTable id="listamensagens"
+							value="#{userInput.listmyplaylists()}" var="list">
 
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Name" />
-									</f:facet>
-									<h:outputText value="#{list.name}" />
-								</h:column>
-								<h:column>
-									<h:commandButton class="btnTabs" value="Consult"
-										action="#{userInput.showPlaylist(list.idPlaylist)}" />
-								</h:column>
-								<h:column>
-									<h:commandButton class="btnTabs" value="Edit" />
-								</h:column>
-								<h:column>
-									<h:commandButton class="btnTabs" value="Delete" />
-								</h:column>
-							</h:dataTable>
-						</h:form>
-					</div>
-				</h:form>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{list.name}" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Consult"
+									action="#{userInput.showPlaylist(list.idPlaylist)}" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Edit" />
+							</h:column>
+							<h:column>
+								<h:commandButton class="btnTabs" value="Delete"
+									action="#{newPlaylistInput.deletePlaylist(list.idPlaylist)}" />
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

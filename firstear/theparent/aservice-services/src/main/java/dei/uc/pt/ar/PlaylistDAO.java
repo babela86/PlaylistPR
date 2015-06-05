@@ -53,6 +53,21 @@ public class PlaylistDAO {
 			log.info("Nova Playlist criada!");
 		return existe;
 	}
+	
+	public boolean deletePlaylist(int idPlay){
+		try{
+			@SuppressWarnings("unchecked")
+			ArrayList<Playlist> lista = (ArrayList<Playlist>) em.createQuery("SELECT p FROM Playlist p WHERE p.idPlaylist = :id")
+			.setParameter("id", idPlay)
+			.getResultList();
+			for (Playlist p : lista){
+				em.remove(em.merge(p));
+			}
+			return true;
+		}catch (Exception e){
+			return false;
+		}
+	}
 
 }
 

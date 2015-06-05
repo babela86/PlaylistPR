@@ -43,7 +43,8 @@
 									action="#{render.showTable(list.idMusic)}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Delete" />
+								<h:commandButton class="btnTabs" value="Delete" 
+								action="#{changeMusic.deleteMusic(list.idMusic)}"/>
 							</h:column>
 						</h:dataTable>
 					</h:form>
