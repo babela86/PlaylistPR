@@ -6,16 +6,19 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 @LocalBean
 public class MusicDAO {
 
 	@PersistenceContext(name = "Playlist")
-	private EntityManager em;
+	EntityManager em;
+
+	Query query;
 
 	public MusicDAO() {
-
+		super();
 	}
 
 	@SuppressWarnings("unchecked")

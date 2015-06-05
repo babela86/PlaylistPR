@@ -9,7 +9,6 @@
 		template="/resources/template/common/commonLayout.xhtml">
 		<ui:define name="header">My Musics</ui:define>
 		<ui:define name="content">
-			<div id="content">
 				<p>Musics by user #{userInput.getName()}:</p>
 				<div class="tablebox">
 					<h:form>
@@ -40,7 +39,8 @@
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Edit" />
+								<h:commandButton class="btnTabs" value="Edit"
+									action="#{render.showTable(list.idMusic)}" />
 							</h:column>
 							<h:column>
 								<h:commandButton class="btnTabs" value="Delete" />
@@ -48,33 +48,38 @@
 						</h:dataTable>
 					</h:form>
 				</div>
-				<div class="row"
-					style="width: 30%; margin-top: 20px; text-align: center; display: inline;">
-					<h:form>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-							<h:outputText value="Title" />
-							<h:inputText />
-							<h:outputText value="Artist" />
-							<h:inputText />
-							<h:outputText value="Album" />
-							<h:inputText />
-							<h:outputText value="Year" />
-							<h:inputText maxlength="4" />
-							<h:outputText value="Path" />
-							<h:inputText />
+				<div id="all" style="margin-top: 20px;">
+					<h:panelGroup rendered="#{render.tableShow}">
+						<h4>Select the playlist</h4>
+						<div class="row"
+							style="width: 30%; margin-top: 20px; text-align: center; display: inline;">
+							<h4>Change the next fields </h4>
+							<h:form>
+								<h:panelGrid class="panelGrid" columns="2" layout="grid">
+									<h:outputText value="Title" />
+									<h:inputText value="#{changeMusic.title}"/>
+									<h:outputText value="Artist" />
+									<h:inputText value="#{changeMusic.title}"/>
+									<h:outputText value="Album" />
+									<h:inputText value="#{changeMusic.title}"/>
+									<h:outputText value="Year" />
+									<h:inputText maxlength="4" value="#{changeMusic.title}"/>
+									
+									<h:inputText />
 
-							<h:commandButton class="btnContent" value="Clear" type="reset"/>
-							<h:commandButton class="btnContent" value="Add" />
-						</h:panelGrid>
+									<h:commandButton class="btnContent" value="Clear" type="reset" />
+									<h:commandButton class="btnContent" value="Submit Changes" action="#{changeMusic.setChanges}"/>
+								</h:panelGrid>
 
-					</h:form>
-					<div class="messageColor">
-						<br />
-						<h:messages showSummary="true" showDetail="false"
-							errorStyle="color:red" infoStyle="color:blue" />
-					</div>
+							</h:form>
+							<div class="messageColor">
+								<br />
+								<h:messages showSummary="true" showDetail="false"
+									errorStyle="color:red" infoStyle="color:blue" />
+							</div>
+						</div>
+					</h:panelGroup>
 				</div>
-			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

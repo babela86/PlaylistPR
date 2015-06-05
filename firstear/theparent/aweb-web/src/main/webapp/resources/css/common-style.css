@@ -23,7 +23,7 @@ body {
 
 #content {
 	display: block;
-	margin: 20px;
+	margin-left: 10px;
 	height: 70%;
 	width: 97%;
 	text-align: -webkit-center;
@@ -104,4 +104,8 @@ body {
 	text-align: center;
 	vertical-align: middle;
 	font-size: 100%;
+}
+#all2 hover{
+	vertical-align: middle;
+	
 }
