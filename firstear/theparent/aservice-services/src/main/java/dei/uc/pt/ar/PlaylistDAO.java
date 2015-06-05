@@ -7,9 +7,15 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Stateless
 @LocalBean
 public class PlaylistDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(PlaylistDAO.class);
+
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
@@ -44,6 +50,7 @@ public class PlaylistDAO {
 		}
 		if (existe)
 			em.merge(p);
+			log.info("Nova Playlist criada!");
 		return existe;
 	}
 

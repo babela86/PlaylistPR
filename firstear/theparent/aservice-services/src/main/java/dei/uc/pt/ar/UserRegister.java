@@ -15,9 +15,15 @@ import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Stateless
 @LocalBean
 public class UserRegister {
+	
+	private static final Logger log = LoggerFactory.getLogger(UserRegister.class);
+
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
@@ -41,6 +47,8 @@ public class UserRegister {
 		String result;
 		for (Utilizador util : results) {
 			if (util.getEmail().equals(u.getEmail())) {
+				log.info("Já havia um user com o email dado.");
+
 				found = true;
 			}
 		}
@@ -49,10 +57,14 @@ public class UserRegister {
 			result = "User e-mail already exists!";
 		} else {
 			try {
+				log.info("User com password:"+u.getPassword());
 				u.setPassword(encriptaPass(u.getPassword()));
+				log.info("User com password encriptada:"+u.getPassword());
 			} catch (NoSuchAlgorithmException e) {
+				log.error("Erro na encriptação.");
 				e.printStackTrace();
 			} catch (UnsupportedEncodingException e) {
+				log.error("Erro na encriptação.");
 				e.printStackTrace();
 			}
 			em.persist(u);
@@ -84,6 +96,8 @@ public class UserRegister {
 		for (Utilizador util : results) {
 			if (util.getEmail().equals(email)
 					&& util.getPassword().equals(senha)) {
+				log.info("Login sucedido!");
+
 				return util;
 			}
 		}

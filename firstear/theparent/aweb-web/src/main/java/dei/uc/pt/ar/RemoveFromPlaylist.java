@@ -24,30 +24,24 @@ public class RemoveFromPlaylist implements Serializable {
 	private UserInput ui;
 
 	private int idPlay;
-	private int idMus;
 
 	public String removeFrom(int idMus) {
-		System.out.println(ui.getIdPlay());
-		System.out.println(idMus);
 		this.idPlay = ui.getIdPlay();
-		this.idMus = idMus;
 		boolean removed = md.deleteMusic(idPlay, idMus);
-
 		if (removed == true) {
-			FacesMessage msg = new FacesMessage("Music added to playlist!",
+			FacesMessage msg = new FacesMessage("Music removed from playlist!",
 					"INFO MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_INFO);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-
-			return "null";
+			return "thePlaylist";
 		} else {
 			FacesMessage msg = new FacesMessage(
-					"Problem adding music to palylist!", "ERROR MSG");
+					"Problem removing music from playlist!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-			return "null";
+			return "thePlaylist";
 		}
 	}
 }

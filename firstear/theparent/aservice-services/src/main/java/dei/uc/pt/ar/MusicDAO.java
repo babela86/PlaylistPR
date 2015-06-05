@@ -8,9 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @Stateless
 @LocalBean
 public class MusicDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(MusicDAO.class);
 
 	@PersistenceContext(name = "Playlist")
 	EntityManager em;
@@ -72,8 +78,7 @@ public class MusicDAO {
 		}
 		if (existe)
 			em.merge(m);
-
-		System.out.println(m.getIdMusic() + " dentro musica DAO");
+			log.info("Nova música adicionada à BD");
 		return existe;
 	}
 
@@ -109,48 +114,33 @@ public class MusicDAO {
 	}
 
 	public boolean addTo(int idPlay, int idMus) {
-		boolean existe = false;
-		Musica m = getMusic(idMus);
-		Playlist p = getPlaylist(idPlay);
-
-		ArrayList<Musica> lista = listMusicasPlaylist(idPlay);
-
-		for (Musica mus : lista) {
-			if (mus.getTitle().equals(m.getTitle())
-					|| (mus.getPath().equals(m.getPath()))) {
-				existe = false;
-			} else {
-				existe = true;
-			}
-		}
-		if (existe) {
+		try{
+			Musica m = getMusic(idMus);
+			Playlist p = getPlaylist(idPlay);
 			p.addMusica(m);
 			em.merge(m);
+			log.info("Música adicionada à Playlist");
+			return true;
+		}catch (Exception e){
+			log.error("Música não adicionada à Playlist");
+			return false;
 		}
-		return existe;
 
 	}
 
 	public boolean deleteMusic(int idPlay, int idMus) {
-
-		Musica m = getMusic(idMus);
-		Playlist p = getPlaylist(idPlay);
-		System.out.println(p);
-		p.removeMusica(idMus);
-		return true;
+		try {
+			Musica m = getMusic(idMus);
+			Playlist p = getPlaylist(idPlay);
+			p.removeMusica(idMus);
+			em.merge(m);
+			log.info("Música retirada da Playlist");
+			return true;
+		} catch (Exception e) {
+			log.error("Música não removida da Playlist");
+			return true;
+		}
 	}
 
-	// public boolean updatePath(String path, int idMusica) {
-	// try {
-	// q =
-	// em.createQuery("UPDATE Musica SET path =:path WHERE idMusic = :idMusica");
-	// q.setParameter("path", path);
-	// q.setParameter("idMusica", idMusica);
-	// q.executeUpdate();
-	// return true;
-	// } catch (Exception e) {
-	// return false;
-	// }
-	// }
 
 }

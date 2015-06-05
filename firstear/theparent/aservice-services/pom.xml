@@ -28,6 +28,7 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 			</dependency>
@@ -39,5 +40,11 @@
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 			</dependency>
+=======
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+>>>>>>> origin/master
 	</dependencies>
 </project>

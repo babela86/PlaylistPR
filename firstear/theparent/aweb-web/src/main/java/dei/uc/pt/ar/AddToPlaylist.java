@@ -25,7 +25,7 @@ public class AddToPlaylist implements Serializable {
 
 	public String addTo(int idPlay) {
 		this.idPlay = idPlay;
-		System.out.println(idPlay + " " + rd.getIdM());
+		System.out.println(idPlay);
 		boolean added = md.addTo(idPlay, rd.getIdM());
 
 		if (added == true) {
@@ -38,7 +38,7 @@ public class AddToPlaylist implements Serializable {
 			return "allMusics.xhtml?faces-redirect=true";
 		} else {
 			FacesMessage msg = new FacesMessage(
-					"Problem adding music to palylist!", "ERROR MSG");
+					"Problem adding music to playlist!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
