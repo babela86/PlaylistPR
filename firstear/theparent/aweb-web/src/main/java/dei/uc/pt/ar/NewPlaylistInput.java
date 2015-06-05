@@ -43,6 +43,24 @@ public class NewPlaylistInput implements Serializable {
 		}
 		return "addPlaylist";
 	}
+	
+	public String deletePlaylist(int idPlay){
+		boolean deleted = pd.deletePlaylist(idPlay);
+		if (deleted == true) {
+			FacesMessage msg = new FacesMessage("Playlist deleted!",
+					"INFO MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+		} else {
+			FacesMessage msg = new FacesMessage("Problem deleting Playlist!",
+					"ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		return "myPlaylist";
+	}
 
 	public String getName() {
 		return name;

@@ -27,7 +27,6 @@ public class Render implements Serializable {
 	public void showTable(int idM) {
 		this.idM = idM;
 		this.tableShow = true;
-		System.out.println(idM);
 	}
 
 	public int getIdM() {

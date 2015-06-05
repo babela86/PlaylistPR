@@ -36,7 +36,6 @@ public class Upload implements Serializable {
 	public String upload(Part file) throws IOException {
 		this.file = file;
 		String path = generatePath();
-		System.out.println(path);
 		if (validExtension(path)) {
 			file.write(path);
 

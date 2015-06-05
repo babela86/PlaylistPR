@@ -25,7 +25,6 @@ public class AddToPlaylist implements Serializable {
 
 	public String addTo(int idPlay) {
 		this.idPlay = idPlay;
-		System.out.println(idPlay);
 		boolean added = md.addTo(idPlay, rd.getIdM());
 
 		if (added == true) {

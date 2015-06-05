@@ -246,7 +246,6 @@ public class UserInput implements Serializable {
 
 	public void getPlayName() {
 		this.playName = md.getPlaylistName(idPlay);
-		System.out.println((playName));
 	}
 
 	public int getIdPlay() {
