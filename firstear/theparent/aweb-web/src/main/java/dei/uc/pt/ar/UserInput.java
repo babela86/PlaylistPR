@@ -33,7 +33,6 @@ public class UserInput implements Serializable {
 	private String name;
 	ArrayList<Musica> search = new ArrayList<Musica>();
 	private int idPlay;
-	private String playName;
 
 	private String year;
 	private String month;
@@ -244,20 +243,12 @@ public class UserInput implements Serializable {
 		return md.listMusicasPlaylist(idPlay);
 	}
 
-	public void getPlayName() {
-		this.playName = md.getPlaylistName(idPlay);
-	}
-
 	public int getIdPlay() {
 		return idPlay;
 	}
 
 	public void setIdPlay(int idPlay) {
 		this.idPlay = idPlay;
-	}
-
-	public void setPlayName(String playName) {
-		this.playName = playName;
 	}
 
 }

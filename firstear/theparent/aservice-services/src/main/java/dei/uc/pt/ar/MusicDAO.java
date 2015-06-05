@@ -151,6 +151,25 @@ public class MusicDAO {
 			return false;
 		}
 	}
+	
+
+	
+	public boolean changeMusic(Musica m, int idMusic){
+		try{
+			query = em.createQuery("UPDATE Musica SET title =:title, album =:album, artist =:artist, year =:year WHERE idMusic = :idMusic");
+			query.setParameter("title", m.getTitle());
+			query.setParameter("album", m.getAlbum());
+			query.setParameter("artist", m.getArtist());
+			query.setParameter("year", m.getYear());
+			query.setParameter("idMusic", idMusic);
+			query.executeUpdate();
+			log.info("Music updated");
+			return true;
+		}catch (Exception e){
+			log.error("Problem updating music");
+			return false;
+		}
+	}
 
 
 }

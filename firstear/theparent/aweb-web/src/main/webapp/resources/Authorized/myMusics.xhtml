@@ -60,16 +60,16 @@
 									<h:outputText value="Title" />
 									<h:inputText value="#{changeMusic.title}"/>
 									<h:outputText value="Artist" />
-									<h:inputText value="#{changeMusic.title}"/>
+									<h:inputText value="#{changeMusic.artist}"/>
 									<h:outputText value="Album" />
-									<h:inputText value="#{changeMusic.title}"/>
+									<h:inputText value="#{changeMusic.album}"/>
 									<h:outputText value="Year" />
-									<h:inputText maxlength="4" value="#{changeMusic.title}"/>
+									<h:inputText maxlength="4" value="#{changeMusic.year}"/>
 									
 									<h:inputText />
 
 									<h:commandButton class="btnContent" value="Clear" type="reset" />
-									<h:commandButton class="btnContent" value="Submit Changes" action="#{changeMusic.setChanges}"/>
+									<h:commandButton class="btnContent" value="Submit Changes" action="#{changeMusic.changeMusic(list.idMusic)}"/>
 								</h:panelGrid>
 
 							</h:form>
