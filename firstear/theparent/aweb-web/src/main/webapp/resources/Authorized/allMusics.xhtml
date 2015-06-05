@@ -12,35 +12,70 @@
 		<ui:define name="content">
 			<div id="content">
 				<h2>List of all musics!</h2>
-				<div class="tablebox">
-					<h:dataTable id="listamensagens" var="list"
-						value="#{userInput.listallmusics()}">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Name" />
-							</f:facet>
-							<h:outputText value="#{list.title}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Artist" />
-							</f:facet>
-							<h:outputText value="#{list.artist}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Album" />
-							</f:facet>
-							<h:outputText value="#{list.album}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Year" />
-							</f:facet>
-							<h:outputText value="#{list.year}" />
-						</h:column>
-					</h:dataTable>
-				</div>
+				<h:form>
+					<div class="tablebox">
+						<h:dataTable id="listamensagens" var="list"
+							value="#{userInput.listallmusics()}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{list.title}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Artist" />
+								</f:facet>
+								<h:outputText value="#{list.artist}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Album" />
+								</f:facet>
+								<h:outputText value="#{list.album}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Year" />
+								</f:facet>
+								<h:outputText value="#{list.year}" />
+							</h:column>
+							<h:column>
+
+								<h:commandButton class="btnTabs"
+									action="#{render.showTable()}" value="Add">
+									
+
+								</h:commandButton>
+
+							</h:column>
+						</h:dataTable>
+					</div>
+					<div id="all" style="margin-top: 20px;">
+					<h:panelGroup rendered="#{render.tableShow}">
+						<div class="tablebox" id="all2">
+							<h:dataTable id="listamensagens2"
+								value="#{userInput.listmyplaylists()}" var="list">
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name" />
+									</f:facet>
+									<h:outputText value="#{list.name}" />
+								</h:column>
+								<h:column>
+									<h:commandButton class="btnTabs" value="Edit" />
+								</h:column>
+								<h:column>
+									<h:commandButton class="btnTabs" value="Delete" />
+								</h:column>
+							</h:dataTable>
+						</div>
+
+						<h:commandButton class="btnTabs" value="Add to Selected Playlist" />
+						</h:panelGroup>
+					</div>
+				</h:form>
 			</div>
 		</ui:define>
 	</ui:composition>

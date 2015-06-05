@@ -56,7 +56,7 @@ public class Musica implements Serializable {
 		this.album = album;
 		this.year = year;
 		this.path = path;
-		this.utilizador=utilizador;
+		this.utilizador = utilizador;
 	}
 
 	public List<Playlist> getPlaylist() {
@@ -113,6 +113,14 @@ public class Musica implements Serializable {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public int getIdMusic() {
+		return idMusic;
+	}
+
+	public void setIdMusic(int idMusic) {
+		this.idMusic = idMusic;
 	}
 
 }

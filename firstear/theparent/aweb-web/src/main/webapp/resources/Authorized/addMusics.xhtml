@@ -14,9 +14,10 @@
 				<h2>Fill the next fields with the information of the new music</h2>
 
 				<div class="row" style="width: 30%; display: inline;">
-					<h:form>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						
+						<h:form id="form" enctype="multipart/form-data" >
 							<h:outputText value="Title" />
 							<h:inputText value="#{newMusicInput.title}" required="true"
 								requiredMessage="Insira um título" />
@@ -30,22 +31,22 @@
 							<h:inputText value="#{newMusicInput.year}" required="true"
 								requiredMessage="Insira um email" maxlength="4" />
 							<h:outputText value="Path" />
-							<h:inputText value="#{newMusicInput.path}" required="true"
-								requiredMessage="Insira um path" />
-
-							<h:commandButton class="btnContent" value="Clear" type="reset"/>
+												
+							<h:inputFile value="#{newMusicInput.file}" required="true" />
+							<h:commandButton class="btnContent" value="Clear" type="reset" />
 							<h:commandButton class="btnContent" value="Add"
 								action="#{newMusicInput.newMusic()}" />
-						</h:panelGrid>
+						</h:form>
+					</h:panelGrid>
 
-					</h:form>
+
 					<div class="messageColor">
-					<br />
-					<h:messages showSummary="true" showDetail="false"
-						errorStyle="color:red" infoStyle="color:blue" />
+						<br />
+						<h:messages showSummary="true" showDetail="false"
+							errorStyle="color:red" infoStyle="color:blue" />
+					</div>
 				</div>
-				</div>
-				
+
 			</div>
 
 		</ui:define>
