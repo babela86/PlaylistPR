@@ -15,22 +15,28 @@
 				<h:form>
 
 					<div class="tablebox">
-						<h:dataTable id="listamensagens"
-							value="#{userInput.listmyplaylists()}" var="list">
+						<h:form>
+							<h:dataTable id="listamensagens"
+								value="#{userInput.listmyplaylists()}" var="list">
 
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Name" />
-								</f:facet>
-								<h:outputText value="#{list.name}" />
-							</h:column>
-							<h:column>
-								<h:commandButton class="btnTabs" value="Edit" />
-							</h:column>
-							<h:column>
-								<h:commandButton class="btnTabs" value="Delete" />
-							</h:column>
-						</h:dataTable>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name" />
+									</f:facet>
+									<h:outputText value="#{list.name}" />
+								</h:column>
+								<h:column>
+									<h:commandButton class="btnTabs" value="Consult"
+										action="#{userInput.showPlaylist(list.idPlaylist)}" />
+								</h:column>
+								<h:column>
+									<h:commandButton class="btnTabs" value="Edit" />
+								</h:column>
+								<h:column>
+									<h:commandButton class="btnTabs" value="Delete" />
+								</h:column>
+							</h:dataTable>
+						</h:form>
 					</div>
 
 				</h:form>

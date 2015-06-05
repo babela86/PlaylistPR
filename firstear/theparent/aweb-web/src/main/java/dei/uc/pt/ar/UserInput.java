@@ -17,8 +17,7 @@ import javax.servlet.http.HttpSession;
 
 @SessionScoped
 @Named
-public class UserInput implements Serializable{
-
+public class UserInput implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,12 +27,13 @@ public class UserInput implements Serializable{
 	private MusicDAO md;
 	@Inject
 	private PlaylistDAO pd;
-	
 
 	private String email;
 	private String pass;
 	private String name;
 	ArrayList<Musica> search = new ArrayList<Musica>();
+	private int idPlay;
+	private String playName;
 
 	private String year;
 	private String month;
@@ -42,20 +42,22 @@ public class UserInput implements Serializable{
 	private String artist;
 	private String title;
 	HttpSession session;
-	
+
 	private Utilizador activeUser;
-	private boolean userLoged=true;
+	private boolean userLoged = true;
 
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
 	public UserInput() {
-		
+
 	}
 
-	public String newUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
+	public String newUser() throws ParseException, NoSuchAlgorithmException,
+			UnsupportedEncodingException {
 		this.birthdate = ft
 				.parse(this.year + "-" + this.month + "-" + this.day);
-		Utilizador u = new Utilizador(this.email, this.name, this.pass, this.birthdate);		
+		Utilizador u = new Utilizador(this.email, this.name, this.pass,
+				this.birthdate);
 		FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
 		msg.setSeverity(FacesMessage.SEVERITY_INFO);
 		if (FacesContext.getCurrentInstance() != null)
@@ -69,61 +71,61 @@ public class UserInput implements Serializable{
 		return "login";
 	}
 
-	public String loginUser() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
+	public String loginUser() throws ParseException, NoSuchAlgorithmException,
+			UnsupportedEncodingException {
 		Utilizador util = ur.loginUser(this.email, this.pass);
-		if (util==null){
+		if (util == null) {
 			FacesMessage msg = new FacesMessage("Login error!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			return "login";
 		} else {
-			this.activeUser=util;
-			this.name=activeUser.getName();
+			this.activeUser = util;
+			this.name = activeUser.getName();
 			startSession();
 			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
 	}
-	
-	public String logoutUser() {		
-		this.activeUser=null;
+
+	public String logoutUser() {
+		this.activeUser = null;
 		this.day = "";
 		this.year = "";
 		this.month = "";
 		this.pass = "";
 		this.email = "";
-		this.name ="";
-		//endSession();
-		if(FacesContext.getCurrentInstance()!=null)
+		this.name = "";
+		// endSession();
+		if (FacesContext.getCurrentInstance() != null)
 			FacesContext.getCurrentInstance().getExternalContext()
-				.invalidateSession();
+					.invalidateSession();
 		return "/login.xhtml?faces-redirect=true";
 	}
-	
-	
-	public ArrayList<Musica> listallmusics(){
+
+	public ArrayList<Musica> listallmusics() {
 		return md.findAllMusic();
 	}
-	
-	public ArrayList<Musica> listmymusics(){
+
+	public ArrayList<Musica> listmymusics() {
 		return md.findMyMusic(activeUser.getIdUtilizador());
 	}
-	
-	public ArrayList<Playlist> listmyplaylists(){
+
+	public ArrayList<Playlist> listmyplaylists() {
 		return pd.findMyPlaylists(activeUser.getIdUtilizador());
 	}
-	
-	public String searchMusics(){
-		if (this.title.equals("")){
+
+	public String searchMusics() {
+		if (this.title.equals("")) {
 			search = md.findArtistMusic(this.artist);
-		}else if (this.artist.equals("")){
+		} else if (this.artist.equals("")) {
 			search = md.findTitleMusic(this.title);
-		}else{
+		} else {
 			search = md.findArtistTitleMusic(this.title, this.artist);
 		}
 		return "searchMusic";
 	}
-	
+
 	public ArrayList<Musica> getSearch() {
 		return search;
 	}
@@ -203,7 +205,7 @@ public class UserInput implements Serializable{
 	public String getDay() {
 		return day;
 	}
-	
+
 	public String getArtist() {
 		return artist;
 	}
@@ -220,7 +222,6 @@ public class UserInput implements Serializable{
 		this.title = title;
 	}
 
-	
 	public void startSession() {
 		session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
@@ -231,6 +232,33 @@ public class UserInput implements Serializable{
 		if (session != null)
 			session.invalidate();
 		userLoged = false;
+	}
+
+	public String showPlaylist(int idPlay) {
+		this.idPlay = idPlay;
+		return "thePlaylist.xhtml?redirect=true";
+	}
+
+	public ArrayList<Musica> musicsofplaylist() {
+
+		return md.listMusicasPlaylist(idPlay);
+	}
+
+	public void getPlayName() {
+		this.playName = md.getPlaylistName(idPlay);
+		System.out.println((playName));
+	}
+
+	public int getIdPlay() {
+		return idPlay;
+	}
+
+	public void setIdPlay(int idPlay) {
+		this.idPlay = idPlay;
+	}
+
+	public void setPlayName(String playName) {
+		this.playName = playName;
 	}
 
 }

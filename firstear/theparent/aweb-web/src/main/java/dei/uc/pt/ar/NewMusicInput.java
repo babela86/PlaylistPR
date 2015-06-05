@@ -47,7 +47,7 @@ public class NewMusicInput implements Serializable {
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 		} else {
-			md.deleteMusic(m.getIdMusic());
+
 			FacesMessage msg = new FacesMessage("Music already exists!",
 					"ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);

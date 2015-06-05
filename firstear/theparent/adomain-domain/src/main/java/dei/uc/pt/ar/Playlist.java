@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,14 +27,22 @@ public class Playlist implements Serializable {
 
 	// uma playlist so pode pertencer a um utilizador
 
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Musica> musicas;
+	@ManyToMany
+	private List<Musica> musicas = new ArrayList<Musica>();
 
 	public Playlist() {
+	}
+
+	public int getIdPlaylist() {
+		return idPlaylist;
+	}
+
+	public void setIdPlaylist(int idPlaylist) {
+		this.idPlaylist = idPlaylist;
 	}
 
 	public Playlist(String name, Utilizador utilizador) {
@@ -78,9 +84,22 @@ public class Playlist implements Serializable {
 	}
 
 	public void addMusica(Musica m) {
-		if(this.musicas == null)
+		if (this.musicas == null)
 			this.musicas = new ArrayList<>();
 		musicas.add(m);
+	}
+
+	public void removeMusica(int idM) {
+		System.out.println("classe playlist" + musicas);
+		System.out.println(idM);
+
+		for (Musica m : musicas) {
+			System.out.println(m.getIdMusic());
+			if (m.getIdMusic() == idM) {
+				musicas.remove(m);
+			}
+		}
+
 	}
 
 }

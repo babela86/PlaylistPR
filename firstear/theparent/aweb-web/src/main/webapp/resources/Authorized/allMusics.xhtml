@@ -41,38 +41,39 @@
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
-
 								<h:commandButton class="btnTabs"
-									action="#{render.showTable()}" value="Add">
-									
-
+									action="#{render.showTable(list.idMusic)}" value="Add">
 								</h:commandButton>
-
 							</h:column>
 						</h:dataTable>
 					</div>
 					<div id="all" style="margin-top: 20px;">
-					<h:panelGroup rendered="#{render.tableShow}">
-						<div class="tablebox" id="all2">
-							<h:dataTable id="listamensagens2"
-								value="#{userInput.listmyplaylists()}" var="list">
+					
+					<h4>Select the playlist </h4>
+						<h:panelGroup rendered="#{render.tableShow}">
+							<div class="tablebox" id="all2">
+								<h:dataTable id="listamensagens2"
+									value="#{userInput.listmyplaylists()}" var="list">
 
-								<h:column>
-									<f:facet name="header">
-										<h:outputText value="Name" />
-									</f:facet>
-									<h:outputText value="#{list.name}" />
-								</h:column>
-								<h:column>
-									<h:commandButton class="btnTabs" value="Edit" />
-								</h:column>
-								<h:column>
-									<h:commandButton class="btnTabs" value="Delete" />
-								</h:column>
-							</h:dataTable>
-						</div>
-
-						<h:commandButton class="btnTabs" value="Add to Selected Playlist" />
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Name" />
+										</f:facet>
+										<h:outputText value="#{list.name}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="id" />
+										</f:facet>
+										<h:outputText value="#{list.idPlaylist}" />
+									</h:column>
+									<h:column>
+										<h:commandButton class="btnTabs"
+											action="#{addToPlaylist.addTo(list.idPlaylist)}" value="Add">
+										</h:commandButton>
+									</h:column>
+								</h:dataTable>
+							</div>
 						</h:panelGroup>
 					</div>
 				</h:form>

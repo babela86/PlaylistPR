@@ -7,55 +7,20 @@
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
-		<ui:define name="header">My Playlist</ui:define>
+		<ui:define name="header">Selected Playlist</ui:define>
 		<ui:define name="content">
 			<div id="content">
-				<h2></h2>
-				<div class="tablebox">
-					<h:dataTable id="listamensagens" var="list">
-						<!-- value="#{userInput.musicsofplaylist()}"  -->
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Title" />
-							</f:facet>
 
-							<h:outputText value="#{list.title}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Artist" />
-							</f:facet>
-							<h:outputText value="#{list.artist}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Album" />
-							</f:facet>
-							<h:outputText value="#{list.album}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Year" />
-							</f:facet>
-							<h:outputText value="#{list.year}" />
-						</h:column>
-						<h:column>
-							<h:commandButton class="btnTabs" value="Delete" />
-						</h:column>
-					</h:dataTable>
-				</div>
-
-			</div>
-			<div id="content">
-				<h2>List of all musics!</h2>
 				<div class="tablebox">
 					<h:form>
-						<h:dataTable id="listamensagens" var="list"
-							value="#{userInput.listallmusics()}">
+						<h:dataTable id="listamensagens"
+							value="#{userInput.musicsofplaylist()}" var="list">
+
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Name" />
+									<h:outputText value="Title" />
 								</f:facet>
+
 								<h:outputText value="#{list.title}" />
 							</h:column>
 							<h:column>
@@ -77,19 +42,14 @@
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Add" />
+								<h:commandButton class="btnTabs" value="Delete" action="#{removeFromPlaylist.removeFrom(list.idMusic)}"/>
 							</h:column>
-
 						</h:dataTable>
 					</h:form>
 				</div>
-
-
-
 			</div>
+
 		</ui:define>
-
-
 	</ui:composition>
 </h:body>
 </html>

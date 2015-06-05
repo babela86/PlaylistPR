@@ -29,7 +29,7 @@ public class MusicDAO {
 		return (ArrayList<Musica>) em
 				.createQuery(
 						"SELECT m FROM Musica m WHERE m.utilizador.idUtilizador = :id")
-				.setParameter("id", id).getResultList();
+						.setParameter("id", id).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -51,8 +51,8 @@ public class MusicDAO {
 		return (ArrayList<Musica>) em
 				.createQuery(
 						"SELECT m FROM Musica m WHERE m.title LIKE :tit AND m.artist LIKE :art")
-				.setParameter("tit", "%" + title + "%")
-				.setParameter("art", "%" + artist + "%").getResultList();
+						.setParameter("tit", "%" + title + "%")
+						.setParameter("art", "%" + artist + "%").getResultList();
 	}
 
 	public boolean newMusic(Musica m) {
@@ -74,8 +74,67 @@ public class MusicDAO {
 		return existe;
 	}
 
-	public void deleteMusic(int Musica) {
-		// fazer query
+	@SuppressWarnings("unchecked")
+	public ArrayList<Musica> listMusicasPlaylist(int idPlay) {
+		return (ArrayList<Musica>) em
+				.createQuery(
+						"select m from Playlist p join p.musicas m where p.idPlaylist = :idPlay")
+						.setParameter("idPlay", idPlay).getResultList();
+	}
+
+	public Musica getMusic(int idMus) {
+		return (Musica) em
+				.createQuery("select m from Musica m where m.idMusic = :idm")
+				.setParameter("idm", idMus).getSingleResult();
+
+	}
+
+	public Playlist getPlaylist(int idPlay) {
+		return (Playlist) em
+				.createQuery(
+						"select p from Playlist p where p.idPlaylist = :idplay")
+						.setParameter("idplay", idPlay).getSingleResult();
+
+	}
+
+	public String getPlaylistName(int idPlay) {
+		return (String) em
+				.createQuery(
+						"select p.name from Playlist p where p.idPlaylist = :idplay")
+						.setParameter("idplay", idPlay).getSingleResult();
+
+	}
+
+	public boolean addTo(int idPlay, int idMus) {
+		boolean existe = false;
+		Musica m = getMusic(idMus);
+		Playlist p = getPlaylist(idPlay);
+
+		ArrayList<Musica> lista = listMusicasPlaylist(idPlay);
+
+		for (Musica mus : lista) {
+			if (mus.getTitle().equals(m.getTitle())
+					|| (mus.getPath().equals(m.getPath()))) {
+				existe = false;
+			} else {
+				existe = true;
+			}
+		}
+		if (existe) {
+			p.addMusica(m);
+			em.merge(m);
+		}
+		return existe;
+
+	}
+
+	public boolean deleteMusic(int idPlay, int idMus) {
+
+		Musica m = getMusic(idMus);
+		Playlist p = getPlaylist(idPlay);
+		System.out.println(p);
+		p.removeMusica(idMus);
+		return true;
 	}
 
 	// public boolean updatePath(String path, int idMusica) {
