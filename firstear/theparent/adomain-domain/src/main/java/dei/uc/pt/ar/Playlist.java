@@ -32,7 +32,7 @@ public class Playlist implements Serializable {
 	private Utilizador utilizador;
 
 	@ManyToMany
-	private List<Musica> musicas = new ArrayList<Musica>();
+	private List<Musica> musicas;
 
 	public Playlist() {
 	}
@@ -85,16 +85,12 @@ public class Playlist implements Serializable {
 
 	public void addMusica(Musica m) {
 		if (this.musicas == null)
-			this.musicas = new ArrayList<>();
+			this.musicas = new ArrayList<Musica>();
 		musicas.add(m);
 	}
 
 	public void removeMusica(int idM) {
-		System.out.println("classe playlist" + musicas);
-		System.out.println(idM);
-
 		for (Musica m : musicas) {
-			System.out.println(m.getIdMusic());
 			if (m.getIdMusic() == idM) {
 				musicas.remove(m);
 			}
