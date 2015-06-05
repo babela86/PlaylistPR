@@ -1,6 +1,7 @@
 package dei.uc.pt.ar;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,12 +39,12 @@ public class Musica implements Serializable {
 
 	// um utilizador pode adicionar varias musicas
 
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
 
 	@ManyToMany(mappedBy = "musicas")
-	private List<Playlist> playlist;
+	private List<Playlist> playlist = new ArrayList<Playlist>();
 
 	public Musica() {
 	}

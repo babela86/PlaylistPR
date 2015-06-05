@@ -14,7 +14,7 @@ public class UserDAO {
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
-	Query q;
+	private Query q;
 
 	public UserDAO() {
 
@@ -47,13 +47,28 @@ public class UserDAO {
 		}
 	}
 	
-	public boolean deleteAccount(Utilizador u, Utilizador uact){
-		try{
+	public boolean deleteAccount(Utilizador uact){
 		
+
+	//	try{
+			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
+			q.setParameter("utilact", uact);
+			q.executeUpdate();
+			@SuppressWarnings("unchecked")
+			ArrayList<Playlist> lista = (ArrayList<Playlist>) em.createQuery("SELECT p FROM Playlist p WHERE p.utilizador.idUtilizador = :id")
+			.setParameter("id", uact.getIdUtilizador())
+			.getResultList();
+			
+			for (Playlist p : lista){
+				System.out.println(p);
+				em.remove(em.merge(p));
+			}
+			
+			em.remove(em.merge(uact));		
 			return true;
-		}catch (Exception e){
-			return false;
-		}
+	//	}catch (Exception e){
+	//		return false;
+	//	}
 	}
 
 }

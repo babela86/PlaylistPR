@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,13 +41,13 @@ public class Utilizador implements Serializable {
 
 	// um utilizador pode inserir varias musicas
 
-	@OneToMany(mappedBy = "utilizador")
-	private List<Musica> musicas;
+	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
+	private List<Musica> musicas = new ArrayList<Musica>();
 
 	// um utilizador pode ter varias playlists
 
-	@OneToMany(mappedBy = "utilizador")
-	private List<Playlist> playlists;
+	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
+	private List<Playlist> playlists = new ArrayList<Playlist>();
 
 	public Utilizador() {
 	}

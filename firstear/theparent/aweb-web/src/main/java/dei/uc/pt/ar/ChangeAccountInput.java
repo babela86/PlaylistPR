@@ -67,7 +67,7 @@ public class ChangeAccountInput implements Serializable{
 	
 	}
 	
-	public String deleteAccount() {
+	public String deleteAccount() {	
 		boolean apagada = ud.deleteAccount(ui.getActiveUser());
 		if (apagada==true){
 			ui.logoutUser();
