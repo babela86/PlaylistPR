@@ -67,18 +67,19 @@ public class ChangeAccountInput implements Serializable{
 	
 	}
 	
-//	public String deleteAccount() {
-//		boolean apagada = ud.deleteAccount(ui.getActiveUser());
-//		if (apagada=true){
-//			return "login";
-//		}else{
-//			FacesMessage msg = new FacesMessage("Problem deleting account!", "ERROR MSG");
-//			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//			if (FacesContext.getCurrentInstance() != null)
-//				FacesContext.getCurrentInstance().addMessage(null, msg);
-//			return "changeAccount";
-//		}
-//	}
+	public String deleteAccount() {
+		boolean apagada = ud.deleteAccount(ui.getActiveUser());
+		if (apagada==true){
+			ui.logoutUser();
+			return "/login.xhtml?faces-redirect=true";
+		}else{
+			FacesMessage msg = new FacesMessage("Problem deleting account!", "ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "changeAccount";
+		}
+	}
 
 
 	public String getEmail() {
