@@ -3,7 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<h:head>
+<title>Add Playlist</title>
+</h:head>
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
@@ -15,13 +17,13 @@
 				<h2>Give a name for your new playlist</h2>
 
 
-				<div class="row" style="width: 50%">
+				<div class="row" style="width: 50%; margin-top:20px; text-align:center;">
 					<h:form>
 						<h:panelGrid class="panelGrid" columns="2" layout="grid">
 							<h:outputText value="Name of the New Playlist" />
 							<h:inputText value="#{newPlaylistInput.name}" />
 							<h:commandButton class="btnContent" value="Clear" type="reset"/>
-							<h:commandButton class="btnContent" value="Create"
+							<h:commandButton class="btnContent" value="Create Playlist"
 								action="#{newPlaylistInput.newPlaylist()}" />
 						</h:panelGrid>
 					</h:form>

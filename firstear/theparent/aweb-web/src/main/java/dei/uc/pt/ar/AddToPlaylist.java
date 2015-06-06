@@ -25,7 +25,8 @@ public class AddToPlaylist implements Serializable {
 
 	public String addTo(int idPlay) {
 		this.idPlay = idPlay;
-		boolean added = md.addTo(idPlay, rd.getIdM());
+		boolean added = md.addTo(idPlay, rd.getId());
+		rd.hideTable();
 
 		if (added == true) {
 			FacesMessage msg = new FacesMessage("Music added to playlist!",

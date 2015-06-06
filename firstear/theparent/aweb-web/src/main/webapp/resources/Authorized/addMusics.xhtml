@@ -3,7 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<h:head>
+<title>Add Musics</title>
+</h:head>
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
@@ -34,7 +36,7 @@
 
 							<h:inputFile class="btnContent" value="#{newMusicInput.file}" required="true" />
 							<h:commandButton class="btnContent" value="Clear" type="reset" />
-							<h:commandButton class="btnContent" value="Add"
+							<h:commandButton class="btnContent" value="Add to DataBase"
 								action="#{newMusicInput.newMusic()}" />
 
 						</h:panelGrid>

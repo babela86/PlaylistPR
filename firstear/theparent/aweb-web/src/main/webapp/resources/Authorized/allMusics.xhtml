@@ -3,7 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<h:head>
+<title>All Musics</title>
+</h:head>
 <h:body>
 
 	<ui:composition
@@ -17,40 +19,46 @@
 							value="#{userInput.listallmusics()}">
 							<h:column>
 								<f:facet name="header">
-								<h:commandButton  image="/resources/images/arrowUp.jpg" />
+								<h:commandButton  class="btnTable" value="&#x25B2;" />
 									<h:outputText value="Name" />
-									<h:commandButton image="/resources/images/arrowDown.jpg"/>
+									<h:commandButton class="btnTable" value="&#x25BC;"/>
 								</f:facet>
 								<h:outputText value="#{list.title}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
+								<h:commandButton  class="btnTable" value="&#x25B2;" />
 									<h:outputText value="Artist" />
+									<h:commandButton class="btnTable" value="&#x25BC;"/>
 								</f:facet>
 								<h:outputText value="#{list.artist}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
+								<h:commandButton  class="btnTable" value="&#x25B2;" />
 									<h:outputText value="Album" />
+									<h:commandButton class="btnTable" value="&#x25BC;"/>
 								</f:facet>
 								<h:outputText value="#{list.album}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
+								<h:commandButton  class="btnTable" value="&#x25B2;" />
 									<h:outputText value="Year" />
+									<h:commandButton class="btnTable" value="&#x25BC;"/>
 								</f:facet>
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
 								<h:commandButton class="btnTabs"
-									action="#{render.showTable(list.idMusic)}" value="Add">
+									action="#{render.showTable(list.idMusic)}" value="Add to Playlist">
 								</h:commandButton>
 							</h:column>
 						</h:dataTable>
 					</div>
 					<div id="all" style="margin-top: 20px;">
 						<h:panelGroup rendered="#{render.tableShow}"  >
-						<h4>Select the playlist </h4>
+						<h4 >Select the playlist </h4>
 							<div class="tablebox" id="all2">
 								<h:dataTable id="listamensagens2"
 									value="#{userInput.listmyplaylists()}" var="list">
@@ -69,7 +77,7 @@
 									</h:column>
 									<h:column>
 										<h:commandButton class="btnTabs"
-											action="#{addToPlaylist.addTo(list.idPlaylist)}" value="Add">
+											action="#{addToPlaylist.addTo(list.idPlaylist)}" value="Add to Playlist">
 										</h:commandButton>
 									</h:column>
 								</h:dataTable>

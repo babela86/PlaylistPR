@@ -24,10 +24,12 @@ body {
 #content {
 	display: block;
 	margin-left: 10px;
+	margin-top:7px;
 	height: 70%;
 	width: 97%;
 	text-align: -webkit-center;
 	overflow: auto;
+	
 }
 
 #loginPage {
@@ -106,6 +108,11 @@ body {
 	vertical-align: middle;
 	font-size: 100%;
 }
-.upButton{
-	-webkit-transform:rotate(90deg);
+#render{
+	margin-left:20%
+}
+#player{
+	font-size:small;
+	text-align: -moz-center;
+	
 }

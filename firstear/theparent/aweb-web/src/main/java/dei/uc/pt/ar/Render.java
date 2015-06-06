@@ -13,7 +13,7 @@ public class Render implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int idM;
+	private int id;
 	private boolean tableShow = false;
 
 	public boolean isTableShow() {
@@ -24,17 +24,23 @@ public class Render implements Serializable {
 		this.tableShow = tableShow;
 	}
 
-	public void showTable(int idM) {
-		this.idM = idM;
+	public void showTable(int id) {
+		this.id = id;
 		this.tableShow = true;
 	}
 
-	public int getIdM() {
-		return idM;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdM(int idM) {
-		this.idM = idM;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void hideTable() {
+
+		this.tableShow = false;
+
 	}
 
 }

@@ -3,7 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-
+<h:head>
+<title>Add Musics</title>
+</h:head>
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
@@ -39,11 +41,11 @@
 								<h:outputText value="#{list.year}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Edit"
+								<h:commandButton class="btnTabs" value="Edit Music"
 									action="#{render.showTable(list.idMusic)}" />
 							</h:column>
 							<h:column>
-								<h:commandButton class="btnTabs" value="Delete" 
+								<h:commandButton class="btnTabs" value="Delete from DataBase" 
 								action="#{changeMusic.deleteMusic(list.idMusic)}"/>
 							</h:column>
 						</h:dataTable>
@@ -66,8 +68,6 @@
 									<h:outputText value="Year" />
 									<h:inputText maxlength="4" value="#{changeMusic.year}"/>
 									
-									<h:inputText />
-
 									<h:commandButton class="btnContent" value="Clear" type="reset" />
 									<h:commandButton class="btnContent" value="Submit Changes" action="#{changeMusic.changeMusic(list.idMusic)}"/>
 								</h:panelGrid>
