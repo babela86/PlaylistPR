@@ -17,7 +17,9 @@
 							value="#{userInput.listallmusics()}">
 							<h:column>
 								<f:facet name="header">
+								<h:commandButton  image="/resources/images/arrowUp.jpg" />
 									<h:outputText value="Name" />
+									<h:commandButton image="/resources/images/arrowDown.jpg"/>
 								</f:facet>
 								<h:outputText value="#{list.title}" />
 							</h:column>

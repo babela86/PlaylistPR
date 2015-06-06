@@ -105,7 +105,6 @@ body {
 	vertical-align: middle;
 	font-size: 100%;
 }
-#all2 hover{
-	vertical-align: middle;
-	
+.upButton{
+	-webkit-transform:rotate(90deg);
 }
