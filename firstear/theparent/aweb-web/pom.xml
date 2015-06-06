@@ -20,6 +20,16 @@
 	<!-- As dependencias que este projeto tem .. por agora só jee -->
 	<dependencies>
 		<dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+		<dependency>
 			<groupId>dei.uc.pt.ar.paj</groupId>
 			<artifactId>aservice-services</artifactId>
 			<version>${project.version}</version>

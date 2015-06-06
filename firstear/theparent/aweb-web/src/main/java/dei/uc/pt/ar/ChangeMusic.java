@@ -49,6 +49,56 @@ public class ChangeMusic implements Serializable {
 	}
 
 
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getArtist() {
+		return artist;
+	}
+
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+
+	public String getYear() {
+		return year;
+	}
+
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+
+	public String getAlbum() {
+		return album;
+	}
+
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
+
+	public String getPath() {
+		return path;
+	}
+
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+
 	public String changeMusic(int idMusic) {
 		Musica m = new Musica(this.title, this.artist, this.album, this.year, this.path, ui.getActiveUser());
 		boolean changed = md.changeMusic(m, idMusic);

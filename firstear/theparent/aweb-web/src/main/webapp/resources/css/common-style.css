@@ -36,7 +36,7 @@ body {
 	margin-right: auto;
 	margin-top: 5%;
 	font-size: 180%;
-	height: 70%;
+	height: 50%;
 	vertical-align: middle;
 }
 
@@ -52,6 +52,7 @@ body {
 	color: #ffffff;
 	padding: 7px;
 	border-radius: 6px;
+	text-align: center;
 }
 .btnContent {
 	font-size: 100%;

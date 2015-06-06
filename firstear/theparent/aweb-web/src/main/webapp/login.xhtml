@@ -79,7 +79,21 @@
 				<div class="col-sm-1" />
 			</h:form>
 		</div>
-		
+
+	</div>
+	<div id="player" style="margin-left: 50px">
+		<h:form id="form" enctype="multipart/form-data">
+
+			<h:inputFile class="btnSign" value="#{uploadFile.file}" required="true" />
+			<br />
+			<h:commandButton class="btnSign" value="Upload and Play"
+				action="#{uploadFile.upload()}" />
+
+			<br />
+			<br />
+			<audio controls="controls" autoplay="autoplay"> <source
+				src="#{uploadFile.path}" type="audio/mpeg" /></audio>
+		</h:form>
 	</div>
 </h:body>
 </html>
