@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ public class PlaylistDAO {
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
+	private Query query;
 
 	public PlaylistDAO() {
 
@@ -67,6 +69,20 @@ public class PlaylistDAO {
 		}catch (Exception e){
 			return false;
 		}
+	}
+	
+	public boolean changePlaylist(String name, int idPlay){
+		//try{
+			query = em.createQuery("UPDATE Playlist p SET p.name =:name WHERE p.idPlaylist = :idPlay");
+			query.setParameter("name", name);
+			query.setParameter("idPlay", idPlay);
+			query.executeUpdate();
+			log.info("Playlist updated");
+			return true;
+//		}catch (Exception e){
+//			log.error("Problem updating playlist");
+//			return false;
+//		}
 	}
 
 }

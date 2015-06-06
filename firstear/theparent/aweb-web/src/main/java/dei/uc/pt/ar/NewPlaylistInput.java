@@ -18,6 +18,8 @@ public class NewPlaylistInput implements Serializable {
 	private PlaylistDAO pd;
 	@Inject
 	private UserInput ui;
+	@Inject
+	private Render rd;
 
 	private String name;
 
@@ -60,6 +62,28 @@ public class NewPlaylistInput implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		return "myPlaylist";
+	}
+	
+	public String changePlaylist(){
+		rd.hideTable();
+		int idPlay = rd.getId();
+		boolean changed = pd.changePlaylist(this.name, idPlay);
+		if (changed == true) {
+			FacesMessage msg = new FacesMessage("Playlist info updated!",
+					"INFO MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "myPlaylist";
+		} else {
+			FacesMessage msg = new FacesMessage("Problem updating playlist!",
+					"ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "myPlaylist";
+		}
+		
 	}
 
 	public String getName() {

@@ -46,6 +46,29 @@ public class ChangeMusic implements Serializable {
 		return "myMusics";
 	}
 
+	public String changeMusic() {
+		rd.hideTable();
+		int idMusic = rd.getId();
+		Musica m = new Musica(this.title, this.artist, this.album, this.year,
+				this.path, ui.getActiveUser());
+		boolean changed = md.changeMusic(m, idMusic);
+		if (changed == true) {
+			FacesMessage msg = new FacesMessage("Music info updated!",
+					"INFO MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "myMusics";
+		} else {
+			FacesMessage msg = new FacesMessage("Problem updating music!",
+					"ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "myMusics";
+		}
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -86,26 +109,4 @@ public class ChangeMusic implements Serializable {
 		this.path = path;
 	}
 
-	public String changeMusic(int idMusic) {
-		rd.hideTable();
-		Musica m = new Musica(this.title, this.artist, this.album, this.year,
-				this.path, ui.getActiveUser());
-		boolean changed = md.changeMusic(m, idMusic);
-		if (changed == true) {
-			FacesMessage msg = new FacesMessage("Music info updated!",
-					"INFO MSG");
-			msg.setSeverity(FacesMessage.SEVERITY_INFO);
-			if (FacesContext.getCurrentInstance() != null)
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-			return "myMusics";
-		} else {
-			FacesMessage msg = new FacesMessage("Problem updating music!",
-					"ERROR MSG");
-			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			if (FacesContext.getCurrentInstance() != null)
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-			return "myMusics";
-		}
-
-	}
 }

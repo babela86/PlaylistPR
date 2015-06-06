@@ -4,75 +4,79 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-<title>Add Musics</title>
+	<title>Add Musics</title>
 </h:head>
 <h:body>
 	<ui:composition
 		template="/resources/template/common/commonLayout.xhtml">
 		<ui:define name="header">My Musics</ui:define>
 		<ui:define name="content">
+			<h:form>
 				<p>Musics by user #{userInput.getName()}:</p>
 				<div class="tablebox">
-					<h:form>
-						<h:dataTable id="listamensagens" var="list"
-							value="#{userInput.listmymusics()}">
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Name" />
-								</f:facet>
-								<h:outputText value="#{list.title}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Artist" />
-								</f:facet>
-								<h:outputText value="#{list.artist}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Album" />
-								</f:facet>
-								<h:outputText value="#{list.album}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Year" />
-								</f:facet>
-								<h:outputText value="#{list.year}" />
-							</h:column>
-							<h:column>
-								<h:commandButton class="btnTabs" value="Edit Music"
-									action="#{render.showTable(list.idMusic)}" />
-							</h:column>
-							<h:column>
-								<h:commandButton class="btnTabs" value="Delete from DataBase" 
-								action="#{changeMusic.deleteMusic(list.idMusic)}"/>
-							</h:column>
-						</h:dataTable>
-					</h:form>
+
+					<h:dataTable id="listamensagens" var="list"
+						value="#{userInput.listmymusics()}">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{list.title}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Artist" />
+							</f:facet>
+							<h:outputText value="#{list.artist}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Album" />
+							</f:facet>
+							<h:outputText value="#{list.album}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Year" />
+							</f:facet>
+							<h:outputText value="#{list.year}" />
+						</h:column>
+						<h:column>
+							<h:commandButton class="btnTabs" value="Edit Music"
+								action="#{render.showTable(list.idMusic)}" />
+						</h:column>
+						<h:column>
+							<h:commandButton class="btnTabs" value="Delete from DataBase"
+								action="#{changeMusic.deleteMusic(list.idMusic)}" />
+						</h:column>
+					</h:dataTable>
+
 				</div>
 				<div id="all" style="margin-top: 20px;">
 					<h:panelGroup rendered="#{render.tableShow}">
 						<h4>Select the playlist</h4>
 						<div class="row"
 							style="width: 30%; margin-top: 20px; text-align: center; display: inline;">
-							<h4>Change the next fields </h4>
-							<h:form>
-								<h:panelGrid class="panelGrid" columns="2" layout="grid">
-									<h:outputText value="Title" />
-									<h:inputText value="#{changeMusic.title}"/>
-									<h:outputText value="Artist" />
-									<h:inputText value="#{changeMusic.artist}"/>
-									<h:outputText value="Album" />
-									<h:inputText value="#{changeMusic.album}"/>
-									<h:outputText value="Year" />
-									<h:inputText maxlength="4" value="#{changeMusic.year}"/>
-									
-									<h:commandButton class="btnContent" value="Clear" type="reset" />
-									<h:commandButton class="btnContent" value="Submit Changes" action="#{changeMusic.changeMusic(list.idMusic)}"/>
-								</h:panelGrid>
+							<h4>Change the next fields</h4>
 
-							</h:form>
+							<h:panelGrid class="panelGrid" columns="2" layout="grid">
+								<h:outputText value="Title" />
+								<h:inputText value="#{changeMusic.title}" />
+								<h:outputText value="Artist" />
+								<h:inputText value="#{changeMusic.artist}" />
+								<h:outputText value="Album" />
+								<h:inputText value="#{changeMusic.album}" />
+								<h:outputText value="Year" />
+								<h:inputText maxlength="4" value="#{changeMusic.year}" />
+								<h:outputText value="Path" />
+								<h:inputText value="#{changeMusic.path}" />
+
+								<h:commandButton class="btnContent" value="Clear" type="reset" />
+								<h:commandButton class="btnContent" value="Submit Changes"
+									action="#{changeMusic.changeMusic()}" />
+							</h:panelGrid>
+
+
 							<div class="messageColor">
 								<br />
 								<h:messages showSummary="true" showDetail="false"
@@ -81,6 +85,7 @@
 						</div>
 					</h:panelGroup>
 				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
