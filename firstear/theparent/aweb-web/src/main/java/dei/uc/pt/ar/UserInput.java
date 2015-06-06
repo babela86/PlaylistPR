@@ -53,21 +53,29 @@ public class UserInput implements Serializable {
 
 	public String newUser() throws ParseException, NoSuchAlgorithmException,
 			UnsupportedEncodingException {
-		this.birthdate = ft
-				.parse(this.year + "-" + this.month + "-" + this.day);
-		Utilizador u = new Utilizador(this.email, this.name, this.pass,
-				this.birthdate);
-		FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
-		msg.setSeverity(FacesMessage.SEVERITY_INFO);
-		if (FacesContext.getCurrentInstance() != null)
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		this.day = "";
-		this.year = "";
-		this.month = "";
-		this.pass = "";
-		this.email = "";
-		this.name = "";
-		return "login";
+		if (Validator.dateValidator(this.day, this.month , this.year)){
+			this.birthdate = ft
+					.parse(this.year + "-" + this.month + "-" + this.day);
+			Utilizador u = new Utilizador(this.email, this.name, this.pass,
+					this.birthdate);
+			FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			this.day = "";
+			this.year = "";
+			this.month = "";
+			this.pass = "";
+			this.email = "";
+			this.name = "";
+			return "login";
+		}else {
+			FacesMessage msg = new FacesMessage("Invalid date!", "ERROR MSG");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			if (FacesContext.getCurrentInstance() != null)
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			return "login";
+		}
 	}
 
 	public String loginUser() throws ParseException, NoSuchAlgorithmException,

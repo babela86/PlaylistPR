@@ -42,23 +42,32 @@ public class ChangeAccountInput implements Serializable{
 	
 	
 	public String changeAccount() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
-		birthdate= ft
-				.parse(this.year + "-" + this.month + "-" + this.day);
-		
-		Utilizador u = new Utilizador(this.email, this.name, UserRegister.encriptaPass(this.pass),this.birthdate);
-		boolean changed = ud.changeAccount(u, ui.getActiveUser());
-		if (changed==true){
-			FacesMessage msg = new FacesMessage("User account updated!", "INFO MSG");
-			msg.setSeverity(FacesMessage.SEVERITY_INFO);
-			if (FacesContext.getCurrentInstance() != null)
-				FacesContext.getCurrentInstance().addMessage(null, msg);
-			ui.setActiveUser(null);
-			ui.setUserLoged(false);
-			FacesContext.getCurrentInstance().getExternalContext()
-			.invalidateSession();
-			return "/login.xhtml?faces-redirect=true";
-		} else {
-			FacesMessage msg = new FacesMessage("Problem updating account!", "ERROR MSG");
+		if (Validator.dateValidator(this.day, this.month , this.year)){
+	
+			birthdate= ft
+					.parse(this.year + "-" + this.month + "-" + this.day);
+			
+			Utilizador u = new Utilizador(this.email, this.name, UserRegister.encriptaPass(this.pass),this.birthdate);
+			boolean changed = ud.changeAccount(u, ui.getActiveUser());
+			if (changed==true){
+				FacesMessage msg = new FacesMessage("User account updated!", "INFO MSG");
+				msg.setSeverity(FacesMessage.SEVERITY_INFO);
+				if (FacesContext.getCurrentInstance() != null)
+					FacesContext.getCurrentInstance().addMessage(null, msg);
+				ui.setActiveUser(null);
+				ui.setUserLoged(false);
+				FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
+				return "/login.xhtml?faces-redirect=true";
+			} else {
+				FacesMessage msg = new FacesMessage("Problem updating account!", "ERROR MSG");
+				msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+				if (FacesContext.getCurrentInstance() != null)
+					FacesContext.getCurrentInstance().addMessage(null, msg);
+				return "changeAccount";
+			}
+		}else {
+			FacesMessage msg = new FacesMessage("Invalid date!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
