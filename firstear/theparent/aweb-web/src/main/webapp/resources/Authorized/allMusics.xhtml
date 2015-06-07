@@ -16,13 +16,13 @@
 			<h:form>
 				<div class="tablebox">
 					<h:dataTable id="listamensagens" var="list"
-						value="#{userInput.listallmusics()}">
+						value="#{userInput.allmusics}">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Title" />
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" />
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" />
+									value="&#x25B2;" action="#{userInput.MusicByTitleAsc()}"/>
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByTitleDesc()}"/>
 							</f:facet>
 							<h:outputText value="#{list.title}" />
 						</h:column>
@@ -31,8 +31,8 @@
 								<h:outputText value="Artist" />
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" />
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" />
+									value="&#x25B2;" action="#{userInput.MusicByArtistAsc()}"/>
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByArtistDesc()}"/>
 							</f:facet>
 
 							<h:outputText value="#{list.artist}" />
@@ -42,8 +42,8 @@
 								<h:outputText value="Album" />
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" />
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" />
+									value="&#x25B2;" action="#{userInput.MusicByAlbumAsc()}" />
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByAlbumDesc()}"/>
 							</f:facet>
 
 							<h:outputText value="#{list.album}" />
@@ -53,8 +53,8 @@
 								<h:outputText value="Year" />
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" />
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" />
+									value="&#x25B2;" action="#{userInput.MusicByYearAsc()}"/>
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByYearDesc()}"/>
 							</f:facet>
 							<h:outputText value="#{list.year}" />
 						</h:column>

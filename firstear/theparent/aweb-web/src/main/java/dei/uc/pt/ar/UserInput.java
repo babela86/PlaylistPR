@@ -33,7 +33,7 @@ public class UserInput implements Serializable {
 	private String email;
 	private String pass;
 	private String name;
-	ArrayList<Musica> search = new ArrayList<Musica>();
+	private ArrayList<Musica> search = new ArrayList<Musica>();
 	private int idPlay;
 
 	private String year;
@@ -42,7 +42,8 @@ public class UserInput implements Serializable {
 	private Date birthdate;
 	private String artist;
 	private String title;
-	HttpSession session;
+	private HttpSession session;
+	private ArrayList<Musica> allmusics = new ArrayList<Musica>();
 
 	private Utilizador activeUser;
 	private boolean userLoged = true;
@@ -50,7 +51,6 @@ public class UserInput implements Serializable {
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
 	public UserInput() {
-
 	}
 
 	public String newUser() throws ParseException, NoSuchAlgorithmException,
@@ -93,6 +93,7 @@ public class UserInput implements Serializable {
 			this.activeUser = util;
 			this.name = activeUser.getName();
 			startSession();
+			allmusics = listallmusics();
 			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
 	}
@@ -114,6 +115,38 @@ public class UserInput implements Serializable {
 
 	public ArrayList<Musica> listallmusics() {
 		return md.findAllMusic();
+	}
+	
+	public void MusicByTitleDesc() {
+		this.allmusics = md.MusicByTitleDesc();
+	}
+	
+	public void MusicByTitleAsc() {
+		this.allmusics = md.MusicByTitleAsc();
+	}
+	
+	public void MusicByArtistDesc() {
+		this.allmusics = md.MusicByArtistDesc();
+	}
+	
+	public void MusicByArtistAsc() {
+		this.allmusics = md.MusicByArtistAsc();
+	}
+	
+	public void MusicByAlbumAsc() {
+		this.allmusics = md.MusicByAlbumAsc();
+	}
+	
+	public void MusicByAlbumDesc() {
+		this.allmusics = md.MusicByAlbumDesc();
+	}
+	
+	public void MusicByYearAsc() {
+		this.allmusics = md.MusicByYearAsc();
+	}
+	
+	public void MusicByYearDesc() {
+		this.allmusics = md.MusicByYearDesc();
 	}
 
 	public ArrayList<Musica> listmymusics() {
@@ -259,6 +292,14 @@ public class UserInput implements Serializable {
 
 	public void setIdPlay(int idPlay) {
 		this.idPlay = idPlay;
+	}
+
+	public ArrayList<Musica> getAllmusics() {
+		return allmusics;
+	}
+
+	public void setAllmusics(ArrayList<Musica> allmusics) {
+		this.allmusics = allmusics;
 	}
 
 	public String getResult() {
