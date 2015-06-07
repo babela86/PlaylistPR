@@ -23,7 +23,7 @@ body {
 
 #content {
 	display: block;
-	margin-left: 10px;
+	margin-left: 4%;
 	margin-top:7px;
 	height: 70%;
 	width: 97%;
@@ -70,10 +70,16 @@ body {
 	color: #ffffff;
 	padding:5px;
 	border-radius: 6px;
-	min-width: 51px;
-	
+	min-width: 51px;	
 }
-
+.btnTabsSmall{
+	font-size: 50%;
+	background-color:#ffffff ;
+	color:   #3A4856;
+	
+	border-radius: 6px;
+		
+}
 
 #sign {
 	color:#3A4856;
@@ -113,6 +119,8 @@ body {
 }
 #player{
 	font-size:small;
-	text-align: -moz-center;
-	
+	text-align: -webkit-center;	
+}
+#all2{
+	width: 20%;
 }

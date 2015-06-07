@@ -3,8 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-<title>Search</title>
+<h:head>
+	<title>Search</title>
 </h:head>
 <h:body>
 	<ui:composition
@@ -13,21 +13,21 @@
 
 		<ui:define name="header">Search Music</ui:define>
 		<ui:define name="content">
-				<h2>Here you can search musics</h2>
-
+			<h2>Here you can search musics</h2>
+			<h:form>
 				<div class="row" style="width: 30%;">
-					<h:form>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-							<h:outputText value="Title" />
-							<h:inputText value="#{userInput.title}" />
-							<h:outputText value="Artist" />
-							<h:inputText value="#{userInput.artist}" />
-							<h:commandButton class="btnContent" value="Clear" type="reset" />
-							<h:commandButton class="btnContent" value="Search"
-								action="#{userInput.searchMusics()}" />
-						</h:panelGrid>
 
-					</h:form>
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						<h:outputText value="Title" />
+						<h:inputText value="#{userInput.title}" />
+						<h:outputText value="Artist" />
+						<h:inputText value="#{userInput.artist}" />
+						<h:commandButton class="btnContent" value="Clear" type="reset" />
+						<h:commandButton class="btnContent" value="Search"
+							action="#{userInput.searchMusics()}" />
+					</h:panelGrid>
+
+
 				</div>
 				<div class="messageColor">
 					<br />
@@ -61,8 +61,40 @@
 							</f:facet>
 							<h:outputText value="#{list.year}" />
 						</h:column>
+
+						<h:column>
+							<h:commandButton class="btnTabs"
+								action="#{render.showTable(list.idMusic)}"
+								value="Add to Playlist">
+							</h:commandButton>
+						</h:column>
 					</h:dataTable>
 				</div>
+				<div id="all" style="margin-top: 20px;">
+					<h:panelGroup rendered="#{render.tableShow}">
+						<h4>Select the playlist</h4>
+						<div class="tablebox" id="all2">
+							<h:dataTable id="listamensagens2"
+								value="#{userInput.listmyplaylists()}" var="list">
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name" />
+									</f:facet>
+									<h:outputText value="#{list.name}" />
+								</h:column>
+								<h:column></h:column>
+								<h:column>
+									<h:commandButton class="btnTabs"
+										action="#{addToPlaylist.addTo(list.idPlaylist)}"
+										value="Add to Playlist">
+									</h:commandButton>
+								</h:column>
+							</h:dataTable>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

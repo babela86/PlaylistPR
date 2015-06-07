@@ -52,9 +52,9 @@
 					</h:dataTable>
 
 				</div>
-				<div id="all" style="margin-top: 20px;">
+				<div id="all" style="margin-top: 20px; width: 30%;">
 					<h:panelGroup rendered="#{render.tableShow}">
-						<h4>Select the playlist</h4>
+						
 						<div class="row"
 							style="width: 30%; margin-top: 20px; text-align: center; display: inline;">
 							<h4>Change the next fields</h4>
@@ -68,8 +68,7 @@
 								<h:inputText value="#{changeMusic.album}" />
 								<h:outputText value="Year" />
 								<h:inputText maxlength="4" value="#{changeMusic.year}" />
-								<h:outputText value="Path" />
-								<h:inputText value="#{changeMusic.path}" />
+			
 
 								<h:commandButton class="btnContent" value="Clear" type="reset" />
 								<h:commandButton class="btnContent" value="Submit Changes"

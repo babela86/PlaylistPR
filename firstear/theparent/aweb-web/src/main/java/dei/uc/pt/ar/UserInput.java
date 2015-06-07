@@ -21,6 +21,8 @@ public class UserInput implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private String result = "";
+
 	@Inject
 	private UserRegister ur;
 	@Inject
@@ -52,10 +54,10 @@ public class UserInput implements Serializable {
 	}
 
 	public String newUser() throws ParseException, NoSuchAlgorithmException,
-			UnsupportedEncodingException {
-		if (Validator.dateValidator(this.day, this.month , this.year)){
-			this.birthdate = ft
-					.parse(this.year + "-" + this.month + "-" + this.day);
+	UnsupportedEncodingException {
+		if (Validator.dateValidator(this.day, this.month, this.year)) {
+			this.birthdate = ft.parse(this.year + "-" + this.month + "-"
+					+ this.day);
 			Utilizador u = new Utilizador(this.email, this.name, this.pass,
 					this.birthdate);
 			FacesMessage msg = new FacesMessage(ur.newUser(u), "ERROR MSG");
@@ -69,7 +71,7 @@ public class UserInput implements Serializable {
 			this.email = "";
 			this.name = "";
 			return "login";
-		}else {
+		} else {
 			FacesMessage msg = new FacesMessage("Invalid date!", "ERROR MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
@@ -79,7 +81,7 @@ public class UserInput implements Serializable {
 	}
 
 	public String loginUser() throws ParseException, NoSuchAlgorithmException,
-			UnsupportedEncodingException {
+	UnsupportedEncodingException {
 		Utilizador util = ur.loginUser(this.email, this.pass);
 		if (util == null) {
 			FacesMessage msg = new FacesMessage("Login error!", "ERROR MSG");
@@ -106,7 +108,7 @@ public class UserInput implements Serializable {
 		// endSession();
 		if (FacesContext.getCurrentInstance() != null)
 			FacesContext.getCurrentInstance().getExternalContext()
-					.invalidateSession();
+			.invalidateSession();
 		return "/login.xhtml?faces-redirect=true";
 	}
 
@@ -259,4 +261,7 @@ public class UserInput implements Serializable {
 		this.idPlay = idPlay;
 	}
 
+	public String getResult() {
+		return result;
+	}
 }

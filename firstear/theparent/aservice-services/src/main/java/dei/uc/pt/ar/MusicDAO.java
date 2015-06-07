@@ -1,6 +1,7 @@
 package dei.uc.pt.ar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -11,11 +12,10 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @Stateless
 @LocalBean
 public class MusicDAO {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(MusicDAO.class);
 
 	@PersistenceContext(name = "Playlist")
@@ -39,6 +39,14 @@ public class MusicDAO {
 				.createQuery(
 						"SELECT m FROM Musica m WHERE m.utilizador.idUtilizador = :id")
 						.setParameter("id", id).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Musica> findMyMusic2(int id) {
+		query = em
+				.createQuery("SELECT m FROM Musica m WHERE m.utilizador.idUtilizador = :id");
+		query.setParameter("id", id);
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,7 +86,7 @@ public class MusicDAO {
 		}
 		if (existe)
 			em.merge(m);
-			log.info("Nova música adicionada à BD");
+		log.info("Nova música adicionada à BD");
 		return existe;
 	}
 
@@ -114,14 +122,14 @@ public class MusicDAO {
 	}
 
 	public boolean addTo(int idPlay, int idMus) {
-		try{
+		try {
 			Musica m = getMusic(idMus);
 			Playlist p = getPlaylist(idPlay);
 			p.addMusica(m);
 			em.merge(m);
 			log.info("Música adicionada à Playlist");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			log.error("Música não adicionada à Playlist");
 			return false;
 		}
@@ -140,21 +148,23 @@ public class MusicDAO {
 			return true;
 		}
 	}
-	
-	public boolean deleteMusicFromDb(int idMusic){
-		try{
-			query = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.idMusic =:idMusic");
+
+	public boolean deleteMusicFromDb(int idMusic) {
+		try {
+			query = em
+					.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.idMusic =:idMusic");
 			query.setParameter("idMusic", idMusic);
 			query.executeUpdate();
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 	}
-	
-	public boolean changeMusic(Musica m, int idMusic){
-		try{
-			query = em.createQuery("UPDATE Musica m SET m.title =:title, m.path =:path, m.album =:album, m.artist =:artist, m.year =:year WHERE m.idMusic = :idMusic");
+
+	public boolean changeMusic(Musica m, int idMusic) {
+		try {
+			query = em
+					.createQuery("UPDATE Musica m SET m.title =:title, m.path =:path, m.album =:album, m.artist =:artist, m.year =:year WHERE m.idMusic = :idMusic");
 			query.setParameter("title", m.getTitle());
 			query.setParameter("album", m.getAlbum());
 			query.setParameter("artist", m.getArtist());
@@ -164,11 +174,10 @@ public class MusicDAO {
 			query.executeUpdate();
 			log.info("Music updated");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			log.error("Problem updating music");
 			return false;
 		}
 	}
-
 
 }
