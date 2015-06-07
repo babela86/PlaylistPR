@@ -67,14 +67,6 @@ public class Playlist implements Serializable {
 		this.musicas = musicas;
 	}
 
-	public int getId() {
-		return idPlaylist;
-	}
-
-	public void setId(int id) {
-		this.idPlaylist = id;
-	}
-
 	public String getName() {
 		return name;
 	}

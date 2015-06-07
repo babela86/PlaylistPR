@@ -13,59 +13,49 @@ import javax.servlet.http.Part;
 @ApplicationScoped
 public class UploadFile implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -5537671907313363474L;
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -5537671907313363474L;
 
-    private Part file;
+	private Part file;
 
-    private String path;
+	private String path;
 
-    public Part getFile() {
-        return file;
-    }
+	public Part getFile() {
+		return file;
+	}
 
-    public void setFile(Part file) {
-        this.file = file;
-    }
+	public void setFile(Part file) {
+		this.file = file;
+	}
 
-    public String getPath() {
-        return path;
-    }
+	public String getPath() {
+		return path;
+	}
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+	public void setPath(String path) {
+		this.path = path;
+	}
 
-    //Cuidado com as excepções
-    public void upload() {
-        Properties props = System.getProperties();
-       
-        Random r=new Random();
-       
-        String name="musica"+r.nextInt(1000);
+	// Cuidado com as excepções
+	public void upload() {
+		Properties props = System.getProperties();
 
-        this.path="/music/"+name+".mp3";
+		Random r = new Random();
 
-        try {
-            file.write(props.getProperty("user.dir")+"\\music\\"+name+".mp3");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		String name = "musica" + r.nextInt(1000);
 
-        this.file=null;
-    }
+		this.path = "/music/" + name + ".mp3";
 
-    private static String getFilename(Part part) { 
-        for (String cd : part.getHeader("content-disposition").split(";")) { 
-            if (cd.trim().startsWith("filename")) { 
-                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", ""); 
-                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix. 
-            }
-        }
-        return null; 
-    }
+		try {
+			file.write(props.getProperty("user.dir") + "\\music\\" + name
+					+ ".mp3");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.file = null;
+	}
 
 }
-

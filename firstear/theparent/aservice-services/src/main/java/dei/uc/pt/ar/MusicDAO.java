@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -22,6 +23,8 @@ public class MusicDAO {
 	private EntityManager em;
 
 	private Query query;
+	@Inject
+	PlaylistDAO pd;
 
 	public MusicDAO() {
 		super();
@@ -32,53 +35,54 @@ public class MusicDAO {
 		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m")
 				.getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByTitleDesc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.title DESC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.title DESC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByTitleAsc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.title ASC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.title ASC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByArtistDesc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.artist DESC")
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.artist DESC")
 				.getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByArtistAsc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.artist ASC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.artist ASC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByAlbumDesc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.album DESC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.album DESC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByAlbumAsc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.album ASC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.album ASC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByYearAsc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.year ASC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.year ASC").getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ArrayList<Musica> MusicByYearDesc() {
-		return (ArrayList<Musica>) em.createQuery("SELECT m FROM Musica m ORDER BY m.year DESC")
-				.getResultList();
+		return (ArrayList<Musica>) em.createQuery(
+				"SELECT m FROM Musica m ORDER BY m.year DESC").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -142,37 +146,21 @@ public class MusicDAO {
 	public ArrayList<Musica> listMusicasPlaylist(int idPlay) {
 		return (ArrayList<Musica>) em
 				.createQuery(
-						"select m from Playlist p join p.musicas m where p.idPlaylist = :idPlay")
+						"SELECT m FROM Playlist p JOIN p.musicas m WHERE p.idPlaylist = :idPlay")
 						.setParameter("idPlay", idPlay).getResultList();
 	}
 
 	public Musica getMusic(int idMus) {
 		return (Musica) em
-				.createQuery("select m from Musica m where m.idMusic = :idm")
+				.createQuery("SELECT m FROM Musica m WHERE m.idMusic = :idm")
 				.setParameter("idm", idMus).getSingleResult();
-
-	}
-
-	public Playlist getPlaylist(int idPlay) {
-		return (Playlist) em
-				.createQuery(
-						"select p from Playlist p where p.idPlaylist = :idplay")
-						.setParameter("idplay", idPlay).getSingleResult();
-
-	}
-
-	public String getPlaylistName(int idPlay) {
-		return (String) em
-				.createQuery(
-						"select p.name from Playlist p where p.idPlaylist = :idplay")
-						.setParameter("idplay", idPlay).getSingleResult();
 
 	}
 
 	public boolean addTo(int idPlay, int idMus) {
 		try {
 			Musica m = getMusic(idMus);
-			Playlist p = getPlaylist(idPlay);
+			Playlist p = pd.getPlaylist(idPlay);
 			p.addMusica(m);
 			em.merge(m);
 			log.info("Música adicionada à Playlist");
@@ -187,7 +175,7 @@ public class MusicDAO {
 	public boolean deleteMusic(int idPlay, int idMus) {
 		try {
 			Musica m = getMusic(idMus);
-			Playlist p = getPlaylist(idPlay);
+			Playlist p = pd.getPlaylist(idPlay);
 			p.removeMusica(idMus);
 			em.merge(m);
 			log.info("Música retirada da Playlist");
@@ -211,13 +199,14 @@ public class MusicDAO {
 
 	public boolean changeMusic(Musica m, int idMusic) {
 		try {
+
 			query = em
-					.createQuery("UPDATE Musica m SET m.title =:title, m.path =:path, m.album =:album, m.artist =:artist, m.year =:year WHERE m.idMusic = :idMusic");
+					.createQuery("UPDATE Musica m SET m.title =:title, m.album =:album, m.artist =:artist, m.year =:year WHERE m.idMusic = :idMusic");
 			query.setParameter("title", m.getTitle());
 			query.setParameter("album", m.getAlbum());
 			query.setParameter("artist", m.getArtist());
 			query.setParameter("year", m.getYear());
-			query.setParameter("path", m.getPath());
+
 			query.setParameter("idMusic", idMusic);
 			query.executeUpdate();
 			log.info("Music updated");
@@ -227,5 +216,4 @@ public class MusicDAO {
 			return false;
 		}
 	}
-
 }

@@ -11,9 +11,9 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,22 +21,21 @@ import org.slf4j.LoggerFactory;
 @Stateless
 @LocalBean
 public class UserRegister {
-	
-	private static final Logger log = LoggerFactory.getLogger(UserRegister.class);
 
+	private static final Logger log = LoggerFactory
+			.getLogger(UserRegister.class);
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
 	private Query q;
 	SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-	
-	@Inject 
-	private Populate pp;
 
+	@Inject
+	private Populate pp;
 
 	@SuppressWarnings("unchecked")
 	public String newUser(Utilizador u) throws NoSuchAlgorithmException,
-			UnsupportedEncodingException, ParseException {
+	UnsupportedEncodingException, ParseException {
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> verifica = q.getResultList();
 		if (verifica.size() < 1)
@@ -57,9 +56,9 @@ public class UserRegister {
 			result = "User e-mail already exists!";
 		} else {
 			try {
-				log.info("User com password:"+u.getPassword());
+				log.info("User com password:" + u.getPassword());
 				u.setPassword(encriptaPass(u.getPassword()));
-				log.info("User com password encriptada:"+u.getPassword());
+				log.info("User com password encriptada:" + u.getPassword());
 			} catch (NoSuchAlgorithmException e) {
 				log.error("Erro na encriptação.");
 				e.printStackTrace();
@@ -78,10 +77,10 @@ public class UserRegister {
 			throws NoSuchAlgorithmException, UnsupportedEncodingException,
 			ParseException {
 		// Se conseguir encontrar o user devolve-o, caso contrário devolve null
-		String senha="";
+		String senha = "";
 		q = em.createQuery("SELECT u FROM Utilizador u");
 		List<Utilizador> verifica = q.getResultList();
-		if (verifica.size() < 2){
+		if (verifica.size() < 2) {
 			pp.populando();
 		}
 		q = em.createQuery("SELECT u FROM Utilizador u");
@@ -107,18 +106,18 @@ public class UserRegister {
 	public static String encriptaPass(String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		String sha1;
-        if (null == password) {
-            return null;
-        }
-        MessageDigest digest;
-        try {
-            digest = MessageDigest.getInstance("SHA-1");
-            digest.update(password.getBytes(), 0, password.length());
-            sha1 = new BigInteger(1, digest.digest()).toString(16);
-            return sha1;
-        } catch (NoSuchAlgorithmException ex) {
-            return null;
-        }        
+		if (null == password) {
+			return null;
+		}
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("SHA-1");
+			digest.update(password.getBytes(), 0, password.length());
+			sha1 = new BigInteger(1, digest.digest()).toString(16);
+			return sha1;
+		} catch (NoSuchAlgorithmException ex) {
+			return null;
+		}
 	}
 
 }

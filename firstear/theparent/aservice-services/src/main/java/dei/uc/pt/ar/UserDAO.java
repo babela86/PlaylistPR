@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 @Stateless
 @LocalBean
 public class UserDAO {
-	
-	private static final Logger log = LoggerFactory.getLogger(UserRegister.class);
 
+	private static final Logger log = LoggerFactory
+			.getLogger(UserRegister.class);
 
 	@PersistenceContext(name = "Playlist")
 	private EntityManager em;
@@ -28,18 +28,19 @@ public class UserDAO {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Utilizador> findAllUsers() {
-		return (ArrayList<Utilizador>) em.createQuery("SELECT u FROM Utilizador u")
-				.getResultList();
-	}
-	
-	public Utilizador findUserById(int id){
-		return (Utilizador) em.createQuery("SELECT u FROM Utilizador u WHERE u.idUtilizador = :id")
-				.setParameter("id", id)
-				.getSingleResult();
+		return (ArrayList<Utilizador>) em.createQuery(
+				"SELECT u FROM Utilizador u").getResultList();
 	}
 
-	public boolean changeAccount(Utilizador u, Utilizador uact){
-		try{
+	public Utilizador findUserById(int id) {
+		return (Utilizador) em
+				.createQuery(
+						"SELECT u FROM Utilizador u WHERE u.idUtilizador = :id")
+				.setParameter("id", id).getSingleResult();
+	}
+
+	public boolean changeAccount(Utilizador u, Utilizador uact) {
+		try {
 			q = em.createQuery("UPDATE Utilizador SET name =:nome, birthdate =:dataNasc, email =:email, password =:password WHERE idUtilizador = :IdUtilAtivo");
 			q.setParameter("IdUtilAtivo", uact.getIdUtilizador());
 			q.setParameter("nome", u.getName());
@@ -49,28 +50,29 @@ public class UserDAO {
 			q.executeUpdate();
 			log.info("Dados da conta alterados");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			log.error("Dados da conta não alterados");
 			return false;
 		}
 	}
-	
-	public boolean deleteAccount(Utilizador uact){
-		try{
+
+	public boolean deleteAccount(Utilizador uact) {
+		try {
 			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
 			q.setParameter("utilact", uact);
 			q.executeUpdate();
 			@SuppressWarnings("unchecked")
-			ArrayList<Playlist> lista = (ArrayList<Playlist>) em.createQuery("SELECT p FROM Playlist p WHERE p.utilizador.idUtilizador = :id")
-			.setParameter("id", uact.getIdUtilizador())
-			.getResultList();
-			for (Playlist p : lista){
+			ArrayList<Playlist> lista = (ArrayList<Playlist>) em
+					.createQuery(
+							"SELECT p FROM Playlist p WHERE p.utilizador.idUtilizador = :id")
+					.setParameter("id", uact.getIdUtilizador()).getResultList();
+			for (Playlist p : lista) {
 				em.remove(em.merge(p));
 			}
-			em.remove(em.merge(uact));		
+			em.remove(em.merge(uact));
 			log.info("Dados da conta apagados!");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			log.error("Problema ao apagar dados da conta!");
 			return false;
 		}

@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-<title>Add Musics</title>
+	<title>Add Musics</title>
 </h:head>
 <h:body>
 	<ui:composition
@@ -12,45 +12,42 @@
 
 		<ui:define name="header">Add Musics</ui:define>
 		<ui:define name="content">
-			
-				<h2>Fill the next fields with the information of the new music</h2>
 
-				<div class="row" style="width: 30%;">
-					<h:form id="form" enctype="multipart/form-data">
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
+			<h2>Fill the next fields with the information of the new music</h2>
+
+			<div class="row" style="width: 30%;">
+				<h:form id="form" enctype="multipart/form-data">
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
 
 
-							<h:outputText value="Title" />
-							<h:inputText value="#{newMusicInput.title}" required="true"
-								requiredMessage="Insira um título" />
-							<h:outputText value="Artist" />
-							<h:inputText value="#{newMusicInput.artist}" required="true"
-								requiredMessage="Insira um artista" />
-							<h:outputText value="Album" />
-							<h:inputText value="#{newMusicInput.album}" required="true"
-								requiredMessage="Insira um album" />
-							<h:outputText value="Year" />
-							<h:inputText value="#{newMusicInput.year}" required="true"
-								requiredMessage="Insira um email" maxlength="4" />
-							<h:outputText value="Path" />
+						<h:outputText value="Title" />
+						<h:inputText value="#{newMusicInput.title}" required="true"
+							requiredMessage="Insira um título" />
+						<h:outputText value="Artist" />
+						<h:inputText value="#{newMusicInput.artist}" required="true"
+							requiredMessage="Insira um artista" />
+						<h:outputText value="Album" />
+						<h:inputText value="#{newMusicInput.album}" required="true"
+							requiredMessage="Insira um album" />
+						<h:outputText value="Year" />
+						<h:inputText value="#{newMusicInput.year}" required="true"
+							requiredMessage="Insira um email" maxlength="4" />
+						<h:outputText value="Path" />
 
-							<h:inputFile class="btnContent" value="#{newMusicInput.file}" required="true" />
-							<h:commandButton class="btnContent" value="Clear" type="reset" />
-							<h:commandButton class="btnContent" value="Add to DataBase"
-								action="#{newMusicInput.newMusic()}" />
+						<h:inputFile class="btnContent" value="#{newMusicInput.file}"
+							required="true" />
+						<h:commandButton class="btnContent" value="Clear" type="reset" />
+						<h:commandButton class="btnContent" value="Add to DataBase"
+							action="#{newMusicInput.newMusic()}" />
 
-						</h:panelGrid>
-					</h:form>
-
-					<div class="messageColor">
-						<br />
-						<h:messages showSummary="true" showDetail="false"
-							errorStyle="color:red" infoStyle="color:blue" />
-					</div>
-				</div>
-
-			
-
+					</h:panelGrid>
+				</h:form>
+			</div>
+			<div class="messageColor">
+				<br />
+				<h:messages showSummary="true" showDetail="false"
+					errorStyle="color:red" infoStyle="color:blue" />
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-<title>Change Account</title>
+	<title>Change Account</title>
 </h:head>
 <h:body>
 	<ui:composition
@@ -12,39 +12,45 @@
 
 		<ui:define name="header">My Account</ui:define>
 		<ui:define name="content">
-				<h2>Change personal account</h2>
-				<div class="row" style="width: 30%;">
-					<h:form>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-							<h:outputText value="E-mail" />
-							<h:inputText value="#{changeAccountInput.email}" />
-							<h:outputText value="Name" />
-							<h:inputText value="#{changeAccountInput.name}" />
-							<h:outputText value="Password" />
-							<h:inputText value="#{changeAccountInput.pass}" />
-						</h:panelGrid>
-						<h:panelGrid class="panelGrid" columns="3" layout="grid">
-							<h:outputText value="Dia" />
-							<h:outputText value="Mês" />
-							<h:outputText value="Ano" />
-							<h:inputText label="Dia" value="#{changeAccountInput.day}"
-								required="false" maxlength="2" size="1" />
-							<h:inputText value="#{changeAccountInput.month}" required="false"
-								maxlength="2" size="1" />
-							<h:inputText name="Ano" value="#{changeAccountInput.year}"
-								required="false" maxlength="4" size="2" />
-						</h:panelGrid>
-						<h:panelGrid class="panelGrid" columns="2" layout="grid">
-							<h:commandButton class="btnContent" value="Clear" type="reset"/>
-							<h:commandButton class="btnContent" value="Submit Changes"
-								action="#{changeAccountInput.changeAccount()}" />
-						</h:panelGrid>
-						<h:panelGrid class="panelGrid" columns="1" layout="grid">
-							<h:commandButton class="btnContent" value="Delete Account"
-								action="#{changeAccountInput.deleteAccount()}" style="text-align:center;" />
-						</h:panelGrid>
-					</h:form>
-				</div>
+			<h2>Change personal account</h2>
+			<div class="row" style="width: 30%;">
+				<h:form>
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						<h:outputText value="E-mail" />
+						<h:inputText value="#{changeAccountInput.email}" />
+						<h:outputText value="Name" />
+						<h:inputText value="#{changeAccountInput.name}" />
+						<h:outputText value="Password" />
+						<h:inputText value="#{changeAccountInput.pass}" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid" columns="3" layout="grid">
+						<h:outputText value="Dia" />
+						<h:outputText value="Mês" />
+						<h:outputText value="Ano" />
+						<h:inputText label="Dia" value="#{changeAccountInput.day}"
+							required="false" maxlength="2" size="1" />
+						<h:inputText value="#{changeAccountInput.month}" required="false"
+							maxlength="2" size="1" />
+						<h:inputText name="Ano" value="#{changeAccountInput.year}"
+							required="false" maxlength="4" size="2" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid" columns="2" layout="grid">
+						<h:commandButton class="btnContent" value="Clear" type="reset" />
+						<h:commandButton class="btnContent" value="Submit Changes"
+							action="#{changeAccountInput.changeAccount()}" />
+					</h:panelGrid>
+					<h:panelGrid class="panelGrid" columns="1" layout="grid">
+						<h:commandButton class="btnContent" value="Delete Account"
+							action="#{changeAccountInput.deleteAccount()}"
+							style="text-align:center;" />
+					</h:panelGrid>
+				</h:form>
+			</div>
+			<div class="messageColor">
+				<br />
+				<h:messages showSummary="true" showDetail="false"
+					errorStyle="color:red" infoStyle="color:blue" />
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

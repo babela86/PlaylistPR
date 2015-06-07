@@ -2,6 +2,8 @@ package dei.uc.pt.ar;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Properties;
+import java.util.Random;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -16,6 +18,7 @@ public class Upload implements Serializable {
 	private Part file;
 
 	private String path;
+	Properties props = System.getProperties();
 
 	public Part getFile() {
 		return file;
@@ -35,37 +38,21 @@ public class Upload implements Serializable {
 
 	public String upload(Part file) throws IOException {
 		this.file = file;
-		String path = generatePath();
-		if (validExtension(path)) {
-			file.write(path);
 
+		Random r = new Random();
+
+		String name = "musica" + r.nextInt(1000);
+
+		this.path = "/music/" + name + ".mp3";
+
+		try {
+			file.write(props.getProperty("user.dir") + "\\music\\" + name
+					+ ".mp3");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
 		return path;
-	}
-
-	private boolean validExtension(String path) {
-		String extension = path.substring(path.length() - 3);
-
-		if (extension.equals("mp3"))
-			return true;
-
-		return false;
-	}
-
-	private String generatePath() {
-		return "C:\\PlaylistPR\\" + getFilename(file);
-	}
-
-	private static String getFilename(Part part) {
-		for (String cd : part.getHeader("content-disposition").split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				String filename = cd.substring(cd.indexOf('=') + 1).trim()
-						.replace("\"", "");
-				return filename.substring(filename.lastIndexOf('/') + 1)
-						.substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
-			}
-		}
-		return null;
 	}
 
 }
