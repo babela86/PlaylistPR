@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +14,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "playlist")
+@XmlRootElement(name ="playlist")
 public class Playlist implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,12 +31,12 @@ public class Playlist implements Serializable {
 	private String name;
 
 	// uma playlist so pode pertencer a um utilizador
-
 	@ManyToOne
 	@JoinColumn(name = "id_util")
 	private Utilizador utilizador;
-
-	@ManyToMany
+	
+	@XmlTransient
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Musica> musicas;
 
 	public Playlist() {
@@ -51,6 +56,7 @@ public class Playlist implements Serializable {
 		this.name = name;
 	}
 
+	@XmlTransient
 	public Utilizador getUtilizador() {
 		return utilizador;
 	}
@@ -59,6 +65,7 @@ public class Playlist implements Serializable {
 		this.utilizador = utilizador;
 	}
 
+	@XmlTransient
 	public List<Musica> getMusicas() {
 		return musicas;
 	}
@@ -88,6 +95,12 @@ public class Playlist implements Serializable {
 			}
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return "Playlist [idPlaylist=" + idPlaylist + ", name=" + name
+				+ "]";
 	}
 
 }

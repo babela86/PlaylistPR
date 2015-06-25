@@ -24,7 +24,8 @@
 									value="&#x25B2;" action="#{userInput.MusicByTitleAsc()}"/>
 								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByTitleDesc()}"/>
 							</f:facet>
-							<h:outputText value="#{list.title}" />
+							<h:outputText value="#{list.title}" /><h:commandButton class="btnTabsSmall" style="margin-left:5px;"
+									value="&#x25B2;" action="#{userInput.MusicByAlbumAsc()}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">

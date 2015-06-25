@@ -7,10 +7,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@XmlRootElement
 @Stateless
 @LocalBean
 public class UserDAO {
@@ -55,8 +57,46 @@ public class UserDAO {
 			return false;
 		}
 	}
+	
+	public boolean changePass(String pass, int idUtil) {
+		try {
+			pass = UserRegister.encriptaPass(pass);
+			q = em.createQuery("UPDATE Utilizador SET password =:password WHERE idUtilizador = :IdUtilAtivo");
+			q.setParameter("IdUtilAtivo", idUtil);
+			q.setParameter("password", pass);
+			q.executeUpdate();
+			log.info("Dados da conta alterados");
+			return true;
+		} catch (Exception e) {
+			log.error("Dados da conta não alterados");
+			return false;
+		}
+	}
 
 	public boolean deleteAccount(Utilizador uact) {
+		try {
+			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
+			q.setParameter("utilact", uact);
+			q.executeUpdate();
+			@SuppressWarnings("unchecked")
+			ArrayList<Playlist> lista = (ArrayList<Playlist>) em
+					.createQuery(
+							"SELECT p FROM Playlist p WHERE p.utilizador.idUtilizador = :id")
+					.setParameter("id", uact.getIdUtilizador()).getResultList();
+			for (Playlist p : lista) {
+				em.remove(em.merge(p));
+			}
+			em.remove(em.merge(uact));
+			log.info("Dados da conta apagados!");
+			return true;
+		} catch (Exception e) {
+			log.error("Problema ao apagar dados da conta!");
+			return false;
+		}
+	}
+	
+	public boolean removeUser(int userId) {
+		Utilizador uact = findUserById(userId);
 		try {
 			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
 			q.setParameter("utilact", uact);

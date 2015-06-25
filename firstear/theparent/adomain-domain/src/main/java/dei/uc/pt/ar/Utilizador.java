@@ -17,10 +17,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "utilizador")
 @NamedQuery(name = "Utilizador.findAll", query = "SELECT u FROM Utilizador u")
+@XmlRootElement(name="utilizador")
 public class Utilizador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,12 +45,12 @@ public class Utilizador implements Serializable {
 	private Date birthdate;
 
 	// um utilizador pode inserir varias musicas
-
+	@XmlTransient
 	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
 	private List<Musica> musicas = new ArrayList<Musica>();
 
 	// um utilizador pode ter varias playlists
-
+	@XmlTransient
 	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
 	private List<Playlist> playlists = new ArrayList<Playlist>();
 
@@ -68,6 +73,7 @@ public class Utilizador implements Serializable {
 		this.idUtilizador = idUtilizador;
 	}
 
+	@XmlTransient
 	public List<Musica> getMusicas() {
 		return musicas;
 	}
@@ -76,6 +82,7 @@ public class Utilizador implements Serializable {
 		this.musicas = musicas;
 	}
 
+	@XmlTransient
 	public List<Playlist> getPlaylists() {
 		return playlists;
 	}
@@ -130,7 +137,9 @@ public class Utilizador implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nome " + this.name;
+		return "Utilizador [email=" + email + ", name=" + name + ", birthdate=" + birthdate + "]";
 	}
+
+
 
 }

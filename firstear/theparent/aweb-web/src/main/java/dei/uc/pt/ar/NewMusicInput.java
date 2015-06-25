@@ -41,6 +41,7 @@ public class NewMusicInput implements Serializable {
 				this.path, ui.getActiveUser());
 		boolean added = md.newMusic(m);
 		if (added == true) {
+			ui.setAllmusics(ui.listallmusics());
 			FacesMessage msg = new FacesMessage("Music added to DB!",
 					"INFO MSG");
 			msg.setSeverity(FacesMessage.SEVERITY_INFO);
