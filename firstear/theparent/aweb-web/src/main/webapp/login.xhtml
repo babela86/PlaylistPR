@@ -20,17 +20,17 @@
 	<div id="loginPage">
 		<div class="row">
 
-			<h:form prependId="false">
+			<h:form method="post" action="j_security_check" prependId="false">
 				<div class="col-sm-1" />
 				<div class="col-sm-4">
 					<p id="sign">Sign up</p>
 					<h:panelGrid class="panelGrid" columns="2" layout="grid">
 						<h:outputText value="E-mail" />
 						<h:inputText value="#{userInput.email}" required="true"
-							requiredMessage="Insert an username" />
+							requiredMessage="Insert an username" name="j_username"/>
 						<h:outputText value="Password" />
 						<h:inputSecret value="#{userInput.pass}" required="true"
-							requiredMessage="Insert a password" />
+							requiredMessage="Insert a password" name="j_password"/>
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid">
 						<h:commandButton class="btnSign" value="Sign up"
