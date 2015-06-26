@@ -15,6 +15,7 @@
 		<module>aweb-web</module>
 		<module>aservice-services</module>
 		<module>adomain-domain</module>
+		<module>thews-ws</module>
 	</modules>
 
 

@@ -25,6 +25,8 @@ public class MusicDAO {
 	private Query query;
 	@Inject
 	PlaylistDAO pd;
+	@Inject
+	UserDAO ud;
 
 	public MusicDAO() {
 		super();
@@ -126,6 +128,7 @@ public class MusicDAO {
 
 	public boolean newMusic(Musica m) {
 		// se conseguir guardar a musica manda true, senao manda false
+		
 		boolean existe = false;
 		ArrayList<Musica> lista = findAllMusic();
 		for (Musica mus : lista) {
@@ -133,11 +136,15 @@ public class MusicDAO {
 					|| (mus.getPath().equals(m.getPath()))) {
 				existe = false;
 			} else {
+		
 				existe = true;
 			}
 		}
-		if (existe)
+		if (existe) {
+			Utilizador u = ud.findUserById(m.getUtilizador().getIdUtilizador());
+			u.addMusica(m);
 			em.merge(m);
+		}
 		log.info("Nova música adicionada à BD");
 		return existe;
 	}

@@ -18,7 +18,12 @@
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
-
+		<dependency>
+			<groupId>dei.uc.pt.ar.paj</groupId>
+			<artifactId>thews-ws</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
 		<dependency>
 			<groupId>dei.uc.pt.ar.paj</groupId>
 			<artifactId>aservice-services</artifactId>
@@ -42,6 +47,10 @@
 						<webModule>
 							<groupId>dei.uc.pt.ar.paj</groupId>
 							<artifactId>aweb-web</artifactId>
+						</webModule>
+						<webModule>
+							<groupId>dei.uc.pt.ar.paj</groupId>
+							<artifactId>thews-ws</artifactId>
 						</webModule>
 						<ejbModule>
 							<groupId>dei.uc.pt.ar.paj</groupId>

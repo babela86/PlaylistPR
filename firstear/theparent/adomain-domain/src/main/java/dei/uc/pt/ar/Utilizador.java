@@ -17,15 +17,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "utilizador")
 @NamedQuery(name = "Utilizador.findAll", query = "SELECT u FROM Utilizador u")
+@XmlRootElement
 public class Utilizador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
 	private int idUtilizador;
 	@NotNull
 	@Column(unique=true)
@@ -130,7 +134,9 @@ public class Utilizador implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nome " + this.name;
+		return "Utilizador [email=" + email + ", name=" + name + ", birthdate=" + birthdate + "]";
 	}
+
+
 
 }
