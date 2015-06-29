@@ -1,5 +1,8 @@
 package dei.uc.pt.ar.paj;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +17,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-
-
 import dei.uc.pt.ar.LogedUsers;
 import dei.uc.pt.ar.Playlist;
 import dei.uc.pt.ar.UserDAO;
@@ -24,12 +24,11 @@ import dei.uc.pt.ar.UserRegister;
 import dei.uc.pt.ar.Utilizador;
 
 @Stateless
-@Path("/simpleusers")
+@Path("/users")
 public class SimpleUserService {
 
 	@Inject
 	private UserDAO ud;
-
 	@Inject
 	private UserRegister ur;
 	@Inject
@@ -37,32 +36,66 @@ public class SimpleUserService {
 
 	//Listar todos os users
 	@GET
-	@Produces({MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
-	public String getAllInString(){
-		// not the way ! just for test.. 
-		
-		ArrayList<Utilizador> usr_list = new ArrayList<Utilizador>();
-		usr_list.addAll(ud.findAllUsers());
-
-		StringBuilder sb = new StringBuilder();
-
-		for (Utilizador usr : usr_list)
-			sb.append(usr.toString()).append(" ; ");
-		
-		return sb.toString();
+	@Path("/list")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Utilizador> getAllUsers(){		
+		return (List<Utilizador>) ud.findAllUsers();
 	}
 	
-	
+	//Listar user concreto
 	@GET
-	@Path("{suid: \\d+}")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
-	public Utilizador getSimpleUserById(@PathParam("suid") int id){
-		// use logs!!! (im lazy)
-		System.out.println("get me : "+id);
-		
+	@Path("/list/{userId}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Utilizador getSimpleUserById(@PathParam("userId") int id){		
 		return ud.findUserById(id);
 	}
 	
+	//Remover user concreto
+	@GET
+	@Path("/delete/{userId}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Response removeUserById(@PathParam("userId") int id){		
+		boolean removed = ud.removeUser(id);
+		if (removed)
+			return Response.ok().build();
+		else
+			return Response.notModified().build();
+	}
+	
+	//Adicionar user
+	@POST
+	@Path("/add")
+	@Consumes({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML})
+	public Response createUser(Utilizador user) throws NoSuchAlgorithmException, UnsupportedEncodingException, ParseException{
+		Utilizador another = new Utilizador();
+		another.setEmail(user.getEmail());
+		another.setName(user.getName());
+		another.setPassword(user.getPassword());
+		another.setBirthdate(user.getBirthdate());
+		String srt = ur.newUser(another);
+		
+		if (srt.startsWith("User added")){
+			return Response.ok().build();
+		}else{
+			return Response.notModified().build();
+		}
+	}
+	
+	//Change pass
+	@POST
+	@Path("/changepass/{utilId}")
+	@Consumes({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML})
+	public Response changePass(@PathParam("utilId") int id, Utilizador user){
+		boolean sucess = ud.changePass(user.getPassword(), id);
+		
+		if (sucess){
+			return Response.ok(ud.findUserById(id)).build();
+		}else{
+			return Response.notModified().build();
+		}
+	}
 	
 	//Listar todos os users logados
 	@GET
