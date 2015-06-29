@@ -18,19 +18,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "utilizador")
 @NamedQuery(name = "Utilizador.findAll", query = "SELECT u FROM Utilizador u")
-@XmlRootElement(name="utilizador")
+@XmlRootElement
 public class Utilizador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@XmlAttribute
 	private int idUtilizador;
 	@NotNull
 	@Column(unique=true)
@@ -45,12 +44,12 @@ public class Utilizador implements Serializable {
 	private Date birthdate;
 
 	// um utilizador pode inserir varias musicas
-	@XmlTransient
+
 	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
 	private List<Musica> musicas = new ArrayList<Musica>();
 
 	// um utilizador pode ter varias playlists
-	@XmlTransient
+
 	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
 	private List<Playlist> playlists = new ArrayList<Playlist>();
 
@@ -73,7 +72,6 @@ public class Utilizador implements Serializable {
 		this.idUtilizador = idUtilizador;
 	}
 
-	@XmlTransient
 	public List<Musica> getMusicas() {
 		return musicas;
 	}
@@ -82,7 +80,6 @@ public class Utilizador implements Serializable {
 		this.musicas = musicas;
 	}
 
-	@XmlTransient
 	public List<Playlist> getPlaylists() {
 		return playlists;
 	}

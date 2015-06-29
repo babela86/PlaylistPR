@@ -94,7 +94,6 @@ public class UserInput implements Serializable {
 		} else {
 			this.activeUser = util;
 			lu.add(activeUser);
-			System.out.println(lu.getListalogados());
 			this.name = activeUser.getName();
 			startSession();
 			allmusics = listallmusics();
