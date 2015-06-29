@@ -29,6 +29,8 @@ public class UserInput implements Serializable {
 	private MusicDAO md;
 	@Inject
 	private PlaylistDAO pd;
+	@Inject
+	private LogedUsers lu;
 
 	private String email;
 	private String pass;
@@ -91,6 +93,8 @@ public class UserInput implements Serializable {
 			return "login";
 		} else {
 			this.activeUser = util;
+			lu.add(activeUser);
+			System.out.println(lu.getListalogados());
 			this.name = activeUser.getName();
 			startSession();
 			allmusics = listallmusics();
@@ -99,6 +103,8 @@ public class UserInput implements Serializable {
 	}
 
 	public String logoutUser() {
+		lu.remove(activeUser);
+		System.out.println(lu.getListalogados());
 		this.activeUser = null;
 		this.day = "";
 		this.year = "";

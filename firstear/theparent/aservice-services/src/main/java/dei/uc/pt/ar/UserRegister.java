@@ -32,6 +32,8 @@ public class UserRegister {
 
 	@Inject
 	private Populate pp;
+	@Inject
+	private LogedUsers lu;
 
 	@SuppressWarnings("unchecked")
 	public String newUser(Utilizador u) throws NoSuchAlgorithmException,
@@ -96,7 +98,6 @@ public class UserRegister {
 			if (util.getEmail().equals(email)
 					&& util.getPassword().equals(senha)) {
 				log.info("Login sucedido!");
-
 				return util;
 			}
 		}

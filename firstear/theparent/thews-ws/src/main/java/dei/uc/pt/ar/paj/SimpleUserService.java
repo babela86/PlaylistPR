@@ -17,6 +17,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import dei.uc.pt.ar.LogedUsers;
 import dei.uc.pt.ar.Playlist;
 import dei.uc.pt.ar.UserDAO;
 import dei.uc.pt.ar.UserRegister;
@@ -30,7 +31,8 @@ public class SimpleUserService {
 	private UserDAO ud;
 	@Inject
 	private UserRegister ur;
-	
+	@Inject
+	private LogedUsers lu;
 
 	//Listar todos os users
 	@GET
@@ -93,6 +95,14 @@ public class SimpleUserService {
 		}else{
 			return Response.notModified().build();
 		}
+	}
+	
+	//Listar todos os users logados
+	@GET
+	@Path("/listlogedusers")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Utilizador> getAllLogedUsers(){		
+		return (List<Utilizador>) lu.getListalogados();
 	}
 	
 	/*

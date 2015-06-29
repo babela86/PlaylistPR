@@ -28,11 +28,11 @@
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>dei.uc.pt.ar.paj</groupId>
-			<artifactId>adomain-domain</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>dei.uc.pt.ar.paj</groupId> -->
+<!-- 			<artifactId>adomain-domain</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 	</dependencies>
 </project>
