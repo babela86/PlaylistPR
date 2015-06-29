@@ -1,6 +1,7 @@
 package dei.uc.pt.ar.paj;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -14,10 +15,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
+
+
 import dei.uc.pt.ar.LogedUsers;
 import dei.uc.pt.ar.Playlist;
-
 import dei.uc.pt.ar.UserDAO;
+import dei.uc.pt.ar.UserRegister;
 import dei.uc.pt.ar.Utilizador;
 
 @Stateless
