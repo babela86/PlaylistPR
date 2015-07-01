@@ -16,6 +16,7 @@
 		<module>aservice-services</module>
 		<module>adomain-domain</module>
 		<module>thews-ws</module>
+		<module>lyric-ws-client</module>
 	</modules>
 
 

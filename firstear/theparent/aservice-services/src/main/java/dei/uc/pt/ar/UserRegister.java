@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import com.sun.syndication.io.impl.*;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -106,19 +106,21 @@ public class UserRegister {
 
 	public static String encriptaPass(String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		String sha1;
-		if (null == password) {
-			return null;
-		}
-		MessageDigest digest;
-		try {
-			digest = MessageDigest.getInstance("SHA-1");
-			digest.update(password.getBytes(), 0, password.length());
-			sha1 = new BigInteger(1, digest.digest()).toString(16);
-			return sha1;
-		} catch (NoSuchAlgorithmException ex) {
-			return null;
-		}
+		 String securedPassword = "";
+
+         try {
+                 MessageDigest md = MessageDigest.getInstance("SHA-256");
+                 md.update(password.getBytes());
+
+                 byte byteData[] = md.digest();
+                 byte[] data2 = Base64.encode(byteData);
+                 securedPassword = new String(data2);
+                 return securedPassword;
+         } catch (NoSuchAlgorithmException e) {
+                 e.printStackTrace();
+         }
+
+         return securedPassword;
 	}
 
 }

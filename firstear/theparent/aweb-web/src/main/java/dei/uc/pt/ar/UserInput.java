@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -82,7 +81,7 @@ public class UserInput implements Serializable {
 		}
 	}
 
-	public String loginUser() throws ParseException, NoSuchAlgorithmException,
+	public void loginUser() throws ParseException, NoSuchAlgorithmException,
 	UnsupportedEncodingException {
 		Utilizador util = ur.loginUser(this.email, this.pass);
 		if (util == null) {
@@ -90,20 +89,17 @@ public class UserInput implements Serializable {
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			if (FacesContext.getCurrentInstance() != null)
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-			return "login";
 		} else {
 			this.activeUser = util;
 			lu.add(activeUser);
 			this.name = activeUser.getName();
-			startSession();
+			//startSession();
 			allmusics = listallmusics();
-			return "resources/Authorized/myPlaylist.xhtml?faces-redirect=true";
 		}
 	}
 
-	public String logoutUser() {
+	public void logoutUser() {
 		lu.remove(activeUser);
-		System.out.println(lu.getListalogados());
 		this.activeUser = null;
 		this.day = "";
 		this.year = "";
@@ -115,7 +111,6 @@ public class UserInput implements Serializable {
 		if (FacesContext.getCurrentInstance() != null)
 			FacesContext.getCurrentInstance().getExternalContext()
 			.invalidateSession();
-		return "/login.xhtml?faces-redirect=true";
 	}
 
 	public ArrayList<Musica> listallmusics() {
@@ -267,18 +262,6 @@ public class UserInput implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public void startSession() {
-		session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
-		session.setAttribute("userLoged", true);
-	}
-
-	public void endSession() {
-		if (session != null)
-			session.invalidate();
-		userLoged = false;
 	}
 
 	public String showPlaylist(int idPlay) {

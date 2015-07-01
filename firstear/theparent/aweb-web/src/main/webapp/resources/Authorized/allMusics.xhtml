@@ -5,6 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>All Musics</title>
+	<h:outputScript library="js" name="showLyric.js" />
+
 </h:head>
 <h:body>
 
@@ -21,19 +23,20 @@
 							<f:facet name="header">
 								<h:outputText value="Title" />
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" action="#{userInput.MusicByTitleAsc()}"/>
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByTitleDesc()}"/>
+									value="&#x25B2;" action="#{userInput.MusicByTitleAsc()}" />
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;"
+									action="#{userInput.MusicByTitleDesc()}" />
 							</f:facet>
-							<h:outputText value="#{list.title}" /><h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" action="#{userInput.MusicByAlbumAsc()}" />
+							<h:outputText value="#{list.title}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Artist" />
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" action="#{userInput.MusicByArtistAsc()}"/>
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByArtistDesc()}"/>
+									value="&#x25B2;" action="#{userInput.MusicByArtistAsc()}" />
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;"
+									action="#{userInput.MusicByArtistDesc()}" />
 							</f:facet>
 
 							<h:outputText value="#{list.artist}" />
@@ -44,7 +47,8 @@
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
 									value="&#x25B2;" action="#{userInput.MusicByAlbumAsc()}" />
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByAlbumDesc()}"/>
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;"
+									action="#{userInput.MusicByAlbumDesc()}" />
 							</f:facet>
 
 							<h:outputText value="#{list.album}" />
@@ -54,10 +58,21 @@
 								<h:outputText value="Year" />
 
 								<h:commandButton class="btnTabsSmall" style="margin-left:5px;"
-									value="&#x25B2;" action="#{userInput.MusicByYearAsc()}"/>
-								<h:commandButton class="btnTabsSmall" value="&#x25BC;" action="#{userInput.MusicByYearDesc()}"/>
+									value="&#x25B2;" action="#{userInput.MusicByYearAsc()}" />
+								<h:commandButton class="btnTabsSmall" value="&#x25BC;"
+									action="#{userInput.MusicByYearDesc()}" />
 							</f:facet>
 							<h:outputText value="#{list.year}" />
+						</h:column>
+						<h:column>
+							<h:commandButton class="btnTabs"
+								action="#{lyricManager.searchLyric(list.idMusic, list.artist, list.title)}"
+								value="Search Lyric!">
+							</h:commandButton>
+						</h:column>
+						<h:column>
+							<a href="searchMusics.xhtml"
+								onclick="javascript:void window.open('../../EditLyric.xhtml','1435713821140','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Edit Lyric</a>
 						</h:column>
 						<h:column>
 							<h:commandButton class="btnTabs"

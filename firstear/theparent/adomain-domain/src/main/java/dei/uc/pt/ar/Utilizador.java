@@ -43,7 +43,11 @@ public class Utilizador implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_nasc")
 	private Date birthdate;
-
+	
+	@XmlTransient
+	@Column(name="role")
+	private String role="CLIENT";
+	
 	// um utilizador pode inserir varias musicas
 	@XmlTransient
 	@OneToMany(mappedBy = "utilizador", fetch = FetchType.EAGER)
@@ -63,6 +67,14 @@ public class Utilizador implements Serializable {
 		this.name = name;
 		this.password = password;
 		this.birthdate = birthdate;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public int getIdUtilizador() {

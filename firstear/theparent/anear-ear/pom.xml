@@ -30,6 +30,12 @@
 			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
+		<dependency>
+			<groupId>dei.uc.pt.ar.paj</groupId>
+			<artifactId>lyric-ws-client</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -55,6 +61,10 @@
 						<ejbModule>
 							<groupId>dei.uc.pt.ar.paj</groupId>
 							<artifactId>aservice-services</artifactId>
+						</ejbModule>
+						<ejbModule>
+							<groupId>dei.uc.pt.ar.paj</groupId>
+							<artifactId>lyric-ws-client</artifactId>
 						</ejbModule>
 					</modules>
 				</configuration>

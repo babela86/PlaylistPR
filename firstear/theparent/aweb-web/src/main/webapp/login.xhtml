@@ -20,21 +20,21 @@
 	<div id="loginPage">
 		<div class="row">
 
-			<h:form method="post" action="j_security_check" prependId="false">
+			<h:form>
 				<div class="col-sm-1" />
 				<div class="col-sm-4">
-					<p id="sign">Sign up</p>
+					<p id="sign">Sign in</p>
 					<h:panelGrid class="panelGrid" columns="2" layout="grid">
 						<h:outputText value="E-mail" />
-						<h:inputText value="#{userInput.email}" required="true"
-							requiredMessage="Insert an username" name="j_username"/>
+						<h:inputText value="#{login.email}" required="true"
+							requiredMessage="Insert an email"/>
 						<h:outputText value="Password" />
-						<h:inputSecret value="#{userInput.pass}" required="true"
-							requiredMessage="Insert a password" name="j_password"/>
+						<h:inputSecret value="#{login.password}" required="true"
+							requiredMessage="Insert a password"/>
 					</h:panelGrid>
 					<h:panelGrid class="panelGrid">
 						<h:commandButton class="btnSign" value="Sign up"
-							action="#{userInput.loginUser()}" />
+							action="#{login.login}" />
 					</h:panelGrid>
 				</div>
 			</h:form>
@@ -42,7 +42,7 @@
 
 			<h:form>
 				<div class="col-sm-4">
-					<p id="sign">Sign in</p>
+					<p id="sign">Sign up</p>
 					<h:panelGrid class="panelGrid" columns="2" layout="grid">
 						<h:outputText value="E-mail" />
 						<h:inputText value="#{userInput.email}" required="true" />
