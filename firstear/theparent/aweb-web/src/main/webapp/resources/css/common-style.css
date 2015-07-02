@@ -75,10 +75,24 @@ body {
 .btnTabsSmall{
 	font-size: 50%;
 	background-color:#ffffff ;
-	color:   #3A4856;
-	
+	color:   #3A4856;	
 	border-radius: 6px;
-		
+}
+
+.btnLyrics{
+	font-size: 100%;
+	background-color: #00ff00;
+	color: #400040;
+	padding:5px;
+	border-radius: 6px;
+}
+
+.btnNoLyrics{
+	font-size: 100%;
+	background-color: #ff0000;
+	color: #400040;
+	padding:5px;
+	border-radius: 6px;
 }
 
 #sign {
@@ -128,3 +142,5 @@ body {
 #all2{
 	width: 20%;
 }
+
+

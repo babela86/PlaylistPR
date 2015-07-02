@@ -29,7 +29,7 @@ public class LyricDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Lyric> findAllMusic() {
+	public ArrayList<Lyric> findAllLyrics() {
 		return (ArrayList<Lyric>) em.createQuery("SELECT l FROM Lyric l")
 				.getResultList();
 	}
@@ -40,6 +40,21 @@ public class LyricDAO {
 				.createQuery(
 						"SELECT l FROM Lyric l WHERE l.utilizador.idUtilizador = :id")
 						.setParameter("id", id).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Lyric> findMyLyricByMusic(int id) {
+		try{
+		query=em.createQuery(
+						"SELECT l FROM Lyric l WHERE l.musica.idMusic = :id");
+		
+						query.setParameter("id", id);
+						System.out.println(query.getResultList());
+						return (ArrayList<Lyric>) query.getResultList();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
 	public void saveLyric(String lyric, Utilizador util, Musica m){

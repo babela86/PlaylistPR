@@ -38,7 +38,6 @@ public class ChartLyricsSoap {
 				setLyricresult(result.getLyric());
 				setArtist(result.getLyricArtist());
 				setSong(result.getLyricSong());
-				System.out.println(artist);
 				search = true;
 
 			} catch (RemoteException e) {

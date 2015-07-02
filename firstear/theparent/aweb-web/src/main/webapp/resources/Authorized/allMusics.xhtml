@@ -30,6 +30,13 @@
 							<h:outputText value="#{list.title}" />
 						</h:column>
 						<h:column>
+							<h:commandButton class="btnNoLyrics" value="L"
+								rendered="#{!lyricManager.renderButton(list.idMusic)}" />
+							<h:commandButton class="btnLyrics" value="L"
+								onclick="javascript:void window.open('../../EditLyric.xhtml','1435713821140','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;"
+								rendered="#{lyricManager.renderButton(list.idMusic)}" />
+						</h:column>
+						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Artist" />
 
@@ -72,7 +79,8 @@
 						</h:column>
 						<h:column>
 							<a href="searchMusics.xhtml"
-								onclick="javascript:void window.open('../../EditLyric.xhtml','1435713821140','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Edit Lyric</a>
+								onclick="javascript:void window.open('../../EditLyric.xhtml','1435713821140','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Edit
+								Lyric</a>
 						</h:column>
 						<h:column>
 							<h:commandButton class="btnTabs"
@@ -106,7 +114,13 @@
 						</div>
 					</h:panelGroup>
 				</div>
+
 			</h:form>
+			<div class="messageColor" style="text-align: center">
+				<br />
+				<h:messages showSummary="true" showDetail="false"
+					errorStyle="color:red" infoStyle="color:blue" />
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

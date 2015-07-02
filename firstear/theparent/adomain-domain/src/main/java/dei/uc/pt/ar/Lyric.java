@@ -24,11 +24,11 @@ public class Lyric {
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private Utilizador user;
+	private Utilizador utilizador;
 
 	@ManyToOne
 	@JoinColumn(name="music_id")
-	private Musica music;
+	private Musica musica;
 
 	public Lyric() {
 
@@ -38,8 +38,8 @@ public class Lyric {
 		super();
 		
 		this.lyrics = lyrics;
-		this.user = user;
-		this.music = music;
+		this.utilizador = user;
+		this.musica = music;
 	}
 
 	public String getLyrics() {
@@ -51,19 +51,19 @@ public class Lyric {
 	}
 
 	public Utilizador getUser() {
-		return user;
+		return utilizador;
 	}
 
 	public void setUser(Utilizador user) {
-		this.user = user;
+		this.utilizador = user;
 	}
 
 	public Musica getMusic() {
-		return music;
+		return musica;
 	}
 
 	public void setMusic(Musica music) {
-		this.music = music;
+		this.musica = music;
 	}
 
 	public int getId() {
