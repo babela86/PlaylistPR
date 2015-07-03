@@ -75,6 +75,14 @@ public class UserDAO {
 
 	public boolean deleteAccount(Utilizador uact) {
 		try {
+			@SuppressWarnings("unchecked")
+			ArrayList<Lyric> listal = (ArrayList<Lyric>) em
+					.createQuery(
+							"SELECT l FROM Lyric l WHERE l.utilizador.idUtilizador = :id")
+					.setParameter("id", uact.getIdUtilizador()).getResultList();
+			for (Lyric l : listal) {
+				em.remove(em.merge(l));
+			}
 			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
 			q.setParameter("utilact", uact);
 			q.executeUpdate();
@@ -98,6 +106,14 @@ public class UserDAO {
 	public boolean removeUser(int userId) {
 		Utilizador uact = findUserById(userId);
 		try {
+			@SuppressWarnings("unchecked")
+			ArrayList<Lyric> listal = (ArrayList<Lyric>) em
+					.createQuery(
+							"SELECT l FROM Lyric l WHERE l.utilizador.idUtilizador = :id")
+					.setParameter("id", uact.getIdUtilizador()).getResultList();
+			for (Lyric l : listal) {
+				em.remove(em.merge(l));
+			}
 			q = em.createQuery("UPDATE Musica m SET m.utilizador =1 WHERE m.utilizador =:utilact");
 			q.setParameter("utilact", uact);
 			q.executeUpdate();

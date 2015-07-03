@@ -26,7 +26,6 @@ public class LyricsWikiaRest {
 	}
 
 	public String searchLyrics(String artist, String song) {
-
 		this.song = song;
 		this.artist = artist;
 		int count = 1;
@@ -39,14 +38,10 @@ public class LyricsWikiaRest {
 				result = target.request(MediaType.APPLICATION_XML).get();
 				lyrics = result.readEntity(GetLyricsWikia.class).getLyric();
 				setLyricresult(lyrics);
-				setLyricresult(lyrics);
-
 				search = true;
 			} catch (Exception e) {
 				count++;
-
 			}
-
 		}
 		return getLyricresult();
 	}
