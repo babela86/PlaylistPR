@@ -3,7 +3,8 @@ html, body {
 		sans-serif;
 	width: 100%;
 	height: 100%;
-	color: #3A4856;
+	color: black;
+	font-weight: bolder;
 }
 
 #page {
@@ -11,8 +12,9 @@ html, body {
 }
 
 body {
-	background: url("../resources/images/fundo1.jpg") center;
-	margin: 0;
+	background-image: url("../resources/images/fundo1.jpg");
+background-size: 100% 100%;
+	text-align: center;	
 }
 
 #menuCont {
@@ -96,7 +98,7 @@ body {
 }
 
 #sign {
-	color:#3A4856;
+	color:black;
 	text-align: center;
 	font-weight: bold;
 	font-style: italic;
