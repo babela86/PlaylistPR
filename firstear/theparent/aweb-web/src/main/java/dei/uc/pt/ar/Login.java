@@ -46,8 +46,8 @@ public class Login implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		try{
-			request.logout();
 			ui.logoutUser();
+			request.logout();
 			return "/login.xhtml?faces-redirect=true";
 		} catch (ServletException e) {
 			context.addMessage(null, new FacesMessage("Logout failed."));

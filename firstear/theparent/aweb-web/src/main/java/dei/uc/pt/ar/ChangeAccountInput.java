@@ -26,6 +26,8 @@ public class ChangeAccountInput implements Serializable{
 	private UserDAO ud;
 	@Inject
 	private UserInput ui;
+	@Inject
+	private Login login;
 	
 	
 	private String email;
@@ -79,7 +81,7 @@ public class ChangeAccountInput implements Serializable{
 	public String deleteAccount() {	
 		boolean apagada = ud.deleteAccount(ui.getActiveUser());
 		if (apagada==true){
-			ui.logoutUser();
+			login.logout();			
 			return "/login.xhtml?faces-redirect=true";
 		}else{
 			FacesMessage msg = new FacesMessage("Problem deleting account!", "ERROR MSG");

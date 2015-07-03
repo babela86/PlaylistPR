@@ -108,9 +108,9 @@ public class UserInput implements Serializable {
 		this.email = "";
 		this.name = "";
 		// endSession();
-		if (FacesContext.getCurrentInstance() != null)
-			FacesContext.getCurrentInstance().getExternalContext()
-			.invalidateSession();
+//		if (FacesContext.getCurrentInstance() != null)
+//			FacesContext.getCurrentInstance().getExternalContext()
+//			.invalidateSession();
 	}
 
 	public ArrayList<Musica> listallmusics() {

@@ -38,8 +38,8 @@ public class Populate implements Serializable {
 						ft.parse("1970-01-01")),
 				new Utilizador("pedro@gmail.com", "pedro",
 						UserRegister.encriptaPass("123"),
-						ft.parse("1983-01-01")),
-				new Utilizador("caty@gmail.com", "rafa",
+						ft.parse("1983-04-03")),
+				new Utilizador("caty@gmail.com", "catarina",
 						UserRegister.encriptaPass("123"),
 						ft.parse("1986-04-30")) };
 
