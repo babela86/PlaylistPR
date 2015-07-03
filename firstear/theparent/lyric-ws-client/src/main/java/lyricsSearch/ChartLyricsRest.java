@@ -13,9 +13,6 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 @RequestScoped
 public class ChartLyricsRest {
 
-	// public static void main(String[] args) {
-	// String song = "jude";
-	// String artist = "beatles";
 	String song = null;
 	String artist = null;
 	Response result = null;
@@ -37,21 +34,16 @@ public class ChartLyricsRest {
 		while (!search && count <= 5) {
 			try {
 				ResteasyClient client = new ResteasyClientBuilder().build();
-				// http://lyrics.wikia.com/api.php?artist=Cake&song=Dime
 				target = client
 						.target("http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist="
 								+ artist + "&song=" + song);
 				result = target.request(MediaType.APPLICATION_XML).get();
 				lyrics = result.readEntity(GetLyricsChart.class).getLyric();
 				setLyricresult(lyrics);
-				// System.out.println(lyrics);
-				System.out.println(artist);
-
 				setLyricresult(lyrics);
 
 				search = true;
 			} catch (Exception e) {
-				System.out.println("Connecting to chartLyrics by rest...");
 
 				count++;
 			}

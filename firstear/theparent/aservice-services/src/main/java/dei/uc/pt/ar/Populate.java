@@ -39,12 +39,12 @@ public class Populate implements Serializable {
 				new Utilizador("pedro@gmail.com", "pedro",
 						UserRegister.encriptaPass("123"),
 						ft.parse("1983-01-01")),
-				new Utilizador("rafa@gmail.com", "rafa",
+				new Utilizador("caty@gmail.com", "rafa",
 						UserRegister.encriptaPass("123"),
 						ft.parse("1986-04-30")) };
 
-		Playlist[] plays = { new Playlist("rafa's playlist", users[2]),
-				new Playlist("p's playlist", users[1]) };
+		Playlist[] plays = { new Playlist("catarina's playlist", users[2]),
+				new Playlist("peter's playlist", users[1]) };
 
 		Musica[] musics = {
 				new Musica("Lean on", "Major Lazer & DJ Snake",

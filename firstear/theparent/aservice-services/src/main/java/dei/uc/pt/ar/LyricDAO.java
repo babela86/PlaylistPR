@@ -49,16 +49,38 @@ public class LyricDAO {
 						"SELECT l FROM Lyric l WHERE l.musica.idMusic = :id");
 		
 						query.setParameter("id", id);
-						System.out.println(query.getResultList());
 						return (ArrayList<Lyric>) query.getResultList();
 		}catch(Exception e){
-			System.out.println(e.getMessage());
 			return null;
 		}
 	}
 	
 	public void saveLyric(String lyric, Utilizador util, Musica m){
 		Lyric l = new Lyric(lyric, util, m);
-		em.persist(l);
+		em.persist(em.merge(l));
+	}
+	
+	public void updateLyric(String lyric, Utilizador util, Musica m){
+		query = em
+				.createQuery("UPDATE Lyric l SET l.lyrics =:lyric WHERE l.utilizador = :util AND l.musica = :musica");
+		query.setParameter("lyric", lyric);
+		query.setParameter("util", util);
+		query.setParameter("musica", m);
+		query.executeUpdate();
+		log.info("Lyric updated");
+	}
+	
+
+	public Lyric searchLyric(int userID, int musicID) {
+		// TODO Auto-generated method stub
+		try{
+		Lyric l = (Lyric) em.createQuery("SELECT l FROM Lyric l WHERE l.utilizador.idUtilizador = :id AND l.musica.idMusic = :idm")
+				.setParameter("id", userID)
+				.setParameter("idm", musicID)
+				.getSingleResult();
+		return l;
+		} catch (Exception e){
+			return null;
+		}
 	}
 }

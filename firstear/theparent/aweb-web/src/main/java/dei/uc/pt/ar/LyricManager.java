@@ -38,11 +38,15 @@ public class LyricManager implements Serializable {
 	@Inject
 	private UserDAO ud;
 	
+	private int activeMusic=0;
+
+	private boolean onOff=false;
 	
+	private String lyric=""; 
+
 	public void searchLyric(int musicID, String artist, String title){
 		String lyric = cls.searchLyrics(artist, title);
 		String msga ="";
-		System.out.println("isto:"+lyric);
 		if ((lyric != null) && (!lyric.equals(""))){
 			msga = "Lyric added to DB (ChartLyricsSoap)!";
 		} else {
@@ -83,4 +87,56 @@ public class LyricManager implements Serializable {
 				return true;
 	}
 	
+	public int getActiveMusic() {
+		return activeMusic;
+	}
+
+	public void setActiveMusic(int activeMusic) {
+		this.activeMusic = activeMusic;
+	}
+	
+	public void renderOFF(){
+		setOnOff(false);
+	}
+	
+	public void getTheLyric(int musicID){
+		this.activeMusic=musicID;
+		//metodo para ir buscar a lyric e dps mete o render a true
+		Lyric lyricresult = ld.searchLyric(ui.getActiveUser().getIdUtilizador(), musicID);
+		if (lyricresult!=null){
+			this.lyric = lyricresult.getLyrics();
+			setOnOff(true);
+		} else {
+			lyricresult = ld.searchLyric(1, musicID);
+			this.lyric = lyricresult.getLyrics();
+			setOnOff(true);
+		}
+	}
+	
+	public boolean isOnOff() {
+		return onOff;
+	}
+
+	public void setOnOff(boolean onOff) {
+		this.onOff = onOff;
+	}
+	
+	public void saveLyric(int musicID){
+		
+		
+		//grava lyric na BD
+		try{
+			ld.saveLyric(this.lyric, ui.getActiveUser(), md.getMusic(this.activeMusic));
+		} catch (Exception e) {
+			ld.updateLyric(this.lyric, ui.getActiveUser(), md.getMusic(this.activeMusic));
+		}
+	}
+	
+	public String getLyric() {
+		return lyric;
+	}
+
+	public void setLyric(String lyric) {
+		this.lyric = lyric;
+	}
 }
